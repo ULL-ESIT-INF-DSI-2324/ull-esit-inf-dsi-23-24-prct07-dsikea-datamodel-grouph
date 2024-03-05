@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["./src/*.ts"],
+  "out": "./docs",
+  "theme": "default",
+  "plugin": ["typedoc-plugin-extras"],
+  "customCss": "../custom-styles.css"
+}
