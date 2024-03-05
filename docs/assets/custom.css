@@ -1,0 +1,8 @@
+body {
+  background-color: #ffe6f4;
+}
+
+.typedoc-comment p,
+.typedoc-comment li {
+  text-align: justify !important;
+}
