@@ -3,13 +3,14 @@
   "include": ["./src"],
   "compilerOptions": {
     "target": "es2022",
-    "module": "commonjs",
+    "module": "NodeNext",
     "declaration": true,
     "rootDir": "./src",
     "outDir": "./dist",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "strictNullChecks": true,
-    "esModuleInterop": true
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
   }
 }
