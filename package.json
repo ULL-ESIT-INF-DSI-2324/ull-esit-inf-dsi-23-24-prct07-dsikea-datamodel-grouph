@@ -15,6 +15,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.3.11",
+    "@types/inquirer": "^9.0.7",
+    "@types/lowdb": "^1.0.15",
     "@types/mocha": "^10.0.6",
     "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
@@ -23,18 +25,18 @@
     "chai": "^5.1.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "inquirer": "^9.2.15",
-    "lowdb": "^7.0.1",
     "mocha": "^10.3.0",
     "nyc": "^15.1.0",
     "prettier": "^3.2.5",
     "sinon": "^17.0.1",
+    "ts-node": "^10.9.2",
     "tsc-watch": "^6.0.4",
     "typedoc": "^0.25.8",
     "typedoc-plugin-extras": "^3.0.0",
-    "typescript": "^5.3.3",
-    "ts-node": "^10.9.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
+    "inquirer": "^7.3.3",
+    "lowdb": "^1.0.0"
   }
 }
