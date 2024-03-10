@@ -39,20 +39,6 @@
       "precio": 80,
       "inclinable": true,
       "reposabrazos": true
-    },
-    {
-      "id": 4,
-      "nombre": "Armario cubito",
-      "descripcion": "Armario para habitaciones pequeñas",
-      "material": "Madera",
-      "dimensiones": {
-        "ancho": 80,
-        "alto": 180,
-        "largo": 65
-      },
-      "precio": 90,
-      "numeroPuertas": "2",
-      "tieneCajones": false
     }
   ],
   "proveedores": [

@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 import { Cliente } from "../../Entidades/Clientes.js";
-import { getClientes, addCliente } from "../db.js";
+import { getClientes, addCliente, deleteCliente, idEsUnico } from "../db.js";
 import { gestionarClientes } from "../../index.js";
 
 async function listarClientes() {
@@ -52,8 +52,17 @@ async function añadirCliente() {
         },
     ]);
 
+    const id = parseInt(respuestas.id);
+    const esUnico = await idEsUnico(id);
+
+    if (!esUnico) {
+        console.log('El ID introducido ya está en uso. Por favor, introduce un ID único.');
+        await añadirCliente();
+        return;
+    }
+
     const nuevoCliente = new Cliente(
-        parseInt(respuestas.id),
+        id,
         respuestas.nombre,
         parseInt(respuestas.contacto),
         respuestas.direccion
@@ -64,5 +73,24 @@ async function añadirCliente() {
     gestionarClientes();
 }
 
-export { listarClientes, añadirCliente };
+async function eliminarCliente() {
+    const respuesta = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Introduce el ID del cliente a eliminar:',
+            validate: function(value) {
+                const valid = !isNaN(parseFloat(value));
+                return valid || 'Por favor, introduce un número';
+            },
+            filter: Number
+        }
+    ]);
+
+    await deleteCliente(respuesta.id);
+    console.log(`Cliente con ID = ${respuesta.id} eliminado correctamente.`);
+    gestionarClientes();
+}
+
+export { listarClientes, añadirCliente, eliminarCliente };
 

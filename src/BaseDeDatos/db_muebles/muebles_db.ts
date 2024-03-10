@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import { añadirSilla } from './addSilla.js';
 import { añadirMesa } from './addMesa.js';
 import { añadirArmario } from './addArmario.js';
-import { getMuebles } from '../db.js';
+import { getMuebles, deleteMueble } from '../db.js';
 import { gestionarMuebles, mainMenu } from '../../index.js';
 
 async function listarMuebles() {
@@ -57,6 +57,25 @@ async function añadirMueble() {
     }
 }
 
+async function eliminarMueble() {
+    const respuesta = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Introduce el ID del mueble a eliminar:',
+            validate: function(value) {
+                const valid = !isNaN(parseFloat(value));
+                return valid || 'Por favor, introduce un número';
+            },
+            filter: Number
+        }
+    ]);
+
+    await deleteMueble(respuesta.id);
+    console.log(`Mueble con ID = ${respuesta.id} eliminado correctamente.`);
+    gestionarMuebles();
+}
+
 async function opcionesSiguientes() {
     const respuesta = await inquirer.prompt([
         {
@@ -88,4 +107,4 @@ async function opcionesSiguientes() {
     }
 }
 
-export { listarMuebles, añadirMueble, opcionesSiguientes };
+export { listarMuebles, añadirMueble, eliminarMueble, opcionesSiguientes };

@@ -1,6 +1,6 @@
 import inquirer from 'inquirer';
 import { Proveedor } from '../../Entidades/Proveedores.js';
-import { addProveedor, getProveedores } from "../db.js";
+import { addProveedor, getProveedores, deleteProveedor, idEsUnico } from "../db.js";
 import { gestionarProveedores } from "../../index.js";
 
 async function listarProveedores() {
@@ -52,8 +52,17 @@ async function añadirProveedor() {
         },
     ]);
 
+    const id = parseInt(respuestas.id);
+    const esUnico = await idEsUnico(id);
+
+    if (!esUnico) {
+        console.log('El ID introducido ya está en uso. Por favor, introduce un ID único.');
+        await añadirProveedor();
+        return;
+    }
+
     const nuevoProveedor = new Proveedor(
-        parseInt(respuestas.id),
+        id,
         respuestas.nombre,
         parseInt(respuestas.contacto),
         respuestas.direccion
@@ -63,4 +72,23 @@ async function añadirProveedor() {
     gestionarProveedores();
 }
 
-export { listarProveedores, añadirProveedor };
+async function eliminarProveedor() {
+    const respuesta = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'id',
+            message: 'ID del proveedor a eliminar:',
+            validate: function(value) {
+                const valid = !isNaN(parseFloat(value));
+                return valid || 'Por favor, introduce un número';
+            },
+            filter: Number
+        },
+    ]);
+
+    await deleteProveedor(respuesta.id);
+    console.log(`Proveedor con ID = ${respuesta.id} eliminado correctamente.`);
+    gestionarProveedores();
+}
+
+export { listarProveedores, añadirProveedor, eliminarProveedor };

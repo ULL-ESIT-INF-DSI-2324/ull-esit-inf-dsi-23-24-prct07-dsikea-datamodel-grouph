@@ -29,9 +29,9 @@ async function addMueble(mueble: Mueble) {
 }
 
 // Eliminar un mueble
-async function deleteMueble(mueble: Mueble) {
+async function deleteMueble(id: number) {
     if (db.data) {
-        db.data.muebles = db.data.muebles.filter(m => m !== mueble);
+        db.data.muebles = db.data.muebles.filter(mueble => mueble.id !== id);
         await db.write();
     }
 }
@@ -57,9 +57,9 @@ async function addProveedor(proveedor: Proveedor) {
 }
 
 // Eliminar un proveedor
-async function deleteProveedor(proveedor: Proveedor) {
+async function deleteProveedor(id: number) {
     if (db.data) {
-        db.data.proveedores = db.data.proveedores.filter(p => p !== proveedor);
+        db.data.proveedores = db.data.proveedores.filter(proveedor => proveedor.id !== id);
         await db.write();
     }
 }
@@ -85,9 +85,9 @@ async function addCliente(cliente: Cliente) {
 }
 
 // Eliminar un cliente
-async function deleteCliente(cliente: Cliente) {
+async function deleteCliente(id: number) {
     if (db.data) {
-        db.data.clientes = db.data.clientes.filter(c => c !== cliente);
+        db.data.clientes = db.data.clientes.filter(cliente => cliente.id !== id);
         await db.write();
     }
 }
@@ -105,7 +105,12 @@ async function getClientes() {
     await db.read();
     return db.data?.clientes || [];
 }
+
+async function idEsUnico(id: number) {
+    await db.read(); // Asegúrate de que db está actualizado
+    return !db.data?.muebles.some(mueble => mueble.id === id);
+}
   
 // Exportando la función de inicialización y las operaciones de la base de datos
 export { initializeDb, addMueble, deleteMueble, modifyMueble, getMuebles, addProveedor, deleteProveedor, 
-         modifyProveedor, getProveedores, addCliente, deleteCliente, modifyCliente, getClientes};
+         modifyProveedor, getProveedores, addCliente, deleteCliente, modifyCliente, getClientes, idEsUnico};

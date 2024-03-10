@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { Mesa } from "../../Muebles/Mesa.js";
-import { addMueble } from "../db.js";
+import { addMueble, idEsUnico } from "../db.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
 
 async function añadirMesa() {
@@ -62,8 +62,17 @@ async function añadirMesa() {
         }
     ]);
 
+    const id = parseInt(respuestas.id);
+    const esUnico = await idEsUnico(id);
+
+    if (!esUnico) {
+        console.log('El ID introducido ya está en uso. Por favor, introduce un ID único.');
+        await añadirMesa();
+        return;
+    }
+
     const mesaNueva = new Mesa(
-        parseInt(respuestas.id),
+        id,
         respuestas.nombre,
         respuestas.descripcion,
         respuestas.material,

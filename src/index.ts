@@ -1,8 +1,8 @@
 import inquirer from 'inquirer';
 import { initializeDb } from './BaseDeDatos/db.js';
-import { listarMuebles, añadirMueble } from './BaseDeDatos/db_muebles/muebles_db.js';
-import { listarProveedores, añadirProveedor } from './BaseDeDatos/db_proveedores/proveedores_db.js';
-import { listarClientes, añadirCliente } from './BaseDeDatos/db_clientes/clientes_db.js';
+import { listarMuebles, añadirMueble, eliminarMueble } from './BaseDeDatos/db_muebles/muebles_db.js';
+import { listarProveedores, añadirProveedor, eliminarProveedor } from './BaseDeDatos/db_proveedores/proveedores_db.js';
+import { listarClientes, añadirCliente, eliminarCliente } from './BaseDeDatos/db_clientes/clientes_db.js';
 
 async function init() {
     await initializeDb();
@@ -50,7 +50,7 @@ async function gestionarMuebles() {
             await añadirMueble();
             break;
         case 'Eliminar mueble':
-            //await eliminarMueble();
+            await eliminarMueble();
             break;
         case 'Listar muebles':
             await listarMuebles();
@@ -76,7 +76,7 @@ async function gestionarProveedores() {
             await añadirProveedor();
             break;
         case 'Eliminar proveedor':
-            //await eliminarProveedor();
+            await eliminarProveedor();
             break;
         case 'Listar proveedores':
             await listarProveedores();
@@ -102,7 +102,7 @@ async function gestionarClientes() {
             await añadirCliente();
             break;
         case 'Eliminar cliente':
-            //await eliminarCliente();
+            await eliminarCliente();
             break;
         case 'Listar clientes':
             await listarClientes();
