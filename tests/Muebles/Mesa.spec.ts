@@ -54,3 +54,10 @@ describe('Test getters y setters Mesa', () => {
         expect(mesa.plegable).to.be.equal(false);
     });
 });
+
+describe ('Test JSON Mesa', () => {
+    const mesa = new Mesa(1, 'Mesa 1', 'Mesa de madera', 'Madera', {ancho: 110, alto: 100, largo: 200}, 100, 'Redonda', true);
+    it('Se convierte a JSON', () => {
+        expect(mesa.toJSON()).to.be.deep.equal({id: 1, nombre: 'Mesa 1', descripcion: 'Mesa de madera', material: 'Madera', dimensiones: {ancho: 110, alto: 100, largo: 200}, precio: 100, forma: 'Redonda', plegable: true});
+    });
+});

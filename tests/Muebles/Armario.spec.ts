@@ -54,3 +54,10 @@ describe('Test getters y setters Armario', () => {
         expect(armario.tieneCajones).to.be.equal(true);
     });
 });
+
+describe ('Test JSON Armario', () => {
+    const armario = new Armario(1, 'Armario 1', 'Armario de madera', 'Madera', {ancho: 110, alto: 100, largo: 200}, 100, 2, false);
+    it('Se convierte a JSON', () => {
+        expect(armario.toJSON()).to.be.deep.equal({id: 1, nombre: 'Armario 1', descripcion: 'Armario de madera', material: 'Madera', dimensiones: {ancho: 110, alto: 100, largo: 200}, precio: 100, numeroPuertas: 2, tieneCajones: false});
+    });
+});

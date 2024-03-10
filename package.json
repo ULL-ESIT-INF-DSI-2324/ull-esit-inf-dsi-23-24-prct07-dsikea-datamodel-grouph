@@ -7,6 +7,7 @@
   "scripts": {
     "start": "tsc-watch --onSuccess \"node dist/ejercicio-1.js\"",
     "test": "mocha",
+    "prueba": "c8 npm test",
     "coverage": "c8 npm test && c8 report --reporter=lcov",
     "doc": "typedoc --plugin typedoc-plugin-extras --customTitle \"Desarrollo de Sistemas Informáticos - ULL\" --customCss custom-styles.css"
   },

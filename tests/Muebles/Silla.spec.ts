@@ -54,3 +54,10 @@ describe('Test getters y setters Silla', () => {
         expect(silla.reposabrazos).to.be.equal(true);
     });
 });
+
+describe ('Test JSON Silla', () => {
+    const silla = new Silla(1, 'Silla 1', 'Silla de madera', 'Madera', {ancho: 110, alto: 100, largo: 200}, 100, true, false);
+    it('Se convierte a JSON', () => {
+        expect(silla.toJSON()).to.be.deep.equal({id: 1, nombre: 'Silla 1', descripcion: 'Silla de madera', material: 'Madera', dimensiones: {ancho: 110, alto: 100, largo: 200}, precio: 100, inclinable: true, reposabrazos: false});
+    });
+});
