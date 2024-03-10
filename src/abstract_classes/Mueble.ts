@@ -59,4 +59,15 @@ export abstract class Mueble {
     public set precio(precio: number) {
         this.precio_ = precio;
     }
+
+    toJSON() {
+        return {
+            id: this.id_,
+            nombre: this.nombre_,
+            descripcion: this.descripcion_,
+            material: this.material_,
+            dimensiones: this.dimensiones_,
+            precio: this.precio_,
+        };
+    }
 }

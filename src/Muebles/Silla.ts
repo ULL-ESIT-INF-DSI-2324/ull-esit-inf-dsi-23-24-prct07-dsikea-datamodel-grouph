@@ -24,4 +24,12 @@ export class Silla extends Mueble {
     public set reposabrazos(reposabrazos: boolean) {
         this.reposabrazos_ = reposabrazos;
     }
+
+    toJSON() {
+        return {
+            ...super.toJSON(),
+            inclinable: this.inclinable,
+            reposabrazos: this.reposabrazos,
+        };
+    }
 }

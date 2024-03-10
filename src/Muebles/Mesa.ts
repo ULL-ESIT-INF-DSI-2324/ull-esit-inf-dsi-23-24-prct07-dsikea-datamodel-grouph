@@ -24,4 +24,12 @@ export class Mesa extends Mueble {
     public set plegable(plegable: boolean) {
         this.plegable_ = plegable;
     }
+
+    toJSON() {
+        return {
+            ...super.toJSON(),
+            forma: this.forma,
+            plegable: this.plegable,
+        };
+    }
 }

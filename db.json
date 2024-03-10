@@ -25,34 +25,74 @@
         "largo": 100
       },
       "precio": 150
+    },
+    {
+      "id": 3,
+      "nombre": "Silla de escritorio",
+      "descripcion": "Silla ideal para estudiar",
+      "material": "Plastico",
+      "dimensiones": {
+        "ancho": 70,
+        "alto": 150,
+        "largo": 65
+      },
+      "precio": 80,
+      "inclinable": true,
+      "reposabrazos": true
+    },
+    {
+      "id": 4,
+      "nombre": "Armario cubito",
+      "descripcion": "Armario para habitaciones pequeñas",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 80,
+        "alto": 180,
+        "largo": 65
+      },
+      "precio": 90,
+      "numeroPuertas": "2",
+      "tieneCajones": false
     }
   ],
   "proveedores": [
     {
       "id": 1,
       "nombre": "Proveedor A",
-      "contacto": "123456789",
+      "contacto": 123456789,
       "direccion": "Calle Falsa 123"
     },
     {
       "id": 2,
       "nombre": "Proveedor B",
-      "contacto": "987654321",
+      "contacto": 987654321,
       "direccion": "Avenida Siempre Viva 456"
+    },
+    {
+      "id": 3,
+      "nombre": "Proveedor C",
+      "contacto": 101010101,
+      "direccion": "Camino El Pino 36"
     }
   ],
   "clientes": [
     {
       "id": 1,
       "nombre": "Cliente A",
-      "contacto": "123456789",
+      "contacto": 123456789,
       "direccion": "Calle No Existe 123"
     },
     {
       "id": 2,
       "nombre": "Cliente B",
-      "contacto": "987654321",
+      "contacto": 987654321,
       "direccion": "Avenida Principal 456"
+    },
+    {
+      "id": 3,
+      "nombre": "Cliente C",
+      "contacto": 985647302,
+      "direccion": "Avenida General La Perdoma"
     }
   ]
 }

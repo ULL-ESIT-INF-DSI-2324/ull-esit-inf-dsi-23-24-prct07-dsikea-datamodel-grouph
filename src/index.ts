@@ -1,6 +1,8 @@
 import inquirer from 'inquirer';
-import { initializeDb, getMuebles } from './BaseDeDatos/db.js';
-//import { Mueble } from './abstract_classes/Mueble.js';
+import { initializeDb } from './BaseDeDatos/db.js';
+import { listarMuebles, añadirMueble } from './BaseDeDatos/db_muebles/muebles_db.js';
+import { listarProveedores, añadirProveedor } from './BaseDeDatos/db_proveedores/proveedores_db.js';
+import { listarClientes, añadirCliente } from './BaseDeDatos/db_clientes/clientes_db.js';
 
 async function init() {
     await initializeDb();
@@ -22,10 +24,10 @@ async function mainMenu() {
             gestionarMuebles();
             break;
         case 'Gestionar proveedores':
-            // Llamada a función para gestionar proveedores
+            gestionarProveedores();
             break;
         case 'Gestionar clientes':
-            // Llamada a función para gestionar clientes
+            gestionarClientes();
             break;
         case 'Salir':
             console.log('Saliendo...');
@@ -45,10 +47,10 @@ async function gestionarMuebles() {
 
     switch (answers.action) {
         case 'Añadir mueble':
-            //await anadirMueble();
+            await añadirMueble();
             break;
         case 'Eliminar mueble':
-            // Implementa la función para eliminar mueble
+            //await eliminarMueble();
             break;
         case 'Listar muebles':
             await listarMuebles();
@@ -59,21 +61,57 @@ async function gestionarMuebles() {
     }
 }
 
-async function listarMuebles() {
-    const muebles = await getMuebles();
-    
-    if (muebles.length === 0) {
-        console.log('No hay muebles registrados.');
-        return;
+async function gestionarProveedores() {
+    const answers = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'action',
+            message: '¿Qué acción desea realizar con los proveedores?',
+            choices: ['Añadir proveedor', 'Eliminar proveedor', 'Listar proveedores', 'Volver'],
+        },
+    ]);
+
+    switch (answers.action) {
+        case 'Añadir proveedor':
+            await añadirProveedor();
+            break;
+        case 'Eliminar proveedor':
+            //await eliminarProveedor();
+            break;
+        case 'Listar proveedores':
+            await listarProveedores();
+            break;
+        case 'Volver':
+            mainMenu();
+            break;
     }
-    
-    console.log('Lista de Muebles:');
-    muebles.forEach((mueble, index) => {
-        console.log(`${index + 1}. Nombre: ${mueble.nombre}, Descripción: ${mueble.descripcion}, Material: ${mueble.material} ,Precio: ${mueble.precio}`);
-    });
-    
-    // Vuelve al menú anterior después de mostrar los muebles
-    gestionarMuebles();
 }
 
+async function gestionarClientes() {
+    const answers = await inquirer.prompt([
+        {
+            type: 'list',
+            name: 'action',
+            message: '¿Qué acción desea realizar con los clientes?',
+            choices: ['Añadir cliente', 'Eliminar cliente', 'Listar clientes', 'Volver'],
+        },
+    ]);
+
+    switch (answers.action) {
+        case 'Añadir cliente':
+            await añadirCliente();
+            break;
+        case 'Eliminar cliente':
+            //await eliminarCliente();
+            break;
+        case 'Listar clientes':
+            await listarClientes();
+            break;
+        case 'Volver':
+            mainMenu();
+            break;
+    }
+}
+
+export {gestionarMuebles, gestionarProveedores, gestionarClientes, mainMenu};
 init();

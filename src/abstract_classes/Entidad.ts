@@ -1,5 +1,5 @@
 export abstract class Entidad {
-    constructor(protected id_: number, protected nombre_: string, protected contacto_: string, protected direccion_: string) {}
+    constructor(protected id_: number, protected nombre_: string, protected contacto_: number, protected direccion_: string) {}
 
     public get id(): number {
         return this.id_;
@@ -9,7 +9,7 @@ export abstract class Entidad {
         return this.nombre_;
     }
 
-    public get contacto(): string {
+    public get contacto(): number {
         return this.contacto_;
     }
 
@@ -25,7 +25,7 @@ export abstract class Entidad {
         this.nombre_ = nombre;
     }
 
-    public set contacto(contacto: string) {
+    public set contacto(contacto: number) {
         this.contacto_ = contacto;
     }
 
@@ -37,5 +37,14 @@ export abstract class Entidad {
         // Expresión regular para validar un número de teléfono.
         const regexTelefono = /^[0-9]{9}$/;
         return regexTelefono.test(telefono.toString());
+    }
+
+    toJSON() {
+        return {
+            id: this.id_,
+            nombre: this.nombre_,
+            contacto: this.contacto_,
+            direccion: this.direccion_,
+        };
     }
 }

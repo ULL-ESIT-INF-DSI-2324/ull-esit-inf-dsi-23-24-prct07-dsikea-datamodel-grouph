@@ -24,5 +24,13 @@ export class Armario extends Mueble {
     public set tieneCajones(tieneCajones: boolean) {
         this.tieneCajones_ = tieneCajones;
     }
+
+    toJSON() {
+        return {
+            ...super.toJSON(),
+            numeroPuertas: this.numeroPuertas,
+            tieneCajones: this.tieneCajones,
+        };
+    }
 }
 
