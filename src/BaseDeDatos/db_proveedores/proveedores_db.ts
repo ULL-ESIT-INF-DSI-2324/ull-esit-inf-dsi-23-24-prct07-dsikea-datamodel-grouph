@@ -2,6 +2,7 @@ import inquirer from 'inquirer';
 import { Proveedor } from '../../Entidades/Proveedores.js';
 import { addProveedor, getProveedores, deleteProveedor, idEsUnico } from "../db.js";
 import { gestionarProveedores } from "../../index.js";
+import { db } from '../db.js';
 
 async function listarProveedores() {
     const proveedores = await getProveedores();
@@ -91,4 +92,65 @@ async function eliminarProveedor() {
     gestionarProveedores();
 }
 
-export { listarProveedores, añadirProveedor, eliminarProveedor };
+async function modificarProveedorPorId() {
+    await db.read();
+
+    const { id } = await inquirer.prompt({
+        type: 'number',
+        name: 'id',
+        message: 'Introduce el ID del proveedor a modificar:',
+        validate: value => !isNaN(value) && value > 0 ? true : 'Por favor, introduce un ID válido.'
+    });
+
+    const proveedorIndex = db.data?.proveedores.findIndex(p => p.id === id);
+    if (proveedorIndex === -1 || proveedorIndex === undefined) {
+        console.log('Proveedor no encontrado.');
+        return;
+    }
+
+    const proveedor = db.data?.proveedores[proveedorIndex];
+    if (!proveedor) {
+        console.log('Proveedor no encontrado.');
+        return;
+    }
+
+    const preguntas = [
+        { 
+            name: 'id',
+            type: 'number',
+            message: 'Nuevo ID del proveedor:',
+            default: proveedor.id,
+            validate: async (value: number) => {
+                if (isNaN(value) || value <= 0) {
+                    return 'Por favor, introduce un ID válido.';
+                }
+                const existeId = db.data?.proveedores.some(p => p.id === value);
+                if (existeId && value !== proveedor.id) { // Asegúrate de permitir el mismo ID si el usuario no desea cambiarlo
+                    return 'Este ID ya está en uso por otro proveedor. Por favor, elige un ID diferente.';
+                }
+                return true;
+            }
+        },
+        { name: 'nombre', type: 'input', message: 'Nuevo nombre del proveedor:', default: proveedor.nombre },
+        {
+            name: 'contacto',
+            type: 'input',
+            message: 'Nuevo contacto del proveedor:',
+            default: proveedor.contacto.toString(), 
+            validate: (input: string) => /^\d{9}$/.test(input) ? true : 'Por favor, introduce un número válido de 9 dígitos.',
+            filter: (input: string) => parseInt(input, 10)
+        },
+        { name: 'direccion', type: 'input', message: 'Nueva dirección del proveedor:', default: proveedor.direccion }
+    ];
+
+    const respuestas = await inquirer.prompt(preguntas);
+
+    // Actualizar el proveedor con las nuevas respuestas
+    Object.assign(proveedor, respuestas);
+
+    await db.write();
+    console.log(`Proveedor con ID ${id} modificado correctamente.`);
+    gestionarProveedores();
+}
+
+export { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId };

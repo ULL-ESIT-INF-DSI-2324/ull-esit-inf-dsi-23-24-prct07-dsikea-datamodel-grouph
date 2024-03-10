@@ -1,8 +1,8 @@
 import inquirer from 'inquirer';
 import { initializeDb } from './BaseDeDatos/db.js';
-import { listarMuebles, añadirMueble, eliminarMueble } from './BaseDeDatos/db_muebles/muebles_db.js';
-import { listarProveedores, añadirProveedor, eliminarProveedor } from './BaseDeDatos/db_proveedores/proveedores_db.js';
-import { listarClientes, añadirCliente, eliminarCliente } from './BaseDeDatos/db_clientes/clientes_db.js';
+import { listarMuebles, añadirMueble, eliminarMueble, modificarMueblePorId } from './BaseDeDatos/db_muebles/muebles_db.js';
+import { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId } from './BaseDeDatos/db_proveedores/proveedores_db.js';
+import { listarClientes, añadirCliente, eliminarCliente, modificarClientePorId } from './BaseDeDatos/db_clientes/clientes_db.js';
 
 async function init() {
     await initializeDb();
@@ -41,7 +41,7 @@ async function gestionarMuebles() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar con los muebles?',
-            choices: ['Añadir mueble', 'Eliminar mueble', 'Listar muebles', 'Volver'],
+            choices: ['Añadir mueble', 'Eliminar mueble', 'Modificar mueble', 'Listar muebles', 'Volver'],
         },
     ]);
 
@@ -55,6 +55,9 @@ async function gestionarMuebles() {
         case 'Listar muebles':
             await listarMuebles();
             break;
+        case 'Modificar mueble':
+            await modificarMueblePorId();
+            break;
         case 'Volver':
             mainMenu();
             break;
@@ -67,7 +70,7 @@ async function gestionarProveedores() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar con los proveedores?',
-            choices: ['Añadir proveedor', 'Eliminar proveedor', 'Listar proveedores', 'Volver'],
+            choices: ['Añadir proveedor', 'Eliminar proveedor', 'Modificar proveedor','Listar proveedores', 'Volver'],
         },
     ]);
 
@@ -77,6 +80,9 @@ async function gestionarProveedores() {
             break;
         case 'Eliminar proveedor':
             await eliminarProveedor();
+            break;
+        case 'Modificar proveedor':
+            await modificarProveedorPorId();
             break;
         case 'Listar proveedores':
             await listarProveedores();
@@ -93,7 +99,7 @@ async function gestionarClientes() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar con los clientes?',
-            choices: ['Añadir cliente', 'Eliminar cliente', 'Listar clientes', 'Volver'],
+            choices: ['Añadir cliente', 'Eliminar cliente', 'Modificar cliente', 'Listar clientes', 'Volver'],
         },
     ]);
 
@@ -103,6 +109,9 @@ async function gestionarClientes() {
             break;
         case 'Eliminar cliente':
             await eliminarCliente();
+            break;
+        case 'Modificar cliente':
+            await modificarClientePorId();
             break;
         case 'Listar clientes':
             await listarClientes();

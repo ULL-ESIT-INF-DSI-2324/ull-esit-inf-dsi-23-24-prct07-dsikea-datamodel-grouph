@@ -113,4 +113,4 @@ async function idEsUnico(id: number) {
   
 // Exportando la función de inicialización y las operaciones de la base de datos
 export { initializeDb, addMueble, deleteMueble, modifyMueble, getMuebles, addProveedor, deleteProveedor, 
-         modifyProveedor, getProveedores, addCliente, deleteCliente, modifyCliente, getClientes, idEsUnico};
+         modifyProveedor, getProveedores, addCliente, deleteCliente, modifyCliente, getClientes, idEsUnico, db};

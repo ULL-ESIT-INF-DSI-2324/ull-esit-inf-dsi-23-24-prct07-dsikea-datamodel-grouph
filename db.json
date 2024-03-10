@@ -36,7 +36,7 @@
         "alto": 150,
         "largo": 65
       },
-      "precio": 80,
+      "precio": 70,
       "inclinable": true,
       "reposabrazos": true
     }
@@ -57,8 +57,8 @@
     {
       "id": 3,
       "nombre": "Proveedor C",
-      "contacto": 101010101,
-      "direccion": "Camino El Pino 36"
+      "contacto": 333333333,
+      "direccion": "Avenida Formula 1"
     }
   ],
   "clientes": [
@@ -77,8 +77,8 @@
     {
       "id": 3,
       "nombre": "Cliente C",
-      "contacto": 985647302,
-      "direccion": "Avenida General La Perdoma"
+      "contacto": 223344556,
+      "direccion": "Avenida Trinidad"
     }
   ]
 }
