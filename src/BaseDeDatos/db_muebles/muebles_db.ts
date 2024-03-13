@@ -8,6 +8,8 @@ import { gestionarMuebles, mainMenu } from '../../index.js';
 import { Silla } from '../../Muebles/Silla.js';
 import { Mesa } from '../../Muebles/Mesa.js';
 import { Armario } from '../../Muebles/Armario.js';
+import { searchSilla } from './searchSilla.js';
+
 
 async function listarMuebles() {
     const muebles = await getMuebles();
@@ -80,6 +82,26 @@ async function eliminarMueble() {
     gestionarMuebles();
 }
 
+async function buscarMueble() {
+    const respuesta = await inquirer.prompt([
+        {
+        type: 'list',
+        name: 'tipo',
+        message: '¿Qué tipo de mueble desea buscar?',
+        choices: [
+            { name: 'Silla', value: 'silla' },
+            { name: 'Mesa', value: 'mesa' },
+            { name: 'Armario', value: 'armario' },]
+        }
+    ])
+    switch(respuesta.tipo)
+    {
+        case 'silla':
+            await searchSilla();
+    }
+}
+
+
 async function opcionesSiguientes() {
     const respuesta = await inquirer.prompt([
         {
@@ -110,6 +132,7 @@ async function opcionesSiguientes() {
             process.exit(); // Cierra la aplicación
     }
 }
+
 
 async function modificarMueblePorId() {
     await db.read();
@@ -232,3 +255,5 @@ async function modificarMueblePorId() {
 
 
 export { listarMuebles, añadirMueble, eliminarMueble, opcionesSiguientes, modificarMueblePorId };
+
+

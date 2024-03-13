@@ -50,6 +50,11 @@ async function getMuebles() {
     return db.data?.muebles || [];
 }
 
+async function getSilla() {
+    await db.read();
+    return db.data?.muebles || [];
+}
+
 // Añadir un proveedor
 async function addProveedor(proveedor: Proveedor) {
     db.data?.proveedores.push(proveedor);
@@ -63,6 +68,8 @@ async function deleteProveedor(id: number) {
         await db.write();
     }
 }
+
+
 
 // Modificar un proveedor
 async function modifyProveedor(proveedor: Proveedor) {
