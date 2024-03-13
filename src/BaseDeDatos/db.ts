@@ -3,10 +3,15 @@ import { Mueble } from "../abstract_classes/Mueble.js";
 import { Proveedor } from "../Entidades/Proveedores.js";
 import { Cliente } from "../Entidades/Clientes.js";
 import { JSONFile } from "lowdb/node";
+import { Silla } from '../Muebles/Silla.js';
+import { Armario }  from '../Muebles/Armario.js';
+import { Mesa } from '../Muebles/Mesa.js'
 
 // Definición del esquema de la base de datos
 interface DbSchema {
-    muebles: Mueble[];
+    sillas:Silla[];
+    armarios:Armario[];
+    mesas:Mesa[]
     proveedores: Proveedor[];
     clientes: Cliente[];
 }
@@ -18,13 +23,13 @@ const db = new Low<DbSchema>(adapter);
 // Inicialización de la base de datos
 async function initializeDb() {
     await db.read();
-    db.data ||= { muebles: [], proveedores: [], clientes: [] };
+    db.data ||= { sillas: [], proveedores: [], clientes: [], mesas: [], armarios: [] };
     await db.write();
 }
   
 // Agregar un mueble
-async function addMueble(mueble: Mueble) {
-    db.data?.muebles.push(mueble);
+async function addArmario(mueble: Mueble) {
+    db.data?.Armario.push(mueble);
     await db.write();
 }
 

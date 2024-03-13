@@ -77,7 +77,7 @@ async function filtros_a_nombre(a_buscar:string,a_ordenar:string,asc:string):Pro
       return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x) => x.nombre.includes(a_buscar)).sort((a, b) => a.precio - b.precio);
     }
     if(asc === 'descendente')
-       return (await getMuebles()).filter((x) => x typeof Mueble).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
+       return (await getMuebles()).filter((x) => x instanceof Mueble).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
     else
        return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
 }
