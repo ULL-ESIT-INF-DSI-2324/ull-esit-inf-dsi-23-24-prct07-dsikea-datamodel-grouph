@@ -4,7 +4,7 @@ import { initializeDb } from './BaseDeDatos/db.js';
 import { listarMuebles, añadirMueble, eliminarMueble, modificarMueblePorId,buscarMueble } from './BaseDeDatos/db_muebles/muebles_db.js';
 import { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId } from './BaseDeDatos/db_proveedores/proveedores_db.js';
 import { listarClientes, añadirCliente, eliminarCliente, modificarClientePorId } from './BaseDeDatos/db_clientes/clientes_db.js';
-
+import { searchCliente } from './BaseDeDatos/db_clientes/searchClinetes.js';
 
 
 async function init() {
@@ -66,7 +66,7 @@ async function gestionarMuebles() {
         case 'Buscar muebles':
             await buscarMueble();
             break;
-            
+
         case 'Volver':
             mainMenu();
             break;
@@ -108,7 +108,7 @@ async function gestionarClientes() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar con los clientes?',
-            choices: ['Añadir cliente', 'Eliminar cliente', 'Modificar cliente', 'Listar clientes', 'Volver'],
+            choices: ['Añadir cliente', 'Eliminar cliente', 'Modificar cliente', 'Listar clientes','Buscar clientes', 'Volver'],
         },
     ]);
 
@@ -124,6 +124,9 @@ async function gestionarClientes() {
             break;
         case 'Listar clientes':
             await listarClientes();
+            break;
+        case 'Buscar clientes':
+            await searchCliente();
             break;
         case 'Volver':
             mainMenu();

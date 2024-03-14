@@ -149,5 +149,5 @@ async function modificarClientePorId() {
 }
 
 
-export { listarClientes, añadirCliente, eliminarCliente, modificarClientePorId };
+export { listarClientes, añadirCliente, eliminarCliente, modificarClientePorId,gestionarClientes };
 
