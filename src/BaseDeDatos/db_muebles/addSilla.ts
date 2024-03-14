@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { Silla } from "../../Muebles/Silla.js";
-import { addMueble, idEsUnico } from "../db.js";
+import { addSilla, idEsUnico } from "../db.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
 
 async function añadirSilla() {
@@ -87,7 +87,7 @@ async function añadirSilla() {
         respuestas.reposabrazos
     );
 
-    await addMueble(sillaNueva); // Asegúrate de que esta función maneje correctamente las instancias de las clases
+    await addSilla(sillaNueva); // Asegúrate de que esta función maneje correctamente las instancias de las clases
     console.log('Silla añadida correctamente.');
     await opcionesSiguientes();
 }

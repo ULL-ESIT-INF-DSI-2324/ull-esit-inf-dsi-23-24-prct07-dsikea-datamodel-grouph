@@ -1,10 +1,10 @@
 import inquirer from "inquirer";
-import { getMesa} from "../db.js";
+import { getArmario} from "../db.js";
 import { Mueble } from "../../abstract_classes/Mueble.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
-import { Mesa } from "../../Muebles/Mesa.js";
+import { Armario } from "../../Muebles/Armario.js";
 
-async function searchMesa() {
+async function searchArmario() {
     const respuestas = await inquirer.prompt([
         {
             type: 'list',
@@ -52,9 +52,10 @@ async function searchMesa() {
 
 async function filtros(a_buscar:string,metodo:string,a_ordenar:string,asc:string):Promise<Mueble[]>
 {
+    console.log(metodo);
    switch(metodo)
    {
-      case 'nombre':
+    case 'nombre':
         const filtros= await  filtros_a_nombre(a_buscar,a_ordenar,asc);
         return filtros;
       case 'material':
@@ -62,7 +63,6 @@ async function filtros(a_buscar:string,metodo:string,a_ordenar:string,asc:string
          return filtros1;
       case 'descripcion':
         const filtros2=await filtros_a_descripcion(a_buscar,a_ordenar,asc);
-        console.log(filtros2.length)
         return filtros2;
       default:
         return [];
@@ -75,14 +75,14 @@ async function filtros_a_nombre(a_buscar:string,a_ordenar:string,asc:string):Pro
     if(a_ordenar === 'precio')
     {
       if(asc === 'descendente')
-        return (await getMesa()).filter((x) => x.nombre.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
+        return (await getArmario()).filter((x) => x.nombre.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
       else
-      return (await getMesa()).filter((x) => x.nombre.includes(a_buscar)).sort((a, b) => a.precio - b.precio);
+      return (await getArmario()).filter((x) => x.nombre.includes(a_buscar)).sort((a, b) => a.precio - b.precio);
     }
     if(asc === 'descendente')
-       return (await getMesa()).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
+       return (await getArmario()).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
     else
-       return (await getMesa()).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
+       return (await getArmario()).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
 }
 
 async function filtros_a_material(a_buscar:string,a_ordenar:string,asc:string):Promise<Mueble[]>
@@ -91,14 +91,14 @@ async function filtros_a_material(a_buscar:string,a_ordenar:string,asc:string):P
     if(a_ordenar === 'precio')
     {
       if(asc === 'descendente')
-        return (await getMesa()).filter((x)=>x.material === a_buscar).sort((a,b) =>b.precio - a.precio);
+        return (await getArmario()).filter((x)=>x.material === a_buscar).sort((a,b) =>b.precio - a.precio);
       else
-        return (await getMesa()).filter((x)=>x.material === a_buscar).sort((a,b) =>a.precio - b.precio);   
+        return (await getArmario()).filter((x)=>x.material === a_buscar).sort((a,b) =>a.precio - b.precio);   
     }
     if(asc === 'descendente')
-      return (await getMesa()).filter((x)=>x.material === a_buscar).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
+      return (await getArmario()).filter((x)=>x.material === a_buscar).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
     else
-      return (await getMesa()).filter((x)=>x.material === a_buscar).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
+      return (await getArmario()).filter((x)=>x.material === a_buscar).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
 }
 
 async function filtros_a_descripcion(a_buscar:string,a_ordenar:string,asc:string):Promise<Mueble[]>
@@ -106,16 +106,16 @@ async function filtros_a_descripcion(a_buscar:string,a_ordenar:string,asc:string
     if(a_ordenar === 'precio')
     {
       if(asc === 'descendente')
-        return (await getMesa()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
+        return (await getArmario()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
       else
-        return (await getMesa()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>a.precio - b.precio);   
+        return (await getArmario()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>a.precio - b.precio);   
     }
     if(asc === 'descendente')
-      return (await getMesa()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
+      return (await getArmario()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
     else
-      return (await getMesa()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
+      return (await getArmario()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
 }
 
 
 
-export{searchMesa}
+export{searchArmario}

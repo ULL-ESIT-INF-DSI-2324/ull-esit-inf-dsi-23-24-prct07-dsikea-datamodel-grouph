@@ -27,38 +27,81 @@ async function initializeDb() {
     await db.write();
 }
   
-// Agregar un mueble
-async function addArmario(mueble: Mueble) {
-    db.data?.Armario.push(mueble);
+// Agregar un Aramrio
+async function addArmario(mueble: Armario) {
+    db.data?.armarios.push(mueble);
+    await db.write();
+}
+
+async function addSilla(mueble: Silla) {
+    db.data?.sillas.push(mueble);
+    await db.write();
+}
+
+async function addMesa(mueble: Mesa) {
+    db.data?.mesas.push(mueble);
     await db.write();
 }
 
 // Eliminar un mueble
-async function deleteMueble(id: number) {
+async function deleteSilla(id: number) {
     if (db.data) {
-        db.data.muebles = db.data.muebles.filter(mueble => mueble.id !== id);
+        db.data.sillas = db.data.sillas.filter(mueble => mueble.id !== id);
+        await db.write();
+    }
+}
+
+async function deleteMesa(id: number) {
+    if (db.data) {
+        db.data.mesas = db.data.mesas.filter(mueble => mueble.id !== id);
+        console.log(db.data.mesas);
+        await db.write();
+    }
+}
+
+async function deleteArmario(id: number) {
+    if (db.data) {
+        db.data.armarios = db.data.armarios.filter(mueble => mueble.id !== id);
         await db.write();
     }
 }
 
 // Modificar un mueble
-async function modifyMueble(mueble: Mueble) {
-    if (db.data) {
-        db.data.muebles = db.data.muebles.map(m => m === mueble ? mueble : m);
-        await db.write();
-    }
+async function modifyMesa(mueble: Mesa,id:number) {
+    deleteMesa(id);
+    addMesa(mueble);
 }
 
-// Obtener todos los muebles
-async function getMuebles() {
-    await db.read();
-    return db.data?.muebles || [];
+// Modificar un mueble
+async function modifyArmario(mueble: Armario,id:number) {
+    deleteArmario(id);
+    addArmario(mueble);
 }
+
+// Modificar un mueble
+async function modifySilla(mueble: Silla,id:number) {
+    deleteSilla(id);
+    addSilla(mueble);
+}
+
 
 async function getSilla() {
     await db.read();
-    return db.data?.muebles || [];
+    return db.data?.sillas || [];
 }
+
+
+async function getMesa() {
+    await db.read();
+    return db.data?.mesas || [];
+}
+
+
+async function getArmario() {
+    await db.read();
+    return db.data?.armarios || [];
+}
+
 
 // Añadir un proveedor
 async function addProveedor(proveedor: Proveedor) {
@@ -120,9 +163,10 @@ async function getClientes() {
 
 async function idEsUnico(id: number) {
     await db.read(); // Asegúrate de que db está actualizado
-    return !db.data?.muebles.some(mueble => mueble.id === id);
+    return !(db.data?.armarios.some(mueble => mueble.id === id) || db.data?.sillas.some(mueble => mueble.id === id) || db.data?.mesas.some(mueble => mueble.id === id));
 }
   
 // Exportando la función de inicialización y las operaciones de la base de datos
-export { initializeDb, addMueble, deleteMueble, modifyMueble, getMuebles, addProveedor, deleteProveedor, 
+export { initializeDb, addProveedor, deleteProveedor,getArmario,getMesa,getSilla,deleteArmario,deleteMesa,deleteSilla,
+         modifyArmario,modifyMesa,modifySilla,addArmario,addSilla,addMesa,
          modifyProveedor, getProveedores, addCliente, deleteCliente, modifyCliente, getClientes, idEsUnico, db};

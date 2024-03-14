@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import { initializeDb } from './BaseDeDatos/db.js';
 
-import { listarMuebles, añadirMueble, eliminarMueble, modificarMueblePorId } from './BaseDeDatos/db_muebles/muebles_db.js';
+import { listarMuebles, añadirMueble, eliminarMueble, modificarMueblePorId,buscarMueble } from './BaseDeDatos/db_muebles/muebles_db.js';
 import { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId } from './BaseDeDatos/db_proveedores/proveedores_db.js';
 import { listarClientes, añadirCliente, eliminarCliente, modificarClientePorId } from './BaseDeDatos/db_clientes/clientes_db.js';
 
@@ -44,7 +44,7 @@ async function gestionarMuebles() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar con los muebles?',
-            choices: ['Añadir mueble', 'Eliminar mueble', 'Modificar mueble', 'Listar muebles', 'Volver'],
+            choices: ['Añadir mueble', 'Eliminar mueble', 'Modificar mueble', 'Listar muebles','Buscar muebles', 'Volver'],
 
         },
     ]);
@@ -61,8 +61,12 @@ async function gestionarMuebles() {
             break;
         case 'Modificar mueble':
             await modificarMueblePorId();
-
+        
             break;
+        case 'Buscar muebles':
+            await buscarMueble();
+            break;
+            
         case 'Volver':
             mainMenu();
             break;

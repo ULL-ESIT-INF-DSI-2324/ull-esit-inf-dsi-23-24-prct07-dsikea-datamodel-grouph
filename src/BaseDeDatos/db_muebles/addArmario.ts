@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { Armario } from "../../Muebles/Armario.js";
-import { addMueble, idEsUnico } from "../db.js";
+import { addArmario, idEsUnico } from "../db.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
 
 async function añadirArmario() {
@@ -87,7 +87,7 @@ async function añadirArmario() {
         respuestas.cajones
     );
 
-    await addMueble(armario);
+    await addArmario(armario);
     console.log('Armario añadido correctamente.');
     opcionesSiguientes();
 }

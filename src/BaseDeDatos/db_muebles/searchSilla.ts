@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { getMuebles} from "../db.js";
+import { getSilla} from "../db.js";
 import { Mueble } from "../../abstract_classes/Mueble.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
 import { Silla } from "../../Muebles/Silla.js";
@@ -54,13 +54,15 @@ async function filtros(a_buscar:string,metodo:string,a_ordenar:string,asc:string
 {
    switch(metodo)
    {
-      case 'nombre':
-        const filtros= await  filtros_a_nombre(a_buscar,a_ordenar,asc);
-        return filtros;
-      case 'material':
-        return filtros_a_material(a_buscar,a_ordenar,asc);
-      case 'tamaño':
-        return filtros_a_descripcion(a_buscar,a_ordenar,asc);
+    case 'nombre':
+      const filtros= await  filtros_a_nombre(a_buscar,a_ordenar,asc);
+      return filtros;
+    case 'material':
+      const filtros1= await filtros_a_material(a_buscar,a_ordenar,asc);
+       return filtros1;
+    case 'descripcion':
+      const filtros2=await filtros_a_descripcion(a_buscar,a_ordenar,asc);
+      return filtros2;
       default:
         return [];
    }
@@ -72,14 +74,14 @@ async function filtros_a_nombre(a_buscar:string,a_ordenar:string,asc:string):Pro
     if(a_ordenar === 'precio')
     {
       if(asc === 'descendente')
-        return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x) => x.nombre.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
+        return (await getSilla()).filter((x) => x.nombre.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
       else
-      return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x) => x.nombre.includes(a_buscar)).sort((a, b) => a.precio - b.precio);
+      return (await getSilla()).filter((x) => x.nombre.includes(a_buscar)).sort((a, b) => a.precio - b.precio);
     }
     if(asc === 'descendente')
-       return (await getMuebles()).filter((x) => x instanceof Mueble).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
+       return (await getSilla()).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
     else
-       return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
+       return (await getSilla()).filter((x)=>x.nombre.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
 }
 
 async function filtros_a_material(a_buscar:string,a_ordenar:string,asc:string):Promise<Mueble[]>
@@ -88,14 +90,14 @@ async function filtros_a_material(a_buscar:string,a_ordenar:string,asc:string):P
     if(a_ordenar === 'precio')
     {
       if(asc === 'descendente')
-        return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.material === a_buscar}).sort((a,b) =>b.precio - a.precio);
+        return (await getSilla()).filter((x)=>x.material.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
       else
-        return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.material === a_buscar}).sort((a,b) =>a.precio - b.precio);   
+        return (await getSilla()).filter((x)=>x.material.includes(a_buscar)).sort((a,b) =>a.precio - b.precio);   
     }
     if(asc === 'descendente')
-      return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.material === a_buscar}).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
+      return (await getSilla()).filter((x)=>x.material.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
     else
-      return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.material === a_buscar}).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
+      return (await getSilla()).filter((x)=>x.material.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
 }
 
 async function filtros_a_descripcion(a_buscar:string,a_ordenar:string,asc:string):Promise<Mueble[]>
@@ -103,14 +105,14 @@ async function filtros_a_descripcion(a_buscar:string,a_ordenar:string,asc:string
     if(a_ordenar === 'precio')
     {
       if(asc === 'descendente')
-        return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.descripcion.includes(a_buscar)}).sort((a,b) =>b.precio - a.precio);
+        return (await getSilla()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>b.precio - a.precio);
       else
-        return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.descripcion.includes(a_buscar)}).sort((a,b) =>a.precio - b.precio);   
+        return (await getSilla()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>a.precio - b.precio);   
     }
     if(asc === 'descendente')
-      return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.descripcion.includes(a_buscar)}).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
+      return (await getSilla()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>b.descripcion.localeCompare(a.descripcion));
     else
-      return (await getMuebles()).filter((x) => x instanceof(Silla)).filter((x)=>{x.descripcion.includes(a_buscar)}).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
+      return (await getSilla()).filter((x)=>x.descripcion.includes(a_buscar)).sort((a,b) =>a.descripcion.localeCompare(b.descripcion));    
 }
 
 

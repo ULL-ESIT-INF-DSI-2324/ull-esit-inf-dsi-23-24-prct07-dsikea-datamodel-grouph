@@ -41,6 +41,80 @@
       "reposabrazos": true
     }
   ],
+  "armarios": [
+    {
+      "id": 7,
+      "nombre": "Armario simple",
+      "descripcion": "Un armario simple y comodo",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 200,
+        "largo": 90
+      },
+      "precio": 120,
+      "numeroPuertas": "2",
+      "tieneCajones": false
+    }
+  ],
+  "sillas": [
+    {
+      "id": 1,
+      "tipo": "Silla",
+      "nombre": "Silla Clásica",
+      "descripcion": "Una silla de madera clásica",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 90,
+        "largo": 40
+      },
+      "precio": 50
+    },
+    {
+      "id": 3,
+      "nombre": "Silla de escritorio",
+      "descripcion": "Silla ideal para estudiar",
+      "material": "Plastico",
+      "dimensiones": {
+        "ancho": 70,
+        "alto": 150,
+        "largo": 65
+      },
+      "precio": 70,
+      "inclinable": true,
+      "reposabrazos": true
+    }
+  ],
+  "mesas": [
+    {
+      "id": 2,
+      "tipo": "Mesa",
+      "nombre": "Mesa de Comedor",
+      "descripcion": "Amplia mesa para comedor de 6 personas",
+      "material": "Madera de pino",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 75,
+        "largo": 100
+      },
+      "precio": 150
+    },
+    {
+      "id": 4,
+      "nombre": "Mesa de cristal",
+      "descripcion": "Una mesa hecha con cristal",
+      "material": "cristal",
+      "dimensiones": {
+        "ancho": 220,
+        "alto": 90,
+        "largo": 120
+      },
+      "precio": 270,
+      "forma": "cuadrado",
+      "plegable": false
+    }
+  ],
   "proveedores": [
     {
       "id": 1,

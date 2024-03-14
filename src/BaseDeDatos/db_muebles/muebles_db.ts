@@ -2,25 +2,35 @@ import inquirer from 'inquirer';
 import { añadirSilla } from './addSilla.js';
 import { añadirMesa } from './addMesa.js';
 import { añadirArmario } from './addArmario.js';
-import { getMuebles, deleteMueble } from '../db.js';
+import { getArmario,getMesa,getSilla, deleteSilla,deleteArmario,deleteMesa,idEsUnico, modifyArmario, modifyMesa, modifySilla } from '../db.js';
 import { db } from '../db.js';
 import { gestionarMuebles, mainMenu } from '../../index.js';
 import { Silla } from '../../Muebles/Silla.js';
 import { Mesa } from '../../Muebles/Mesa.js';
 import { Armario } from '../../Muebles/Armario.js';
 import { searchSilla } from './searchSilla.js';
+import { searchMesa } from './searchMesa.js';
+import { searchArmario } from './searchArmario.js';
 
 
 async function listarMuebles() {
-    const muebles = await getMuebles();
-    
-    if (muebles.length === 0) {
-        console.log('No hay muebles registrados.');
+    const armarios = await getArmario();
+    const mesas = await getMesa();
+    const sillas = await getSilla()
+    if (armarios.length === 0) {
+        console.log('No hay armarios registrados.');
         return;
     }
-    
+    if (sillas.length === 0) {
+        console.log('No hay sillas registrados.');
+        return;
+    }    
+    if (mesas.length === 0) {
+        console.log('No hay mesas registrados.');
+        return;
+    }       
     // Preparando los datos para mostrar en formato de tabla
-    const mueblesParaMostrar = muebles.map((mueble) => ({
+    const mueblesParaMostrar = armarios.map((mueble) => ({
         ID: mueble.id,
         Nombre: mueble.nombre,
         Descripción: mueble.descripcion,
@@ -28,9 +38,28 @@ async function listarMuebles() {
         Dimensiones: `A: ${mueble.dimensiones.ancho} cm, Al: ${mueble.dimensiones.alto} cm, L: ${mueble.dimensiones.largo} cm`,
         Precio: `${mueble.precio} €`
     }));
-    
-    console.log('Lista de Muebles:');
+    const mueblesParaMostrar1 = sillas.map((mueble) => ({
+        ID: mueble.id,
+        Nombre: mueble.nombre,
+        Descripción: mueble.descripcion,
+        Material: mueble.material,
+        Dimensiones: `A: ${mueble.dimensiones.ancho} cm, Al: ${mueble.dimensiones.alto} cm, L: ${mueble.dimensiones.largo} cm`,
+        Precio: `${mueble.precio} €`
+    }));    
+    const mueblesParaMostrar2 = mesas.map((mueble) => ({
+        ID: mueble.id,
+        Nombre: mueble.nombre,
+        Descripción: mueble.descripcion,
+        Material: mueble.material,
+        Dimensiones: `A: ${mueble.dimensiones.ancho} cm, Al: ${mueble.dimensiones.alto} cm, L: ${mueble.dimensiones.largo} cm`,
+        Precio: `${mueble.precio} €`
+    }));
+    console.log('Lista de Armarios:');
     console.table(mueblesParaMostrar);
+    console.log('Lista de Sillas:');
+    console.table(mueblesParaMostrar1);
+    console.log('Lista de Mesas:')
+    console.table(mueblesParaMostrar2)
     
     // Vuelve al menú anterior después de mostrar los muebles
     gestionarMuebles();
@@ -76,8 +105,12 @@ async function eliminarMueble() {
             filter: Number
         }
     ]);
-
-    await deleteMueble(respuesta.id);
+    if((await getArmario()).find((x) =>x.id === respuesta.id))
+       deleteArmario(respuesta.id);
+    if((await getMesa()).find((x) =>x.id === respuesta.id))
+       deleteMesa(respuesta.id);
+    if(((await getSilla()).find((x) =>x.id === respuesta.id)))
+       deleteSilla(respuesta.id);
     console.log(`Mueble con ID = ${respuesta.id} eliminado correctamente.`);
     gestionarMuebles();
 }
@@ -98,6 +131,10 @@ async function buscarMueble() {
     {
         case 'silla':
             await searchSilla();
+        case 'mesa':
+            await searchMesa();
+        case 'armario':
+           await searchArmario();
     }
 }
 
@@ -144,14 +181,26 @@ async function modificarMueblePorId() {
         validate: value => !isNaN(value) && value > 0 ? true : 'Por favor, introduce un ID válido.'
     });
 
-    const muebleIndex = db.data?.muebles.findIndex(m => m.id === id);
-    if (muebleIndex === -1 || muebleIndex === undefined) {
-        console.log('Mueble no encontrado.');
-        return; // Salir de la función si no se encuentra el mueble
-    }
-
+    const armarioIndex = db.data?.armarios.findIndex(m => m.id === id);
+    const mesaIndex = db.data?.mesas.findIndex(m => m.id === id);
+    const sillaIndex = db.data?.sillas.findIndex(m => m.id === id);
+    let index:number = 0;
+    let mueble_temp:Armario | Silla | Mesa | undefined;
+    if ((mesaIndex === -1 || mesaIndex === undefined )) {
+        if((sillaIndex === -1 || sillaIndex === undefined )){
+          if((armarioIndex === -1 || armarioIndex === undefined )){
+            console.log('Mueble no encontrado.');
+            return; // Salir de la función si no se encuentra el mueble
+          }
+          else
+            mueble_temp= db.data?.armarios[armarioIndex];
+        }else
+        mueble_temp=db.data?.sillas[sillaIndex];
+    }else
+    mueble_temp=db.data?.mesas[mesaIndex];
     // Asegurarte de que mueble no es undefined antes de proceder
-    const mueble = db.data?.muebles[muebleIndex];
+    const mueble = mueble_temp as Armario | Silla | Mesa;
+    console.log(mueble)
     if (!mueble) {
         console.log('Error al acceder al mueble.');
         return; // Salir de la función si el mueble es undefined
@@ -167,7 +216,7 @@ async function modificarMueblePorId() {
                 if (isNaN(value) || value <= 0) {
                     return 'Por favor, introduce un ID válido.';
                 }
-                const existeId = db.data?.muebles.some(m => m.id === value);
+                const existeId = !(await idEsUnico(value));
                 if (existeId && value !== mueble.id) { // Asegúrate de permitir el mismo ID si el usuario no desea cambiarlo
                     return 'Este ID ya está en uso por otro mueble. Por favor, elige un ID diferente.';
                 }
@@ -244,16 +293,29 @@ async function modificarMueblePorId() {
         delete respuestasComunes.alto;
         delete respuestasComunes.largo;
     }
-
-    // Combinar respuestas comunes y específicas para actualizar el mueble
-    Object.assign(mueble, respuestasComunes, respuestasEspecificas);
-
-    await db.write();
+    console.log(mueble.constructor.name)
+    if('forma' in mueble)
+    {
+        Object.assign(mueble, respuestasComunes, respuestasEspecificas);
+         modifyMesa(mueble,id)
+    }
+    if('numeroPuertas' in mueble)
+    {
+        Object.assign(mueble, respuestasComunes, respuestasEspecificas);
+         modifyArmario(mueble,id)
+    } 
+    if('inclinable' in mueble)
+    {
+        Object.assign(mueble, respuestasComunes, respuestasEspecificas);
+         modifySilla(mueble,id)        
+    }
+   // await db.write();
     console.log(`Mueble con ID ${id} modificado correctamente.`);
     gestionarMuebles();
 }
 
 
-export { listarMuebles, añadirMueble, eliminarMueble, opcionesSiguientes, modificarMueblePorId };
+export { listarMuebles, añadirMueble, eliminarMueble, opcionesSiguientes, modificarMueblePorId,buscarMueble
+ };
 
 

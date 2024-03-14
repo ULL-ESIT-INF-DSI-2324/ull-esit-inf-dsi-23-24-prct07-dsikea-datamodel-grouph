@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { Mesa } from "../../Muebles/Mesa.js";
-import { addMueble, idEsUnico } from "../db.js";
+import { addMesa, idEsUnico } from "../db.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
 
 async function añadirMesa() {
@@ -86,7 +86,7 @@ async function añadirMesa() {
         respuestas.plegable
     );
 
-    await addMueble(mesaNueva);
+    await addMesa(mesaNueva);
     console.log('Mesa añadida correctamente');
     await opcionesSiguientes();
 }
