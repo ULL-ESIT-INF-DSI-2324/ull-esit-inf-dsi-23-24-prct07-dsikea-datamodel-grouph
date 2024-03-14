@@ -5,7 +5,7 @@ import { listarMuebles, añadirMueble, eliminarMueble, modificarMueblePorId,busc
 import { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId } from './BaseDeDatos/db_proveedores/proveedores_db.js';
 import { listarClientes, añadirCliente, eliminarCliente, modificarClientePorId } from './BaseDeDatos/db_clientes/clientes_db.js';
 import { searchCliente } from './BaseDeDatos/db_clientes/searchClinetes.js';
-
+import { searchProveedores } from './BaseDeDatos/db_proveedores/searchProveedores.js';
 
 async function init() {
     await initializeDb();
@@ -79,7 +79,7 @@ async function gestionarProveedores() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar con los proveedores?',
-            choices: ['Añadir proveedor', 'Eliminar proveedor', 'Modificar proveedor','Listar proveedores', 'Volver'],
+            choices: ['Añadir proveedor', 'Eliminar proveedor', 'Modificar proveedor','Listar proveedores','Buscar proveedores' ,'Volver'],
         },
     ]);
 
@@ -95,6 +95,9 @@ async function gestionarProveedores() {
             break;
         case 'Listar proveedores':
             await listarProveedores();
+            break;
+        case 'Buscar proveedores':
+            await searchProveedores();
             break;
         case 'Volver':
             mainMenu();
