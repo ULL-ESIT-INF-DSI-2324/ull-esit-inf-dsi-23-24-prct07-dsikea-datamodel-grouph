@@ -9,6 +9,16 @@ import { Proveedor } from "../Entidades/Proveedores.js";
 import { gestionarMuebles, gestionarClientes , gestionarProveedores ,mainMenu } from '../index2.js';
 import { Mueble } from "../abstract_classes/Mueble.js";
 
+interface Transaction {
+    id: number;
+    type: 'SALE' | 'PURCHASE' | 'RETURNED_BY_CUSTOMER' | 'RETURN_TO_SUPPLIER';
+    furnitureID: number;
+    quantity: number;
+    interactorID: number; // Cliente o Proveedor ID
+    date: string;
+    amount: number;
+}
+
 // Definición del esquema de la base de datos
 interface DbSchema {
     sillas:Silla[];
@@ -16,6 +26,10 @@ interface DbSchema {
     mesas:Mesa[]
     proveedores: Proveedor[];
     clientes: Cliente[];
+    stock: {
+        [key: string]: { [id: number]: number }; // key puede ser 'sillas', 'mesas', 'armarios'
+    };
+    transactions: Transaction[];
 }
 
 export class Stock {
@@ -29,7 +43,7 @@ export class Stock {
 
     private async initializeDb() {
         await this.db.read();
-        this.db.data ||= { sillas: [], mesas: [], armarios: [], proveedores: [], clientes: [] };
+        this.db.data ||= { sillas: [], mesas: [], armarios: [], proveedores: [], clientes: [], stock: {}, transactions: [] };
         await this.db.write();
     }
 
@@ -567,43 +581,6 @@ export class Stock {
         console.log(`Mueble con ID = ${respuesta.id} eliminado correctamente.`);
         gestionarMuebles();
     }
-
-    //public async searchSilla() {
-
-   // }
-
-    //public async searchMesa() {
-    //}
-
-    //public async searchArmario() {
-
-    //}
-
-    /*public async buscarMueble() {
-        const respuesta = await inquirer.prompt([
-            {
-            type: 'list',
-            name: 'tipo',
-            message: '¿Qué tipo de mueble desea buscar?',
-            choices: [
-                { name: 'Silla', value: 'silla' },
-                { name: 'Mesa', value: 'mesa' },
-                { name: 'Armario', value: 'armario' },]
-            }
-        ])
-        switch(respuesta.tipo)
-        {
-            case 'silla':
-                await this.searchSilla();
-                break;
-            case 'mesa':
-                await this.searchMesa();
-                break;
-            case 'armario':
-               await this.searchArmario();
-                break;
-        }
-    }*/
 
     public async opcionesSiguientes() {
         const respuesta = await inquirer.prompt([
@@ -1164,7 +1141,332 @@ export class Stock {
         return mueblesFiltrados;
     }
 
+    async realizarVenta() {
+        const respuestas = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'furnitureID',
+                message: 'Introduce el ID del mueble vendido:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'quantity',
+                message: 'Introduce la cantidad vendida:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseInt(value) > 0 ? true : 'Por favor, introduce una cantidad válida.',
+            },
+            {
+                type: 'input',
+                name: 'customerID',
+                message: 'Introduce el ID del cliente que lo compró:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'amount',
+                message: 'Introduce el importe de la venta:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseFloat(value) > 0 ? true : 'Por favor, introduce un importe válido.',
+            }
+        ]);
+    
+        const furnitureID = parseInt(respuestas.furnitureID);
+        const quantity = parseInt(respuestas.quantity);
+        const customerID = parseInt(respuestas.customerID);
+        const amount = parseFloat(respuestas.amount);
+    
+        // Identifica el tipo de mueble
+        const tipoMueble = this.identificarTipoMueble(furnitureID);
+        if (!tipoMueble) {
+            console.log("ID de mueble no válido. Asegúrate de que el ID corresponde a un mueble existente.");
+            return;
+        }
+    
+        // Verifica si hay suficiente stock y procesa la venta
+        const ventaExitosa = await this.procesarVenta(tipoMueble, furnitureID, quantity, customerID, amount);
+    
+        if (!ventaExitosa) {
+            console.log("No se pudo completar la venta. Revisa el stock disponible.");
+        }
+    }
+    
+      async procesarVenta(tipoMueble: 'sillas' | 'mesas' | 'armarios', furnitureID: number, quantity: number, customerID: number, amount: number): Promise<boolean> {
+        // Asegúrate de leer los datos más actuales
+        await this.db.read();
+    
+        // Verificar si hay suficiente stock
+        const stockActual = this.db.data!.stock[tipoMueble][furnitureID] || 0;
+        if (stockActual < quantity) {
+            console.log("No hay suficiente stock para realizar la venta.");
+            return false; // Indica que la venta no fue exitosa debido a falta de stock
+        }
+    
+        // Actualizar stock
+        this.db.data!.stock[tipoMueble][furnitureID] -= quantity;
+    
+        // Registra la transacción
+        const transaccion: Transaction = {
+            id: this.db.data!.transactions.length + 1, // Asumiendo un simple auto-incremento para el ID
+            type: 'SALE',
+            furnitureID: furnitureID,
+            quantity: quantity,
+            interactorID: customerID,
+            date: new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+            }),
+            amount: amount,
+        };
+        this.db.data!.transactions.push(transaccion);
+    
+        // Guardar cambios
+        await this.db.write();
+    
+        console.log("Venta procesada correctamente.");
+        return true; // La venta fue exitosa
+    }
 
+    async realizarCompra() {
+        const respuestas = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'furnitureID',
+                message: 'Introduce el ID del mueble comprado:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'quantity',
+                message: 'Introduce la cantidad comprada:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseInt(value) > 0 ? true : 'Por favor, introduce una cantidad válida.',
+            },
+            {
+                type: 'input',
+                name: 'supplierID',
+                message: 'Introduce el ID del proveedor que lo vendió:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'amount',
+                message: 'Introduce el importe de la compra:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseFloat(value) > 0 ? true : 'Por favor, introduce un importe válido.',
+            }
+        ]);
+    
+        const furnitureID = parseInt(respuestas.furnitureID);
+        const quantity = parseInt(respuestas.quantity);
+        const supplierID = parseInt(respuestas.supplierID);
+        const amount = parseFloat(respuestas.amount);
+    
+        // Identifica el tipo de mueble
+        const tipoMueble = this.identificarTipoMueble(furnitureID);
+        if (!tipoMueble) {
+            console.log("ID de mueble no válido. Asegúrate de que el ID corresponde a un mueble existente.");
+            return;
+        }
+    
+        // Procesa la compra
+        const compraExitosa = await this.procesarCompra(tipoMueble, furnitureID, quantity, supplierID, amount);
+    
+        if (!compraExitosa) {
+            console.log("No se pudo completar la compra.");
+        }
+    }
+    
+    async procesarCompra(tipoMueble: 'sillas' | 'mesas' | 'armarios', furnitureID: number, quantity: number, supplierID: number, amount: number): Promise<boolean> {
+        // Asegúrate de leer los datos más actuales
+        await this.db.read();
+    
+        // Actualizar stock
+        if (!this.db.data!.stock[tipoMueble]) {
+            this.db.data!.stock[tipoMueble] = {};
+        }
+    
+        const stockActual = this.db.data!.stock[tipoMueble][furnitureID] || 0;
+        this.db.data!.stock[tipoMueble][furnitureID] = stockActual + quantity;
+    
+        // Registra la transacción
+        const transaccion: Transaction = {
+            id: this.db.data!.transactions.length + 1, // Asumiendo un simple auto-incremento para el ID
+            type: 'PURCHASE',
+            furnitureID: furnitureID,
+            quantity: quantity,
+            interactorID: supplierID,
+            date: new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+            }),
+            amount: amount,
+        };
+        this.db.data!.transactions.push(transaccion);
+    
+        // Guardar cambios
+        await this.db.write();
+    
+        console.log("Compra procesada correctamente.");
+        return true; 
+    }
 
+    async realizarDevolucionCliente() {
+        const respuestas = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'furnitureID',
+                message: 'Introduce el ID del mueble devuelto:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'quantity',
+                message: 'Introduce la cantidad devuelta:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseInt(value) > 0 ? true : 'Por favor, introduce una cantidad válida.',
+            },
+            {
+                type: 'input',
+                name: 'customerID',
+                message: 'Introduce el ID del cliente:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'amount',
+                message: 'Introduce el importe de la devolución:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseFloat(value) > 0 ? true : 'Por favor, introduce un importe válido.',
+            }
+        ]);
+    
+        const furnitureID = parseInt(respuestas.furnitureID);
+        const quantity = parseInt(respuestas.quantity);
+        const customerID = parseInt(respuestas.customerID);
+        const amount = parseFloat(respuestas.amount);
+    
+        // Identifica el tipo de mueble
+        const tipoMueble = this.identificarTipoMueble(furnitureID);
+        if (!tipoMueble) {
+            console.log("ID de mueble no válido. Asegúrate de que el ID corresponde a un mueble existente.");
+            return;
+        }
+        
+        // Procesar devolución
+        const devolucionExitosa = await this.procesarDevolucionCliente(furnitureID, quantity, customerID, amount);
+        
+        if (!devolucionExitosa) {
+            console.log("No se pudo completar la devolución.");
+        }
+    }
 
+    async procesarDevolucionCliente(furnitureID: number, quantity: number, customerID: number, amount: number): Promise<boolean> {
+        await this.db.read();
+    
+        const tipoMueble = this.identificarTipoMueble(furnitureID);
+        if (!tipoMueble) {
+            console.log("El ID de mueble no es válido.");
+            return false;
+        }
+    
+        // Incrementar stock debido a la devolución
+        this.db.data!.stock[tipoMueble][furnitureID] = (this.db.data!.stock[tipoMueble][furnitureID] || 0) + quantity;
+    
+        // Registrar la transacción de devolución por parte del cliente
+        const transaccion: Transaction = {
+            id: this.db.data!.transactions.length + 1,
+            type: 'RETURNED_BY_CUSTOMER',
+            furnitureID: furnitureID,
+            quantity: quantity,
+            interactorID: customerID,
+            date: new Date().toISOString(),
+            amount: -amount, // Negativo porque es una devolución
+        };
+        this.db.data!.transactions.push(transaccion);
+    
+        await this.db.write();
+        console.log("Devolución por cliente procesada correctamente.");
+        return true;
+    }
+
+    async realizarDevolucionProveedor() {
+        const respuestas = await inquirer.prompt([
+            {
+                type: 'input',
+                name: 'furnitureID',
+                message: 'Introduce el ID del mueble devuelto:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'quantity',
+                message: 'Introduce la cantidad devuelta:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseInt(value) > 0 ? true : 'Por favor, introduce una cantidad válida.',
+            },
+            {
+                type: 'input',
+                name: 'supplierID',
+                message: 'Introduce el ID del proveedor:',
+                validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+            },
+            {
+                type: 'input',
+                name: 'amount',
+                message: 'Introduce el importe de la devolución:',
+                validate: value => value.trim() !== '' && !isNaN(value) && parseFloat(value) > 0 ? true : 'Por favor, introduce un importe válido.',
+            }
+        ]);
+    
+        const furnitureID = parseInt(respuestas.furnitureID);
+        const quantity = parseInt(respuestas.quantity);
+        const supplierID = parseInt(respuestas.supplierID);
+        const amount = parseFloat(respuestas.amount);
+    
+        // Identificar el tipo de mueble
+        const tipoMueble = this.identificarTipoMueble(furnitureID);
+        if (!tipoMueble) {
+            console.log("El ID del mueble no es válido. Asegúrate de que el ID corresponde a un mueble existente.");
+            return;
+        }
+    
+        // Procesar la devolución
+        const devolucionExitosa = await this.procesarDevolucionProveedor(furnitureID, quantity, supplierID, amount);
+
+        if (!devolucionExitosa) {
+            console.log("No se pudo completar la devolución.");
+        }
+    }
+
+    async procesarDevolucionProveedor(furnitureID: number, quantity: number, supplierID: number, amount: number): Promise<boolean> {
+        await this.db.read();
+    
+        const tipoMueble = this.identificarTipoMueble(furnitureID);
+        if (!tipoMueble) {
+            console.log("El ID de mueble no es válido.");
+            return false;
+        }
+    
+        // Incrementar stock debido a la devolución al proveedor
+        this.db.data!.stock[tipoMueble][furnitureID] = (this.db.data!.stock[tipoMueble][furnitureID] || 0) + quantity;
+    
+        // Registrar la transacción de devolución al proveedor
+        const transaccion: Transaction = {
+            id: this.db.data!.transactions.length + 1,
+            type: 'RETURN_TO_SUPPLIER',
+            furnitureID: furnitureID,
+            quantity: quantity,
+            interactorID: supplierID,
+            date: new Date().toISOString(),
+            amount: -amount, // Negativo porque es una devolución
+        };
+        this.db.data!.transactions.push(transaccion);
+    
+        await this.db.write();
+        console.log("Devolución a proveedor procesada correctamente.");
+        return true;
+    }
+
+    private identificarTipoMueble(furnitureID: number): 'sillas' | 'mesas' | 'armarios' | undefined {
+        if (this.db.data!.sillas.some(mueble => mueble.id === furnitureID)) return 'sillas';
+        if (this.db.data!.mesas.some(mueble => mueble.id === furnitureID)) return 'mesas';
+        if (this.db.data!.armarios.some(mueble => mueble.id === furnitureID)) return 'armarios';
+        return undefined;
+    }
 }

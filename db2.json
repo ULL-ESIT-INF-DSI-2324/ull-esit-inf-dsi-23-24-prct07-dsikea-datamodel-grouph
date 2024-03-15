@@ -258,5 +258,93 @@
       "contacto": 505050505,
       "direccion": "Paseo Martítimo 44"
     }
+  ],
+  "stock": {
+    "sillas": {
+      "1": 6,
+      "3": 5,
+      "5": 6
+    },
+    "mesas": {
+      "2": 4,
+      "4": 6
+    },
+    "armarios": {
+      "6": 7
+    }
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "type": "SALE",
+      "furnitureID": 6,
+      "quantity": 2,
+      "interactorID": 14,
+      "date": "15/03/2024",
+      "amount": 210
+    },
+    {
+      "id": 2,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 2,
+      "interactorID": 5,
+      "date": "15/03/2024",
+      "amount": 150
+    },
+    {
+      "id": 3,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 2,
+      "interactorID": 8,
+      "date": "15/03/2024",
+      "amount": 100
+    },
+    {
+      "id": 4,
+      "type": "SALE",
+      "furnitureID": 5,
+      "quantity": 2,
+      "interactorID": 14,
+      "date": "15/03/2024",
+      "amount": 50
+    },
+    {
+      "id": 5,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 6,
+      "quantity": 2,
+      "interactorID": 14,
+      "date": "2024-03-15T20:44:42.797Z",
+      "amount": -210
+    },
+    {
+      "id": 6,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 6,
+      "quantity": 2,
+      "interactorID": 14,
+      "date": "2024-03-15T20:45:03.516Z",
+      "amount": -240
+    },
+    {
+      "id": 7,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 6,
+      "quantity": 1,
+      "interactorID": 8,
+      "date": "2024-03-15T20:49:20.575Z",
+      "amount": -105
+    },
+    {
+      "id": 8,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 6,
+      "quantity": 1,
+      "interactorID": 5,
+      "date": "2024-03-15T20:49:55.118Z",
+      "amount": -105
+    }
   ]
 }

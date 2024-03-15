@@ -13,7 +13,7 @@ async function mainMenu() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar?',
-            choices: ['Gestionar muebles', 'Gestionar proveedores', 'Gestionar clientes', 'Salir'],
+            choices: ['Gestionar muebles', 'Gestionar proveedores', 'Gestionar clientes', 'Gestionar transacciones', 'Salir'],
         },
     ]);
 
@@ -26,6 +26,9 @@ async function mainMenu() {
             break;
         case 'Gestionar clientes':
             gestionarClientes();
+            break;
+        case 'Gestionar transacciones':
+            gestionarTransacciones();
             break;
         case 'Salir':
             console.log('Saliendo...');
@@ -130,6 +133,36 @@ async function gestionarClientes() {
     }
 }
 
-export {gestionarMuebles, gestionarProveedores, gestionarClientes, mainMenu};
+async function gestionarTransacciones() {
+    const answers = await inquirer.prompt({
+            type: 'list',
+            name: 'choice',
+            message: 'Seleccione una opción',
+            choices: ['Generar venta', 'Generar compra', 'Generar devolución hecha por cliente', 'Generar devolución a proveedor', 'Volver'],
+        });
 
+    switch (answers.choice) {
+        case 'Generar venta':
+            await stock.realizarVenta();
+            await gestionarTransacciones();
+            break;
+        case 'Generar compra':
+            await stock.realizarCompra();
+            await gestionarTransacciones();
+            break;
+        case 'Generar devolución hecha por cliente':
+            await stock.realizarDevolucionCliente();
+            await gestionarTransacciones();
+            break;
+        case 'Generar devolución a proveedor':
+            await stock.realizarDevolucionProveedor();
+            await gestionarTransacciones();
+            break;
+        case 'Volver':
+            mainMenu();
+            break;
+    }
+}
+
+export {gestionarMuebles, gestionarProveedores, gestionarClientes, mainMenu, gestionarTransacciones};
 init();
