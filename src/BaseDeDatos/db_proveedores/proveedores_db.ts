@@ -153,4 +153,4 @@ async function modificarProveedorPorId() {
     gestionarProveedores();
 }
 
-export { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId,gestionarProveedores };
+export { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId, gestionarProveedores };

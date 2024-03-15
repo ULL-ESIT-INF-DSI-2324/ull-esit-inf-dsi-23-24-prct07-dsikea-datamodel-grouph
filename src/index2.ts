@@ -1,14 +1,9 @@
-import inquirer from 'inquirer';
-import { initializeDb } from './BaseDeDatos/db.js';
+import inquirer from "inquirer";
+import { Stock } from "./BaseDeDatos/Stock.js"
 
-import { listarMuebles, añadirMueble, eliminarMueble, modificarMueblePorId, buscarMueble } from './BaseDeDatos/db_muebles/muebles_db.js';
-import { listarProveedores, añadirProveedor, eliminarProveedor, modificarProveedorPorId } from './BaseDeDatos/db_proveedores/proveedores_db.js';
-import { listarClientes, añadirCliente, eliminarCliente, modificarClientePorId } from './BaseDeDatos/db_clientes/clientes_db.js';
-import { searchCliente } from './BaseDeDatos/db_clientes/searchClinetes.js';
-import { searchProveedores } from './BaseDeDatos/db_proveedores/searchProveedores.js';
+const stock = new Stock();
 
 async function init() {
-    await initializeDb();
     mainMenu();
 }
 
@@ -51,19 +46,19 @@ async function gestionarMuebles() {
 
     switch (answers.action) {
         case 'Añadir mueble':
-            await añadirMueble();
+            await stock.añadirMueble();
             break;
         case 'Eliminar mueble':
-            await eliminarMueble();
+            await stock.eliminarMueble();
             break; 
         case 'Listar muebles':
-            await listarMuebles();
+            await stock.listarMuebles();
             break;
         case 'Modificar mueble':
-            await modificarMueblePorId();
+            await stock.modificarMueblePorId();
             break;
         case 'Buscar muebles':
-            await buscarMueble();
+            await stock.buscarMueble();
             break;
         case 'Volver':
             mainMenu();
@@ -83,19 +78,19 @@ async function gestionarProveedores() {
 
     switch (answers.action) {
         case 'Añadir proveedor':
-            await añadirProveedor();
+            await stock.añadirProveedor();
             break;
         case 'Eliminar proveedor':
-            await eliminarProveedor();
+            await stock.eliminarProveedor();
             break;
         case 'Modificar proveedor':
-            await modificarProveedorPorId();
+            await stock.modificarProveedorPorID();
             break;
         case 'Listar proveedores':
-            await listarProveedores();
+            await stock.listarProveedores();
             break;
         case 'Buscar proveedores':
-            await searchProveedores();
+            await stock.searchProveedores();
             break;
         case 'Volver':
             mainMenu();
@@ -115,19 +110,19 @@ async function gestionarClientes() {
 
     switch (answers.action) {
         case 'Añadir cliente':
-            await añadirCliente();
+            await stock.añadirCliente();
             break;
         case 'Eliminar cliente':
-            await eliminarCliente();
+            await stock.eliminarCliente();
             break;
         case 'Modificar cliente':
-            await modificarClientePorId();
+            await stock.modificarClientePorId();
             break;
         case 'Listar clientes':
-            await listarClientes();
+            await stock.listarClientes();
             break;
         case 'Buscar clientes':
-            await searchCliente();
+            await stock.searchClientes();
             break;
         case 'Volver':
             mainMenu();
@@ -136,4 +131,5 @@ async function gestionarClientes() {
 }
 
 export {gestionarMuebles, gestionarProveedores, gestionarClientes, mainMenu};
+
 init();

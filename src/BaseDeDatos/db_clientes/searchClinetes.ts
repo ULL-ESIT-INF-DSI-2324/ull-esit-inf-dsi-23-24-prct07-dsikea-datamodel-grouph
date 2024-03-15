@@ -33,18 +33,19 @@ async function searchCliente() {
 }
 
 async function filtrar(metodo:string,a_buscar:string):Promise<Cliente[]> {
-    switch(metodo)
-    {
-        case 'nombre':
-            return (await getClientes()).filter((x) => x.nombre.includes(a_buscar))
-        case 'contacto':
-            let number=Number(a_buscar)
-            return (await getClientes()).filter((x) => x.contacto === number)
-        case 'direccion':
-             return (await getClientes()).filter((x) => x.direccion.includes(a_buscar))
-        default:
-            return [];
-    }
+  let number: number;
+  switch(metodo)
+  {
+    case 'nombre':
+      return (await getClientes()).filter((x) => x.nombre.includes(a_buscar))
+    case 'contacto':
+      number = Number(a_buscar);
+      return (await getClientes()).filter((x) => x.contacto === number)
+    case 'direccion':
+       return (await getClientes()).filter((x) => x.direccion.includes(a_buscar))
+    default:
+      return [];
+  }
 }
 
 

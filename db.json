@@ -1,46 +1,4 @@
 {
-  "muebles": [
-    {
-      "id": 1,
-      "tipo": "Silla",
-      "nombre": "Silla Clásica",
-      "descripcion": "Una silla de madera clásica",
-      "material": "Madera",
-      "dimensiones": {
-        "ancho": 40,
-        "alto": 90,
-        "largo": 40
-      },
-      "precio": 50
-    },
-    {
-      "id": 2,
-      "tipo": "Mesa",
-      "nombre": "Mesa de Comedor",
-      "descripcion": "Amplia mesa para comedor de 6 personas",
-      "material": "Madera de pino",
-      "dimensiones": {
-        "ancho": 200,
-        "alto": 75,
-        "largo": 100
-      },
-      "precio": 150
-    },
-    {
-      "id": 3,
-      "nombre": "Silla de escritorio",
-      "descripcion": "Silla ideal para estudiar",
-      "material": "Plastico",
-      "dimensiones": {
-        "ancho": 70,
-        "alto": 150,
-        "largo": 65
-      },
-      "precio": 70,
-      "inclinable": true,
-      "reposabrazos": true
-    }
-  ],
   "armarios": [
     {
       "id": 7,
@@ -74,16 +32,30 @@
     {
       "id": 3,
       "nombre": "Silla de escritorio",
-      "descripcion": "Silla ideal para estudiar",
+      "descripcion": "Silla ideal para el estudio",
       "material": "Plastico",
       "dimensiones": {
         "ancho": 70,
         "alto": 150,
         "largo": 65
       },
-      "precio": 70,
+      "precio": 80,
       "inclinable": true,
       "reposabrazos": true
+    },
+    {
+      "id": 5,
+      "nombre": "Butaca",
+      "descripcion": "Butaca de barra de bar",
+      "material": "Metal",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 120,
+        "largo": 40
+      },
+      "precio": 25,
+      "inclinable": false,
+      "reposabrazos": false
     }
   ],
   "mesas": [
@@ -152,7 +124,7 @@
       "id": 3,
       "nombre": "Cliente C",
       "contacto": 223344556,
-      "direccion": "Avenida Trinidad"
+      "direccion": "Avenida Trinidad 345"
     }
   ]
 }

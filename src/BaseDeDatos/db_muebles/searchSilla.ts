@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import { getSilla} from "../db.js";
 import { Mueble } from "../../abstract_classes/Mueble.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
-import { Silla } from "../../Muebles/Silla.js";
+//import { Silla } from "../../Muebles/Silla.js";
 
 async function searchSilla() {
     const respuestas = await inquirer.prompt([
@@ -52,20 +52,24 @@ async function searchSilla() {
 
 async function filtros(a_buscar:string,metodo:string,a_ordenar:string,asc:string):Promise<Mueble[]>
 {
-   switch(metodo)
-   {
+  let filtros;
+  let filtros1;
+  let filtros2;
+
+  switch(metodo)
+  {
     case 'nombre':
-      const filtros= await  filtros_a_nombre(a_buscar,a_ordenar,asc);
+      filtros = await filtros_a_nombre(a_buscar, a_ordenar, asc);
       return filtros;
     case 'material':
-      const filtros1= await filtros_a_material(a_buscar,a_ordenar,asc);
-       return filtros1;
+      filtros1 = await filtros_a_material(a_buscar, a_ordenar, asc);
+      return filtros1;
     case 'descripcion':
-      const filtros2=await filtros_a_descripcion(a_buscar,a_ordenar,asc);
+      filtros2 = await filtros_a_descripcion(a_buscar, a_ordenar, asc);
       return filtros2;
-      default:
-        return [];
-   }
+    default:
+      return [];
+  }
 }
 
 async function filtros_a_nombre(a_buscar:string,a_ordenar:string,asc:string):Promise<Mueble[]> 

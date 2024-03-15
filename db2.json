@@ -1,0 +1,262 @@
+{
+  "armarios": [
+    {
+      "id": 6,
+      "nombre": "Armario con cajones",
+      "descripcion": "Un armario simple con cajones",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 150,
+        "alto": 190,
+        "largo": 80
+      },
+      "precio": 105,
+      "numeroPuertas": 2,
+      "tieneCajones": true
+    }
+  ],
+  "sillas": [
+    {
+      "id": 1,
+      "tipo": "Silla",
+      "nombre": "Silla Clásica",
+      "descripcion": "Una silla de madera clásica",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 90,
+        "largo": 40
+      },
+      "precio": 50
+    },
+    {
+      "id": 3,
+      "nombre": "Silla de escritorio",
+      "descripcion": "Silla ideal para el estudio",
+      "material": "Plastico",
+      "dimensiones": {
+        "ancho": 70,
+        "alto": 150,
+        "largo": 65
+      },
+      "precio": 80,
+      "inclinable": true,
+      "reposabrazos": true
+    },
+    {
+      "id": 5,
+      "nombre": "Butaca",
+      "descripcion": "Butaca de barra de bar",
+      "material": "Metal",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 120,
+        "largo": 40
+      },
+      "precio": 25,
+      "inclinable": false,
+      "reposabrazos": false
+    }
+  ],
+  "mesas": [
+    {
+      "id": 2,
+      "tipo": "Mesa",
+      "nombre": "Mesa de Comedor",
+      "descripcion": "Amplia mesa para comedor de 6 personas",
+      "material": "Madera de pino",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 75,
+        "largo": 100
+      },
+      "precio": 150
+    },
+    {
+      "id": 4,
+      "nombre": "Mesa de cristal",
+      "descripcion": "Una mesa hecha con cristal",
+      "material": "cristal",
+      "dimensiones": {
+        "ancho": 220,
+        "alto": 90,
+        "largo": 120
+      },
+      "precio": 270,
+      "forma": "cuadrado",
+      "plegable": false
+    }
+  ],
+  "proveedores": [
+    {
+      "id": 1,
+      "nombre": "Gabriela Torres",
+      "contacto": 123456789,
+      "direccion": "Calle Sol 123"
+    },
+    {
+      "id": 2,
+      "nombre": "Marta Gómez",
+      "contacto": 234567890,
+      "direccion": "Avenida Siempre Viva 456"
+    },
+    {
+      "id": 3,
+      "nombre": "Elena García",
+      "contacto": 345678901,
+      "direccion": "Avenida Formula 1"
+    },
+    {
+      "id": 4,
+      "nombre": "Jorge Martínez",
+      "contacto": 456789012,
+      "direccion": "Avenida Júpiter 789"
+    },
+    {
+      "id": 5,
+      "nombre": "Raúl Fernández",
+      "contacto": 567890123,
+      "direccion": "Avenida Marte 101"
+    },
+    {
+      "id": 6,
+      "nombre": "Jorge Jiménez",
+      "contacto": 678901234,
+      "direccion": "Calle Venus 102"
+    },
+    {
+      "id": 7,
+      "nombre": "Sonia Martínez",
+      "contacto": 789012345,
+      "direccion": "Avenida Mercurio 103"
+    },
+    {
+      "id": 8,
+      "nombre": "Sonia Pérez",
+      "contacto": 890123456,
+      "direccion": "Paseo Saturno 104"
+    },
+    {
+      "id": 9,
+      "nombre": "Alejandro Torres",
+      "contacto": 901234567,
+      "direccion": "Paseo Urano 105"
+    },
+    {
+      "id": 10,
+      "nombre": "Patricia Romero",
+      "contacto": 101234567,
+      "direccion": "Calle Plutón 44"
+    },
+    {
+      "id": 11,
+      "nombre": "Marta Fernández",
+      "contacto": 102345678,
+      "direccion": "Paseo Galaxia 107"
+    },
+    {
+      "id": 12,
+      "nombre": "Natalia Romero",
+      "contacto": 103456789,
+      "direccion": "Avenida Tierra 33"
+    },
+    {
+      "id": 13,
+      "nombre": "Alejandro Pérez",
+      "contacto": 104567890,
+      "direccion": "Calle Estrella 22"
+    },
+    {
+      "id": 14,
+      "nombre": "Óscar Pérez",
+      "contacto": 105678901,
+      "direccion": "Avenida Cometa 111"
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "Sofía García",
+      "contacto": 111111111,
+      "direccion": "Calle de la Luz 10"
+    },
+    {
+      "id": 2,
+      "nombre": "Lucía Fernández",
+      "contacto": 222222222,
+      "direccion": "Avenida del Mar 47"
+    },
+    {
+      "id": 3,
+      "nombre": "Paula López",
+      "contacto": 333333333,
+      "direccion": "Plaza del Sol 5"
+    },
+    {
+      "id": 4,
+      "nombre": "Daniel Martínez",
+      "contacto": 444444444,
+      "direccion": "Calle de la Luna 22"
+    },
+    {
+      "id": 5,
+      "nombre": "Álvaro Sánchez",
+      "contacto": 555555555,
+      "direccion": "Avenida de las Flores 33"
+    },
+    {
+      "id": 6,
+      "nombre": "Hugo Pérez",
+      "contacto": 666666666,
+      "direccion": "Paseo de los Olivos 78"
+    },
+    {
+      "id": 7,
+      "nombre": "Pedro Hernández",
+      "contacto": 777777777,
+      "direccion": "Calle del Amanecer 9"
+    },
+    {
+      "id": 8,
+      "nombre": "Lucas Ruiz",
+      "contacto": 888888888,
+      "direccion": "Plaza de la Victoria 16"
+    },
+    {
+      "id": 9,
+      "nombre": "María Hernández",
+      "contacto": 999999999,
+      "direccion": "Avenida de la Libertad 3"
+    },
+    {
+      "id": 10,
+      "nombre": "Fran Felipe",
+      "contacto": 101010101,
+      "direccion": "Calle Nueva 21"
+    },
+    {
+      "id": 11,
+      "nombre": "Roberto Felipe",
+      "contacto": 202020202,
+      "direccion": "Calle Leo Messi 10"
+    },
+    {
+      "id": 12,
+      "nombre": "Paula García",
+      "contacto": 303030303,
+      "direccion": "Plaza Mayor 11"
+    },
+    {
+      "id": 13,
+      "nombre": "María García",
+      "contacto": 404040404,
+      "direccion": "Avenida de la Constitución 27"
+    },
+    {
+      "id": 14,
+      "nombre": "Daniel López",
+      "contacto": 505050505,
+      "direccion": "Paseo Martítimo 44"
+    }
+  ]
+}

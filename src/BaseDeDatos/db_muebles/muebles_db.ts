@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import { añadirSilla } from './addSilla.js';
 import { añadirMesa } from './addMesa.js';
 import { añadirArmario } from './addArmario.js';
-import { getArmario,getMesa,getSilla, deleteSilla,deleteArmario,deleteMesa,idEsUnico, modifyArmario, modifyMesa, modifySilla } from '../db.js';
+import { getArmario, getMesa, getSilla, deleteSilla, deleteArmario, deleteMesa, idEsUnico, modifyArmario, modifyMesa, modifySilla } from '../db.js';
 import { db } from '../db.js';
 import { gestionarMuebles, mainMenu } from '../../index.js';
 import { Silla } from '../../Muebles/Silla.js';
@@ -131,10 +131,13 @@ async function buscarMueble() {
     {
         case 'silla':
             await searchSilla();
+            break;
         case 'mesa':
             await searchMesa();
+            break;
         case 'armario':
            await searchArmario();
+            break;
     }
 }
 
@@ -184,7 +187,7 @@ async function modificarMueblePorId() {
     const armarioIndex = db.data?.armarios.findIndex(m => m.id === id);
     const mesaIndex = db.data?.mesas.findIndex(m => m.id === id);
     const sillaIndex = db.data?.sillas.findIndex(m => m.id === id);
-    let index:number = 0;
+    //const index:number = 0;
     let mueble_temp:Armario | Silla | Mesa | undefined;
     if ((mesaIndex === -1 || mesaIndex === undefined )) {
         if((sillaIndex === -1 || sillaIndex === undefined )){
@@ -315,7 +318,6 @@ async function modificarMueblePorId() {
 }
 
 
-export { listarMuebles, añadirMueble, eliminarMueble, opcionesSiguientes, modificarMueblePorId,buscarMueble
- };
+export { listarMuebles, añadirMueble, eliminarMueble, opcionesSiguientes, modificarMueblePorId, buscarMueble };
 
 

@@ -2,32 +2,32 @@ import inquirer from "inquirer";
 import { getArmario} from "../db.js";
 import { Mueble } from "../../abstract_classes/Mueble.js";
 import { opcionesSiguientes } from "../db_muebles/muebles_db.js";
-import { Armario } from "../../Muebles/Armario.js";
+//import { Armario } from "../../Muebles/Armario.js";
 
 async function searchArmario() {
     const respuestas = await inquirer.prompt([
         {
             type: 'list',
             name: 'tipo',
-            message: '¿Como quieres buscar?',
+            message: '¿Por qué criterio te gustaría buscar?',
             choices: ['nombre','material', 'descripcion']
         },
         {
             type: 'list',
             name: 'ordenacion',
-            message: '¿Como ordenar la busqueda?',
+            message: '¿Cómo quieres ordenar la búsqueda?',
             choices: ['precio', 'descripcion']
         },
         {
             type: 'list',
             name: 'asc',
-            message: '¿ascendente o descendente?',
+            message: '¿De forma ascendente o descendente?',
             choices: ['ascendente','descendente']
         },
         {
             type: 'input',
             name: 'clave',
-            message: '¿Que desas  filtrar?',
+            message: '¿Que desas filtrar?',
         }
     ]
     )
@@ -52,21 +52,23 @@ async function searchArmario() {
 
 async function filtros(a_buscar:string,metodo:string,a_ordenar:string,asc:string):Promise<Mueble[]>
 {
-    console.log(metodo);
-   switch(metodo)
-   {
-    case 'nombre':
-        const filtros= await  filtros_a_nombre(a_buscar,a_ordenar,asc);
-        return filtros;
-      case 'material':
-        const filtros1= await filtros_a_material(a_buscar,a_ordenar,asc);
-         return filtros1;
-      case 'descripcion':
-        const filtros2=await filtros_a_descripcion(a_buscar,a_ordenar,asc);
-        return filtros2;
-      default:
-        return [];
-   }
+  console.log(metodo);
+  switch(metodo) {
+    case 'nombre': {
+      const filtros = await filtros_a_nombre(a_buscar, a_ordenar, asc);
+      return filtros;
+    }
+    case 'material': {
+      const filtros1 = await filtros_a_material(a_buscar, a_ordenar, asc);
+      return filtros1;
+    }
+    case 'descripcion': {
+      const filtros2 = await filtros_a_descripcion(a_buscar, a_ordenar, asc);
+      return filtros2;
+    }
+    default:
+      return [];
+  }
 }
 
 async function filtros_a_nombre(a_buscar:string,a_ordenar:string,asc:string):Promise<Mueble[]> 

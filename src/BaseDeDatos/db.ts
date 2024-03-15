@@ -1,8 +1,9 @@
 import { Low } from 'lowdb';
-import { Mueble } from "../abstract_classes/Mueble.js";
+//import { Mueble } from "../abstract_classes/Mueble.js";
 import { Proveedor } from "../Entidades/Proveedores.js";
 import { Cliente } from "../Entidades/Clientes.js";
 import { JSONFile } from "lowdb/node";
+
 import { Silla } from '../Muebles/Silla.js';
 import { Armario }  from '../Muebles/Armario.js';
 import { Mesa } from '../Muebles/Mesa.js'
@@ -84,24 +85,20 @@ async function modifySilla(mueble: Silla,id:number) {
     addSilla(mueble);
 }
 
-
 async function getSilla() {
     await db.read();
     return db.data?.sillas || [];
 }
-
 
 async function getMesa() {
     await db.read();
     return db.data?.mesas || [];
 }
 
-
 async function getArmario() {
     await db.read();
     return db.data?.armarios || [];
 }
-
 
 // Añadir un proveedor
 async function addProveedor(proveedor: Proveedor) {
@@ -116,8 +113,6 @@ async function deleteProveedor(id: number) {
         await db.write();
     }
 }
-
-
 
 // Modificar un proveedor
 async function modifyProveedor(proveedor: Proveedor) {
@@ -167,6 +162,6 @@ async function idEsUnico(id: number) {
 }
   
 // Exportando la función de inicialización y las operaciones de la base de datos
-export { initializeDb, addProveedor, deleteProveedor,getArmario,getMesa,getSilla,deleteArmario,deleteMesa,deleteSilla,
-         modifyArmario,modifyMesa,modifySilla,addArmario,addSilla,addMesa,
-         modifyProveedor, getProveedores, addCliente, deleteCliente, modifyCliente, getClientes, idEsUnico, db};
+export { initializeDb, addProveedor, deleteProveedor, getArmario, getMesa, getSilla, deleteArmario, deleteMesa, deleteSilla,
+         modifyArmario, modifyMesa, modifySilla, addArmario, addSilla, addMesa, modifyProveedor, getProveedores, addCliente, 
+         deleteCliente, modifyCliente, getClientes, idEsUnico, db};
