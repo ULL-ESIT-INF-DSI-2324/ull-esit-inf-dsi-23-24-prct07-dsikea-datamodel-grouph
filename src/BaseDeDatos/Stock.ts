@@ -6,7 +6,7 @@ import { Mesa } from "../Muebles/Mesa.js";
 import { Armario } from "../Muebles/Armario.js";
 import { Cliente } from "../Entidades/Clientes.js";
 import { Proveedor } from "../Entidades/Proveedores.js";
-import { gestionarMuebles, gestionarClientes , gestionarProveedores ,mainMenu } from '../index2.js';
+import { gestionarMuebles, gestionarClientes, gestionarProveedores, mainMenu } from '../index2.js';
 import { Mueble } from "../abstract_classes/Mueble.js";
 
 interface Transaction {
@@ -1141,7 +1141,7 @@ export class Stock {
         return mueblesFiltrados;
     }
 
-    async realizarVenta() {
+    public async realizarVenta() {
         const respuestas = await inquirer.prompt([
             {
                 type: 'input',
@@ -1189,7 +1189,7 @@ export class Stock {
         }
     }
     
-      async procesarVenta(tipoMueble: 'sillas' | 'mesas' | 'armarios', furnitureID: number, quantity: number, customerID: number, amount: number): Promise<boolean> {
+    public async procesarVenta(tipoMueble: 'sillas' | 'mesas' | 'armarios', furnitureID: number, quantity: number, customerID: number, amount: number): Promise<boolean> {
         // Asegúrate de leer los datos más actuales
         await this.db.read();
     
@@ -1226,7 +1226,7 @@ export class Stock {
         return true; // La venta fue exitosa
     }
 
-    async realizarCompra() {
+    public async realizarCompra() {
         const respuestas = await inquirer.prompt([
             {
                 type: 'input',
@@ -1274,7 +1274,7 @@ export class Stock {
         }
     }
     
-    async procesarCompra(tipoMueble: 'sillas' | 'mesas' | 'armarios', furnitureID: number, quantity: number, supplierID: number, amount: number): Promise<boolean> {
+    public async procesarCompra(tipoMueble: 'sillas' | 'mesas' | 'armarios', furnitureID: number, quantity: number, supplierID: number, amount: number): Promise<boolean> {
         // Asegúrate de leer los datos más actuales
         await this.db.read();
     
@@ -1309,7 +1309,7 @@ export class Stock {
         return true; 
     }
 
-    async realizarDevolucionCliente() {
+    public async realizarDevolucionCliente() {
         const respuestas = await inquirer.prompt([
             {
                 type: 'input',
@@ -1357,7 +1357,7 @@ export class Stock {
         }
     }
 
-    async procesarDevolucionCliente(furnitureID: number, quantity: number, customerID: number, amount: number): Promise<boolean> {
+    public async procesarDevolucionCliente(furnitureID: number, quantity: number, customerID: number, amount: number): Promise<boolean> {
         await this.db.read();
     
         const tipoMueble = this.identificarTipoMueble(furnitureID);
@@ -1386,7 +1386,7 @@ export class Stock {
         return true;
     }
 
-    async realizarDevolucionProveedor() {
+    public async realizarDevolucionProveedor() {
         const respuestas = await inquirer.prompt([
             {
                 type: 'input',
@@ -1434,7 +1434,7 @@ export class Stock {
         }
     }
 
-    async procesarDevolucionProveedor(furnitureID: number, quantity: number, supplierID: number, amount: number): Promise<boolean> {
+    public async procesarDevolucionProveedor(furnitureID: number, quantity: number, supplierID: number, amount: number): Promise<boolean> {
         await this.db.read();
     
         const tipoMueble = this.identificarTipoMueble(furnitureID);
@@ -1469,4 +1469,187 @@ export class Stock {
         if (this.db.data!.armarios.some(mueble => mueble.id === furnitureID)) return 'armarios';
         return undefined;
     }
+
+    public async mostrarStockDisponible() {
+        await this.db.read(); // Asegura que los datos están actualizados
+
+        const { stock } = this.db.data!; // Accede directamente al stock actual
+
+        // Solicitar al usuario que elija una categoría de mueble
+        const respuesta = await inquirer.prompt({
+            type: 'list',
+            name: 'categoria',
+            message: 'Seleccione la categoría de muebles para la cual desea ver el stock:',
+            choices: ['sillas', 'mesas', 'armarios', 'Todos'],
+        });
+
+        // Mostrar el stock basado en la selección del usuario
+        if (respuesta.categoria === 'Todos') {
+            console.log('Stock disponible por categoría:');
+            Object.keys(stock).forEach(categoria => {
+                console.log(`\nCategoría: ${categoria.toUpperCase()}`);
+                console.table(stock[categoria]);
+            });
+        } else {
+            console.log(`Stock disponible para ${respuesta.categoria}:`);
+            console.table(stock[respuesta.categoria]);
+        }
+    }
+
+    public async mueblesMasVendidos() {
+        await this.db.read(); // Asegura que los datos están actualizados
+
+        const { transactions } = this.db.data!; // Accede directamente a las transacciones
+
+        // Agrupar transacciones por ID de mueble y sumar las cantidades
+        const mueblesVendidos = transactions
+            .filter(t => t.type === 'SALE') // Filtrar solo las transacciones de venta
+            .reduce((acc, t) => {
+                if (!acc[t.furnitureID]) {
+                    acc[t.furnitureID] = 0;
+                }
+                acc[t.furnitureID] += t.quantity;
+                return acc;
+            }, {} as { [key: number]: number });
+        
+        // Ordenar el objeto de muebles vendidos por la cantidad vendida
+        const mueblesVendidosOrdenados = Object.entries(mueblesVendidos)
+            .sort(([, cantidadA], [, cantidadB]) => cantidadB - cantidadA)
+            .map(([id, cantidad]) => ({ id: parseInt(id), cantidad }));
+        
+        // Mostrar los muebles más vendidos
+        console.log('Los muebles más vendidos son:');
+        console.table(mueblesVendidosOrdenados);
+    }
+
+    // Función para convertir la fecha de string a Date y comparar
+    // private fechaEnRango(fecha: string | Date, fechaInicio: Date, fechaFin: Date): boolean {
+    //     const fechaTransaccion = new Date(fecha);
+    //     return fechaTransaccion >= fechaInicio && fechaTransaccion <= fechaFin;
+    // }
+
+    private convertirAFecha(fechaStr: string): Date {
+        const [dia, mes, año] = fechaStr.split('/').map(part => parseInt(part));
+        return new Date(año, mes - 1, dia);
+    }
+
+    // Ajuste en fechaEnRango para usar las fechas convertidas
+    private fechaEnRango(fecha: string, fechaInicio: Date, fechaFin: Date): boolean {
+        const fechaTransaccion = this.convertirAFecha(fecha);
+        return fechaTransaccion >= fechaInicio && fechaTransaccion <= fechaFin;
+    }
+
+    public async facturacionEnPeriodo() {
+        // Solicitar al usuario las fechas de inicio y fin
+        const { fechaInicioStr, fechaFinStr } = await inquirer.prompt([
+          {
+            type: 'input',
+            name: 'fechaInicioStr',
+            message: 'Introduce la fecha de inicio (DD/MM/YYYY):',
+            validate: input => /^\d{2}\/\d{2}\/\d{4}$/.test(input) ? true : 'Por favor, introduce una fecha en formato DD/MM/YYYY.',
+          },
+          {
+            type: 'input',
+            name: 'fechaFinStr',
+            message: 'Introduce la fecha de fin (DD/MM/YYYY):',
+            validate: input => /^\d{2}\/\d{2}\/\d{4}$/.test(input) ? true : 'Por favor, introduce una fecha en formato DD/MM/YYYY.',
+          }
+        ]);
+      
+        // Convertir las cadenas de fecha a objetos Date
+        const fechaInicio = this.convertirAFecha(fechaInicioStr);
+        const fechaFin = this.convertirAFecha(fechaFinStr);
+        
+        // Filtrar las transacciones que caen dentro del rango de fechas
+        const ventas = this.db.data!.transactions.filter(transaccion => 
+          transaccion.type === 'SALE' && this.fechaEnRango(transaccion.date, fechaInicio, fechaFin)
+        );
+        
+        // Calcular el total de las ventas
+        const totalVentas = ventas.reduce((sum, transaccion) => sum + transaccion.amount, 0);
+        
+        console.log(`Total facturado por ventas entre ${fechaInicioStr} y ${fechaFinStr}: ${totalVentas} €.`);
+      }
+    
+    public async gastosEnPeriodo() {
+        // Solicitar al usuario las fechas de inicio y fin
+        const { fechaInicioStr, fechaFinStr } = await inquirer.prompt([
+          {
+            type: 'input',
+            name: 'fechaInicioStr',
+            message: 'Introduce la fecha de inicio (DD/MM/YYYY):',
+            validate: input => /^\d{2}\/\d{2}\/\d{4}$/.test(input) ? true : 'Por favor, introduce una fecha en formato DD/MM/YYYY.',
+          },
+          {
+            type: 'input',
+            name: 'fechaFinStr',
+            message: 'Introduce la fecha de fin (DD/MM/YYYY):',
+            validate: input => /^\d{2}\/\d{2}\/\d{4}$/.test(input) ? true : 'Por favor, introduce una fecha en formato DD/MM/YYYY.',
+          }
+        ]);
+      
+        // Convertir las cadenas de fecha a objetos Date
+        const fechaInicio = this.convertirAFecha(fechaInicioStr);
+        const fechaFin = this.convertirAFecha(fechaFinStr);
+      
+        // Filtrar las transacciones de tipo 'PURCHASE' que caen dentro del rango de fechas
+        const compras = this.db.data!.transactions.filter(transaccion => 
+          transaccion.type === 'PURCHASE' && this.fechaEnRango(transaccion.date, fechaInicio, fechaFin)
+        );
+      
+        // Calcular el total de los gastos
+        const totalGastos = compras.reduce((sum, transaccion) => sum + transaccion.amount, 0);
+      
+        console.log(`Total gastado en compras entre ${fechaInicioStr} y ${fechaFinStr}: ${totalGastos} €.`);
+    }
+
+    public async historicoTransacciones() {
+        const { tipoTransaccion } = await inquirer.prompt({
+            type: 'list',
+            name: 'tipoTransaccion',
+            message: '¿Deseas ver el histórico de ventas a un cliente o compras a un proveedor?',
+            choices: ['Ventas a Cliente', 'Compras a Proveedor']
+        });
+    
+        let mensajeId = '';
+        let tipoFiltro = '';
+    
+        if (tipoTransaccion === 'Ventas a Cliente') {
+            mensajeId = 'Introduce el ID del cliente:';
+            tipoFiltro = 'SALE';
+        } else {
+            mensajeId = 'Introduce el ID del proveedor:';
+            tipoFiltro = 'PURCHASE';
+        }
+    
+        const { idInteractor } = await inquirer.prompt({
+            type: 'input',
+            name: 'idInteractor',
+            message: mensajeId,
+            validate: value => value.trim() !== '' && !isNaN(value) ? true : 'Por favor, introduce un número válido.',
+        });
+    
+        // Asegúrate de leer los datos más actuales
+        await this.db.read();
+    
+        // Filtra las transacciones basadas en el tipo y el interactor ID
+        const transaccionesFiltradas = this.db.data!.transactions.filter(transaccion => 
+            transaccion.type === tipoFiltro && transaccion.interactorID === parseInt(idInteractor)
+        );
+    
+        if (transaccionesFiltradas.length > 0) {
+            console.log(`Histórico de ${tipoTransaccion.toLowerCase()} para el ID ${idInteractor}:`);
+            console.table(transaccionesFiltradas.map(transaccion => ({
+                ID: transaccion.id,
+                Tipo: transaccion.type,
+                ID_Mueble: transaccion.furnitureID,
+                Cantidad: transaccion.quantity,
+                Fecha: transaccion.date,
+                Importe: `${transaccion.amount} €`
+            })));
+        } else {
+            console.log(`No se encontraron ${tipoTransaccion.toLowerCase()} para el ID ${idInteractor}.`);
+        }
+    }
+    
 }

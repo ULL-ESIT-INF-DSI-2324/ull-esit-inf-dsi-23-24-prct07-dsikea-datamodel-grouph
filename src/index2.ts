@@ -13,7 +13,7 @@ async function mainMenu() {
             type: 'list',
             name: 'action',
             message: '¿Qué acción desea realizar?',
-            choices: ['Gestionar muebles', 'Gestionar proveedores', 'Gestionar clientes', 'Gestionar transacciones', 'Salir'],
+            choices: ['Gestionar muebles', 'Gestionar proveedores', 'Gestionar clientes', 'Gestionar transacciones', 'Generar informes','Salir'],
         },
     ]);
 
@@ -29,6 +29,9 @@ async function mainMenu() {
             break;
         case 'Gestionar transacciones':
             gestionarTransacciones();
+            break;
+        case 'Generar informes':
+            generarInformes();
             break;
         case 'Salir':
             console.log('Saliendo...');
@@ -164,5 +167,41 @@ async function gestionarTransacciones() {
     }
 }
 
-export {gestionarMuebles, gestionarProveedores, gestionarClientes, mainMenu, gestionarTransacciones};
+async function generarInformes() {
+    const answers = await inquirer.prompt({
+        type: 'list',
+        name: 'choice',
+        message: '¿Sobre qué desea generar un informe?',
+        choices: ['Stock de muebles', 'Muebles más vendidos', 'Facturación por ventas en un periodo de tiempo', 'Gastos por compras en un periodo de tiempo', 'Histórico de ventas/compras', 'Volver'],
+    });
+
+    switch (answers.choice) {
+        case 'Stock de muebles':
+            await stock.mostrarStockDisponible();
+            await generarInformes();
+            break;
+        case 'Muebles más vendidos':
+            await stock.mueblesMasVendidos();
+            await generarInformes();
+            break;
+        case 'Facturación por ventas en un periodo de tiempo':
+            await stock.facturacionEnPeriodo();
+            await generarInformes();
+            break;
+        case 'Gastos por compras en un periodo de tiempo':
+            await stock.gastosEnPeriodo();
+            await generarInformes();
+            break;
+        case 'Histórico de ventas/compras':
+            await stock.historicoTransacciones();
+            await generarInformes();
+            break;
+        case 'Volver':
+            mainMenu();
+            break;
+    }
+
+}
+
+export {gestionarMuebles, gestionarProveedores, gestionarClientes, mainMenu, gestionarTransacciones, generarInformes};
 init();
