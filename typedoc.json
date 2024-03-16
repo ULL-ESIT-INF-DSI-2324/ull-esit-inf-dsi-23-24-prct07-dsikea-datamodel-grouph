@@ -1,5 +1,5 @@
 {
-  "entryPoints": ["./src/*.ts"],
+  "entryPoints": ["./src/*/*.ts"],
   "out": "./docs",
   "theme": "default",
   "plugin": ["typedoc-plugin-extras"],
