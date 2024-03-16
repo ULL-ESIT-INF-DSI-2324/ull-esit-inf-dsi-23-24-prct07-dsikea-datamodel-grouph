@@ -6,7 +6,7 @@ import { Mesa } from "../Muebles/Mesa.js";
 import { Armario } from "../Muebles/Armario.js";
 import { Cliente } from "../Entidades/Clientes.js";
 import { Proveedor } from "../Entidades/Proveedores.js";
-import { gestionarMuebles, gestionarClientes, gestionarProveedores, mainMenu } from '../index2.js';
+import { gestionarMuebles, gestionarClientes, gestionarProveedores, mainMenu } from '../index.js';
 import { Mueble } from "../abstract_classes/Mueble.js";
 
 /**
@@ -51,23 +51,24 @@ export class Stock {
      */
     private static instance: Stock;
 
+
     /**
      * Constructor privado para prevenir la creación directa de instancias y facilitar el patrón Singleton.
      */
-    private constructor() {
-        const adapter = new JSONFile<DbSchema>('db2.json');
+    private constructor(dbPath:string) {
+        const adapter = new JSONFile<DbSchema>(dbPath);
     
         this.db = new Low(adapter);
         this.initializeDb();
     }
-
+    
     /**
      * Obtiene la instancia única de la clase Stock, creándola si no existe.
      * @returns La instancia única de la clase Stock.
      */
-    public static getInstance(): Stock {
+    public static getInstance(dbPath:string = 'db2.json'): Stock {
         if (!Stock.instance) {
-            Stock.instance = new Stock();
+            Stock.instance = new Stock(dbPath);
         }
         return Stock.instance;
     }
@@ -330,8 +331,7 @@ export class Stock {
         console.log('Lista de Mesas:')
         console.table(mueblesParaMostrar2)
         
-        // Vuelve al menú anterior después de mostrar los muebles
-        gestionarMuebles();
+
     }
 
     /**
@@ -358,8 +358,7 @@ export class Stock {
         console.log('Lista de Clientes:');
         console.table(clientesParaMostrar);
         
-        // Vuelve al menú anterior después de mostrar los clientes
-        gestionarClientes();
+
     }
 
     /**
@@ -387,7 +386,6 @@ export class Stock {
         console.table(proveedoresParaMostrar);
         
         // Vuelve al menú anterior después de mostrar los proveedores
-        gestionarProveedores();
     }
 
     /**
@@ -484,7 +482,6 @@ export class Stock {
     
         await this.addSilla(sillaNueva);
         console.log('Silla añadida correctamente.');
-        await this.opcionesSiguientes();
     }
 
     /**
@@ -580,7 +577,6 @@ export class Stock {
     
         await this.addMesa(mesaNueva);
         console.log('Mesa añadida correctamente');
-        await this.opcionesSiguientes();
     }
 
     /**
@@ -735,7 +731,6 @@ export class Stock {
         if(((await this.getSilla()).find((x) =>x.id === respuesta.id)))
            this.deleteSilla(respuesta.id);
         console.log(`Mueble con ID = ${respuesta.id} eliminado correctamente.`);
-        gestionarMuebles();
     }
 
     /**
@@ -762,10 +757,10 @@ export class Stock {
                 await this.añadirMueble(); 
                 break;
             case 'gestionarMuebles':
-                await gestionarMuebles(); 
+                await gestionarMuebles(this); 
                 break;
             case 'menuPrincipal':
-                await mainMenu(); 
+                await mainMenu(this); 
                 break;
             case 'salir':
                 console.log('Gracias por usar la aplicación. ¡Hasta la próxima!');
@@ -920,7 +915,7 @@ export class Stock {
         }
        // await db.write();
         console.log(`Mueble con ID ${id} modificado correctamente.`);
-        gestionarMuebles();
+        gestionarMuebles(this);
     }
 
     /**
@@ -972,7 +967,6 @@ export class Stock {
         
         await this.addCliente(nuevoCliente);
         console.log('Cliente añadido correctamente.');
-        gestionarClientes();
     }
 
     /**
@@ -996,7 +990,7 @@ export class Stock {
     
         await this.deleteCliente(respuesta.id);
         console.log(`Cliente con ID = ${respuesta.id} eliminado correctamente.`);
-        gestionarClientes();
+        gestionarClientes(this);
     }
 
     /**
@@ -1055,7 +1049,7 @@ export class Stock {
     
         await this.db.write();
         console.log(`Cliente con ID ${id} modificado correctamente.`);
-        gestionarClientes();
+        gestionarClientes(this);
     }
 
 
@@ -1117,9 +1111,9 @@ export class Stock {
         
         // Vuelve al menú anterior después de mostrar los resultados
         if (tipo === 'clientes') {
-            gestionarClientes(); 
+            gestionarClientes(this); 
         } else {
-            gestionarProveedores(); 
+            gestionarProveedores(this); 
         }
     }
 
@@ -1173,7 +1167,6 @@ export class Stock {
         );
         await this.addProveedor(nuevoProveedor);
         console.log('Proveedor añadido correctamente.');
-        gestionarProveedores();
     }
 
     /**
@@ -1197,7 +1190,7 @@ export class Stock {
     
         await this.deleteProveedor(respuesta.id);
         console.log(`Proveedor con ID = ${respuesta.id} eliminado correctamente.`);
-        gestionarProveedores();
+        gestionarProveedores(this);
     }
 
     /**
@@ -1262,7 +1255,7 @@ export class Stock {
     
         await this.db.write();
         console.log(`Proveedor con ID ${id} modificado correctamente.`);
-        gestionarProveedores();
+        gestionarProveedores(this);
     }
 
     /**

@@ -1,0 +1,561 @@
+{
+  "armarios": [
+    {
+      "id": 1,
+      "nombre": "Armario con cajones",
+      "descripcion": "Un armario simple con cajones",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 150,
+        "alto": 190,
+        "largo": 80
+      },
+      "precio": 105,
+      "numeroPuertas": 2,
+      "tieneCajones": true
+    },
+    {
+      "id": 2,
+      "nombre": "Armario minimalista",
+      "descripcion": "Armario simple y minimalista",
+      "material": "Madera de Abedul",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 190,
+        "largo": 90
+      },
+      "precio": 230,
+      "numeroPuertas": "2",
+      "tieneCajones": false
+    },
+    {
+      "id": 3,
+      "nombre": "Armario vintage",
+      "descripcion": "Armario estilo vintage",
+      "material": "Madera de roble",
+      "dimensiones": {
+        "ancho": 180,
+        "alto": 200,
+        "largo": 70
+      },
+      "precio": 180,
+      "numeroPuertas": 3,
+      "tieneCajones": true
+    },
+    {
+      "id": 4,
+      "nombre": "Armario de esquina",
+      "descripcion": "Armario diseñado para esquinas",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 120,
+        "alto": 190,
+        "largo": 120
+      },
+      "precio": 200,
+      "numeroPuertas": 2,
+      "tieneCajones": true
+    },
+    {
+      "id": 5,
+      "nombre": "Armario para herramientas",
+      "descripcion": "Armario espacioso para guardar herramientas",
+      "material": "Metal",
+      "dimensiones": {
+        "ancho": 220,
+        "alto": 200,
+        "largo": 100
+      },
+      "precio": 350,
+      "numeroPuertas": 4,
+      "tieneCajones": true
+    },
+    {
+      "id": 6,
+      "nombre": "Armario de puertas correderas",
+      "descripcion": "Armario con puertas que se deslizan hacia los lados",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 180,
+        "alto": 210,
+        "largo": 80
+      },
+      "precio": 280,
+      "numeroPuertas": 2,
+      "tieneCajones": false
+    },
+    {
+      "id": 7,
+      "nombre": "Armario empotrado",
+      "descripcion": "Armario diseñado para empotrar en la pared",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 220,
+        "largo": 60
+      },
+      "precio": 400,
+      "numeroPuertas": 3,
+      "tieneCajones": true
+    }
+  ],
+  "sillas": [
+    {
+      "id": 8,
+      "nombre": "Silla Clásica",
+      "descripcion": "Una silla de madera clásica",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 90,
+        "largo": 40
+      },
+      "precio": 50,
+      "inclinable": false,
+      "reposabrazos": false
+    },
+    {
+      "id": 9,
+      "nombre": "Silla de escritorio",
+      "descripcion": "Silla ideal para el estudio",
+      "material": "Plastico",
+      "dimensiones": {
+        "ancho": 70,
+        "alto": 150,
+        "largo": 65
+      },
+      "precio": 80,
+      "inclinable": true,
+      "reposabrazos": true
+    },
+    {
+      "id": 10,
+      "nombre": "Butaca",
+      "descripcion": "Butaca de barra de bar",
+      "material": "Metal",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 120,
+        "largo": 40
+      },
+      "precio": 25,
+      "inclinable": false,
+      "reposabrazos": false
+    },
+    {
+      "id": 11,
+      "nombre": "Silla de jardín",
+      "descripcion": "Silla resistente para uso en exteriores",
+      "material": "Plástico",
+      "dimensiones": {
+        "ancho": 50,
+        "alto": 100,
+        "largo": 50
+      },
+      "precio": 35,
+      "inclinable": false,
+      "reposabrazos": false
+    },
+    {
+      "id": 12,
+      "nombre": "Silla ergonómica",
+      "descripcion": "Silla diseñada para brindar máximo confort",
+      "material": "Cuero",
+      "dimensiones": {
+        "ancho": 45,
+        "alto": 100,
+        "largo": 45
+      },
+      "precio": 120,
+      "inclinable": true,
+      "reposabrazos": true
+    },
+    {
+      "id": 13,
+      "nombre": "Silla de playa",
+      "descripcion": "Silla para tumbarte en la playa mientras tomas una cerveza",
+      "material": "Tela",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 90,
+        "largo": 40
+      },
+      "precio": 30,
+      "inclinable": false,
+      "reposabrazos": false
+    },
+    {
+      "id": 21,
+      "nombre": "Silla de cocina para bebés",
+      "descripcion": "Silla para que los bebés coman",
+      "material": "Plástico",
+      "dimensiones": {
+        "ancho": 60,
+        "alto": 150,
+        "largo": 60
+      },
+      "precio": 55,
+      "inclinable": false,
+      "reposabrazos": true
+    }
+  ],
+  "mesas": [
+    {
+      "id": 14,
+      "nombre": "Mesa de Comedor",
+      "descripcion": "Amplia mesa para comedor de 6 personas",
+      "material": "Madera de pino",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 75,
+        "largo": 100
+      },
+      "precio": 150,
+      "forma": "rectangular",
+      "plegable": false
+    },
+    {
+      "id": 15,
+      "nombre": "Mesa de cristal",
+      "descripcion": "Una mesa hecha con cristal",
+      "material": "cristal",
+      "dimensiones": {
+        "ancho": 220,
+        "alto": 90,
+        "largo": 120
+      },
+      "precio": 270,
+      "forma": "cuadrado",
+      "plegable": false
+    },
+    {
+      "id": 16,
+      "nombre": "Mesa de café",
+      "descripcion": "Mesa pequeña perfecta para el café",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 80,
+        "alto": 60,
+        "largo": 80
+      },
+      "precio": 90,
+      "forma": "redonda",
+      "plegable": false
+    },
+    {
+      "id": 17,
+      "nombre": "Mesa de estudio",
+      "descripcion": "Mesa diseñada para el estudio y trabajo",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 120,
+        "alto": 75,
+        "largo": 60
+      },
+      "precio": 110,
+      "forma": "rectangular",
+      "plegable": false
+    },
+    {
+      "id": 18,
+      "nombre": "Mesa de centro",
+      "descripcion": "Mesa para colocar en el centro de la sala de estar",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 100,
+        "alto": 50,
+        "largo": 100
+      },
+      "precio": 80,
+      "forma": "cuadrado",
+      "plegable": false
+    },
+    {
+      "id": 19,
+      "nombre": "Mesa de cocina",
+      "descripcion": "Mesa ideal para la cocina",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 90,
+        "alto": 75,
+        "largo": 90
+      },
+      "precio": 120,
+      "forma": "cuadrado",
+      "plegable": false
+    },
+    {
+      "id": 20,
+      "nombre": "Mesa de plegable",
+      "descripcion": "Mesa plegable para ponerla donde quieras",
+      "material": "Plástico",
+      "dimensiones": {
+        "ancho": 120,
+        "alto": 110,
+        "largo": 200
+      },
+      "precio": 60,
+      "forma": "cuadrado",
+      "plegable": true
+    }
+  ],
+  "proveedores": [
+    {
+      "id": 1,
+      "nombre": "Gabriela Torres",
+      "contacto": 123456789,
+      "direccion": "Calle Sol 123"
+    },
+    {
+      "id": 2,
+      "nombre": "Marta Gómez",
+      "contacto": 234567890,
+      "direccion": "Avenida Siempre Viva 456"
+    },
+    {
+      "id": 3,
+      "nombre": "Elena García",
+      "contacto": 345678901,
+      "direccion": "Avenida Formula 1"
+    },
+    {
+      "id": 4,
+      "nombre": "Jorge Martínez",
+      "contacto": 456789012,
+      "direccion": "Avenida Júpiter 789"
+    },
+    {
+      "id": 5,
+      "nombre": "Raúl Fernández",
+      "contacto": 567890123,
+      "direccion": "Avenida Marte 101"
+    },
+    {
+      "id": 6,
+      "nombre": "Jorge Jiménez",
+      "contacto": 678901234,
+      "direccion": "Calle Venus 102"
+    },
+    {
+      "id": 7,
+      "nombre": "Sonia Martínez",
+      "contacto": 789012345,
+      "direccion": "Avenida Mercurio 103"
+    },
+    {
+      "id": 8,
+      "nombre": "Sonia Pérez",
+      "contacto": 890123456,
+      "direccion": "Paseo Saturno 104"
+    },
+    {
+      "id": 9,
+      "nombre": "Alejandro Torres",
+      "contacto": 901234567,
+      "direccion": "Paseo Urano 105"
+    },
+    {
+      "id": 10,
+      "nombre": "Patricia Romero",
+      "contacto": 101234567,
+      "direccion": "Calle Plutón 44"
+    },
+    {
+      "id": 11,
+      "nombre": "Marta Fernández",
+      "contacto": 102345678,
+      "direccion": "Paseo Galaxia 107"
+    },
+    {
+      "id": 12,
+      "nombre": "Natalia Romero",
+      "contacto": 103456789,
+      "direccion": "Avenida Tierra 33"
+    },
+    {
+      "id": 13,
+      "nombre": "Alejandro Pérez",
+      "contacto": 104567890,
+      "direccion": "Calle Estrella 22"
+    },
+    {
+      "id": 14,
+      "nombre": "Óscar Pérez",
+      "contacto": 105678901,
+      "direccion": "Avenida Cometa 111"
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "Sofía García",
+      "contacto": 111111111,
+      "direccion": "Calle de la Luz 10"
+    },
+    {
+      "id": 2,
+      "nombre": "Lucía Fernández",
+      "contacto": 222222222,
+      "direccion": "Avenida del Mar 47"
+    },
+    {
+      "id": 3,
+      "nombre": "Paula López",
+      "contacto": 333333333,
+      "direccion": "Plaza del Sol 5"
+    },
+    {
+      "id": 4,
+      "nombre": "Daniel Martínez",
+      "contacto": 444444444,
+      "direccion": "Calle de la Luna 22"
+    },
+    {
+      "id": 5,
+      "nombre": "Álvaro Sánchez",
+      "contacto": 555555555,
+      "direccion": "Avenida de las Flores 33"
+    },
+    {
+      "id": 6,
+      "nombre": "Hugo Pérez",
+      "contacto": 666666666,
+      "direccion": "Paseo de los Olivos 78"
+    },
+    {
+      "id": 7,
+      "nombre": "Pedro Hernández",
+      "contacto": 777777777,
+      "direccion": "Calle del Amanecer 9"
+    },
+    {
+      "id": 8,
+      "nombre": "Lucas Ruiz",
+      "contacto": 888888888,
+      "direccion": "Plaza de la Victoria 16"
+    },
+    {
+      "id": 9,
+      "nombre": "María Hernández",
+      "contacto": 999999999,
+      "direccion": "Avenida de la Libertad 3"
+    },
+    {
+      "id": 10,
+      "nombre": "Fran Felipe",
+      "contacto": 101010101,
+      "direccion": "Calle Nueva 21"
+    },
+    {
+      "id": 11,
+      "nombre": "Roberto Felipe",
+      "contacto": 202020202,
+      "direccion": "Calle Leo Messi 10"
+    },
+    {
+      "id": 12,
+      "nombre": "Paula García",
+      "contacto": 303030303,
+      "direccion": "Plaza Mayor 11"
+    },
+    {
+      "id": 13,
+      "nombre": "María García",
+      "contacto": 404040404,
+      "direccion": "Avenida de la Constitución 27"
+    },
+    {
+      "id": 14,
+      "nombre": "Daniel López",
+      "contacto": 505050505,
+      "direccion": "Paseo Martítimo 44"
+    }
+  ],
+  "stock": {
+    "sillas": {
+      "8": 16,
+      "9": 12,
+      "10": 7,
+      "11": 18,
+      "12": 17,
+      "13": 22,
+      "21": 12,
+      "144": 10,
+      "180": 10
+    },
+    "mesas": {
+      "14": 4,
+      "15": 7,
+      "16": 8,
+      "17": 10,
+      "18": 12,
+      "19": 14,
+      "20": 16
+    },
+    "armarios": {
+      "1": 15,
+      "2": 15,
+      "3": 14,
+      "4": 18,
+      "5": 9,
+      "6": 12,
+      "7": 15
+    }
+  },
+  "transactions": [
+    {
+      "id": 10,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 21,
+      "quantity": 2,
+      "interactorID": 7,
+      "date": "16/03/2024",
+      "amount": -110
+    },
+    {
+      "id": 2,
+      "type": "SALE",
+      "furnitureID": 5,
+      "quantity": 1,
+      "interactorID": 14,
+      "date": "16/03/2024",
+      "amount": 350
+    },
+    {
+      "id": 3,
+      "type": "PURCHASE",
+      "furnitureID": 13,
+      "quantity": 2,
+      "interactorID": 5,
+      "date": "16/03/2024",
+      "amount": 60
+    },
+    {
+      "id": 4,
+      "type": "SALE",
+      "furnitureID": 10,
+      "quantity": 3,
+      "interactorID": 4,
+      "date": "16/03/2024",
+      "amount": 75
+    },
+    {
+      "id": 5,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 15,
+      "quantity": 1,
+      "interactorID": 9,
+      "date": "16/03/2024",
+      "amount": -270
+    },
+    {
+      "id": 6,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 7,
+      "quantity": 1,
+      "interactorID": 12,
+      "date": "16/03/2024",
+      "amount": -400
+    }
+  ]
+}
