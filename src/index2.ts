@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 import { Stock } from "./BaseDeDatos/Stock.js"
 
-const stock = new Stock();
+const stock = Stock.getInstance();
 
 async function init() {
     mainMenu();

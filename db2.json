@@ -1,7 +1,7 @@
 {
   "armarios": [
     {
-      "id": 6,
+      "id": 1,
       "nombre": "Armario con cajones",
       "descripcion": "Un armario simple con cajones",
       "material": "Madera",
@@ -13,12 +13,95 @@
       "precio": 105,
       "numeroPuertas": 2,
       "tieneCajones": true
+    },
+    {
+      "id": 2,
+      "nombre": "Armario minimalista",
+      "descripcion": "Armario simple y minimalista",
+      "material": "Madera de Abedul",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 190,
+        "largo": 90
+      },
+      "precio": 230,
+      "numeroPuertas": "2",
+      "tieneCajones": false
+    },
+    {
+      "id": 3,
+      "nombre": "Armario vintage",
+      "descripcion": "Armario estilo vintage",
+      "material": "Madera de roble",
+      "dimensiones": {
+        "ancho": 180,
+        "alto": 200,
+        "largo": 70
+      },
+      "precio": 180,
+      "numeroPuertas": 3,
+      "tieneCajones": true
+    },
+    {
+      "id": 4,
+      "nombre": "Armario de esquina",
+      "descripcion": "Armario diseñado para esquinas",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 120,
+        "alto": 190,
+        "largo": 120
+      },
+      "precio": 200,
+      "numeroPuertas": 2,
+      "tieneCajones": true
+    },
+    {
+      "id": 5,
+      "nombre": "Armario para herramientas",
+      "descripcion": "Armario espacioso para guardar herramientas",
+      "material": "Metal",
+      "dimensiones": {
+        "ancho": 220,
+        "alto": 200,
+        "largo": 100
+      },
+      "precio": 350,
+      "numeroPuertas": 4,
+      "tieneCajones": true
+    },
+    {
+      "id": 6,
+      "nombre": "Armario de puertas correderas",
+      "descripcion": "Armario con puertas que se deslizan hacia los lados",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 180,
+        "alto": 210,
+        "largo": 80
+      },
+      "precio": 280,
+      "numeroPuertas": 2,
+      "tieneCajones": false
+    },
+    {
+      "id": 7,
+      "nombre": "Armario empotrado",
+      "descripcion": "Armario diseñado para empotrar en la pared",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 200,
+        "alto": 220,
+        "largo": 60
+      },
+      "precio": 400,
+      "numeroPuertas": 3,
+      "tieneCajones": true
     }
   ],
   "sillas": [
     {
-      "id": 1,
-      "tipo": "Silla",
+      "id": 8,
       "nombre": "Silla Clásica",
       "descripcion": "Una silla de madera clásica",
       "material": "Madera",
@@ -27,10 +110,12 @@
         "alto": 90,
         "largo": 40
       },
-      "precio": 50
+      "precio": 50,
+      "inclinable": false,
+      "reposabrazos": false
     },
     {
-      "id": 3,
+      "id": 9,
       "nombre": "Silla de escritorio",
       "descripcion": "Silla ideal para el estudio",
       "material": "Plastico",
@@ -44,7 +129,7 @@
       "reposabrazos": true
     },
     {
-      "id": 5,
+      "id": 10,
       "nombre": "Butaca",
       "descripcion": "Butaca de barra de bar",
       "material": "Metal",
@@ -56,12 +141,67 @@
       "precio": 25,
       "inclinable": false,
       "reposabrazos": false
+    },
+    {
+      "id": 11,
+      "nombre": "Silla de jardín",
+      "descripcion": "Silla resistente para uso en exteriores",
+      "material": "Plástico",
+      "dimensiones": {
+        "ancho": 50,
+        "alto": 100,
+        "largo": 50
+      },
+      "precio": 35,
+      "inclinable": false,
+      "reposabrazos": false
+    },
+    {
+      "id": 12,
+      "nombre": "Silla ergonómica",
+      "descripcion": "Silla diseñada para brindar máximo confort",
+      "material": "Cuero",
+      "dimensiones": {
+        "ancho": 45,
+        "alto": 100,
+        "largo": 45
+      },
+      "precio": 120,
+      "inclinable": true,
+      "reposabrazos": true
+    },
+    {
+      "id": 13,
+      "nombre": "Silla de playa",
+      "descripcion": "Silla para tumbarte en la playa mientras tomas una cerveza",
+      "material": "Tela",
+      "dimensiones": {
+        "ancho": 40,
+        "alto": 90,
+        "largo": 40
+      },
+      "precio": 30,
+      "inclinable": false,
+      "reposabrazos": false
+    },
+    {
+      "id": 21,
+      "nombre": "Silla de cocina para bebés",
+      "descripcion": "Silla para que los bebés coman",
+      "material": "Plástico",
+      "dimensiones": {
+        "ancho": 60,
+        "alto": 150,
+        "largo": 60
+      },
+      "precio": 55,
+      "inclinable": false,
+      "reposabrazos": true
     }
   ],
   "mesas": [
     {
-      "id": 2,
-      "tipo": "Mesa",
+      "id": 14,
       "nombre": "Mesa de Comedor",
       "descripcion": "Amplia mesa para comedor de 6 personas",
       "material": "Madera de pino",
@@ -70,10 +210,12 @@
         "alto": 75,
         "largo": 100
       },
-      "precio": 150
+      "precio": 150,
+      "forma": "rectangular",
+      "plegable": false
     },
     {
-      "id": 4,
+      "id": 15,
       "nombre": "Mesa de cristal",
       "descripcion": "Una mesa hecha con cristal",
       "material": "cristal",
@@ -85,6 +227,76 @@
       "precio": 270,
       "forma": "cuadrado",
       "plegable": false
+    },
+    {
+      "id": 16,
+      "nombre": "Mesa de café",
+      "descripcion": "Mesa pequeña perfecta para el café",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 80,
+        "alto": 60,
+        "largo": 80
+      },
+      "precio": 90,
+      "forma": "redonda",
+      "plegable": false
+    },
+    {
+      "id": 17,
+      "nombre": "Mesa de estudio",
+      "descripcion": "Mesa diseñada para el estudio y trabajo",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 120,
+        "alto": 75,
+        "largo": 60
+      },
+      "precio": 110,
+      "forma": "rectangular",
+      "plegable": false
+    },
+    {
+      "id": 18,
+      "nombre": "Mesa de centro",
+      "descripcion": "Mesa para colocar en el centro de la sala de estar",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 100,
+        "alto": 50,
+        "largo": 100
+      },
+      "precio": 80,
+      "forma": "cuadrado",
+      "plegable": false
+    },
+    {
+      "id": 19,
+      "nombre": "Mesa de cocina",
+      "descripcion": "Mesa ideal para la cocina",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 90,
+        "alto": 75,
+        "largo": 90
+      },
+      "precio": 120,
+      "forma": "cuadrado",
+      "plegable": false
+    },
+    {
+      "id": 20,
+      "nombre": "Mesa de plegable",
+      "descripcion": "Mesa plegable para ponerla donde quieras",
+      "material": "Plástico",
+      "dimensiones": {
+        "ancho": 120,
+        "alto": 110,
+        "largo": 200
+      },
+      "precio": 60,
+      "forma": "cuadrado",
+      "plegable": true
     }
   ],
   "proveedores": [
@@ -261,99 +473,87 @@
   ],
   "stock": {
     "sillas": {
-      "1": 6,
-      "3": 6,
-      "5": 6
+      "8": 16,
+      "9": 12,
+      "10": 7,
+      "11": 18,
+      "12": 17,
+      "13": 22,
+      "21": 12
     },
     "mesas": {
-      "2": 4,
-      "4": 6
+      "14": 4,
+      "15": 7,
+      "16": 8,
+      "17": 10,
+      "18": 12,
+      "19": 14,
+      "20": 16
     },
     "armarios": {
-      "6": 7
+      "1": 15,
+      "2": 15,
+      "3": 14,
+      "4": 18,
+      "5": 9,
+      "6": 12,
+      "7": 15
     }
   },
   "transactions": [
     {
-      "id": 1,
-      "type": "SALE",
-      "furnitureID": 6,
+      "id": 10,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 21,
       "quantity": 2,
-      "interactorID": 14,
-      "date": "15/03/2024",
-      "amount": 210
+      "interactorID": 7,
+      "date": "16/03/2024",
+      "amount": -110
     },
     {
       "id": 2,
       "type": "SALE",
-      "furnitureID": 1,
-      "quantity": 2,
-      "interactorID": 5,
-      "date": "15/03/2024",
-      "amount": 150
+      "furnitureID": 5,
+      "quantity": 1,
+      "interactorID": 14,
+      "date": "16/03/2024",
+      "amount": 350
     },
     {
       "id": 3,
-      "type": "SALE",
-      "furnitureID": 1,
+      "type": "PURCHASE",
+      "furnitureID": 13,
       "quantity": 2,
-      "interactorID": 8,
-      "date": "15/03/2024",
-      "amount": 100
+      "interactorID": 5,
+      "date": "16/03/2024",
+      "amount": 60
     },
     {
       "id": 4,
       "type": "SALE",
-      "furnitureID": 5,
-      "quantity": 2,
-      "interactorID": 14,
-      "date": "15/03/2024",
-      "amount": 50
+      "furnitureID": 10,
+      "quantity": 3,
+      "interactorID": 4,
+      "date": "16/03/2024",
+      "amount": 75
     },
     {
       "id": 5,
-      "type": "RETURNED_BY_CUSTOMER",
-      "furnitureID": 6,
-      "quantity": 2,
-      "interactorID": 14,
-      "date": "2024-03-15T20:44:42.797Z",
-      "amount": -210
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 15,
+      "quantity": 1,
+      "interactorID": 9,
+      "date": "16/03/2024",
+      "amount": -270
     },
     {
       "id": 6,
-      "type": "RETURNED_BY_CUSTOMER",
-      "furnitureID": 6,
-      "quantity": 2,
-      "interactorID": 14,
-      "date": "2024-03-15T20:45:03.516Z",
-      "amount": -240
-    },
-    {
-      "id": 7,
       "type": "RETURN_TO_SUPPLIER",
-      "furnitureID": 6,
+      "furnitureID": 7,
       "quantity": 1,
-      "interactorID": 8,
-      "date": "2024-03-15T20:49:20.575Z",
-      "amount": -105
-    },
-    {
-      "id": 8,
-      "type": "RETURN_TO_SUPPLIER",
-      "furnitureID": 6,
-      "quantity": 1,
-      "interactorID": 5,
-      "date": "2024-03-15T20:49:55.118Z",
-      "amount": -105
-    },
-    {
-      "id": 9,
-      "type": "PURCHASE",
-      "furnitureID": 3,
-      "quantity": 1,
-      "interactorID": 5,
-      "date": "15/03/2024",
-      "amount": 80
+      "interactorID": 12,
+      "date": "16/03/2024",
+      "amount": -400
     }
   ]
 }

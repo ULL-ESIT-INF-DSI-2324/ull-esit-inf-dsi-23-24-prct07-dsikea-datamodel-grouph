@@ -34,11 +34,19 @@ interface DbSchema {
 
 export class Stock {
     private db: Low<DbSchema>;
+    private static instance: Stock;
 
     constructor() {
         const adapter = new JSONFile<DbSchema>('db2.json');
         this.db = new Low(adapter);
         this.initializeDb();
+    }
+
+    public static getInstance(): Stock {
+        if (!Stock.instance) {
+            Stock.instance = new Stock();
+        }
+        return Stock.instance;
     }
 
     private async initializeDb() {
@@ -54,22 +62,26 @@ export class Stock {
 
     private async addArmario(mueble: Armario) {
         this.db.data?.armarios.push(mueble);
+        this.db.data!.stock.armarios[mueble.id] = 10;
         await this.db.write();
     }
     
     private async addSilla(mueble: Silla) {
         this.db.data?.sillas.push(mueble);
+        this.db.data!.stock.sillas[mueble.id] = 10;
         await this.db.write();
     }
     
     private async addMesa(mueble: Mesa) {
         this.db.data?.mesas.push(mueble);
+        this.db.data!.stock.sillas[mueble.id] = 10;
         await this.db.write();
     }
 
     private async deleteSilla(id: number) {
         if (this.db.data) {
             this.db.data.sillas = this.db.data.sillas.filter(mueble => mueble.id !== id);
+            delete this.db.data!.stock.sillas[id];
             await this.db.write();
         }
     }
@@ -77,6 +89,7 @@ export class Stock {
     private async deleteMesa(id: number) {
         if (this.db.data) {
             this.db.data.mesas = this.db.data.mesas.filter(mueble => mueble.id !== id);
+            delete this.db.data!.stock.mesas[id];
             await this.db.write();
         }
     }
@@ -84,6 +97,7 @@ export class Stock {
     private async deleteArmario(id: number) {
         if (this.db.data) {
             this.db.data.armarios = this.db.data.armarios.filter(mueble => mueble.id !== id);
+            delete this.db.data!.stock.armarios[id];
             await this.db.write();
         }
     }
@@ -1376,7 +1390,11 @@ export class Stock {
             furnitureID: furnitureID,
             quantity: quantity,
             interactorID: customerID,
-            date: new Date().toISOString(),
+            date: new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+            }),
             amount: -amount, // Negativo porque es una devolución
         };
         this.db.data!.transactions.push(transaccion);
@@ -1444,7 +1462,7 @@ export class Stock {
         }
     
         // Incrementar stock debido a la devolución al proveedor
-        this.db.data!.stock[tipoMueble][furnitureID] = (this.db.data!.stock[tipoMueble][furnitureID] || 0) + quantity;
+        this.db.data!.stock[tipoMueble][furnitureID] = (this.db.data!.stock[tipoMueble][furnitureID] || 0) - quantity;
     
         // Registrar la transacción de devolución al proveedor
         const transaccion: Transaction = {
@@ -1453,7 +1471,11 @@ export class Stock {
             furnitureID: furnitureID,
             quantity: quantity,
             interactorID: supplierID,
-            date: new Date().toISOString(),
+            date: new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+            }),
             amount: -amount, // Negativo porque es una devolución
         };
         this.db.data!.transactions.push(transaccion);
@@ -1521,12 +1543,6 @@ export class Stock {
         console.log('Los muebles más vendidos son:');
         console.table(mueblesVendidosOrdenados);
     }
-
-    // Función para convertir la fecha de string a Date y comparar
-    // private fechaEnRango(fecha: string | Date, fechaInicio: Date, fechaFin: Date): boolean {
-    //     const fechaTransaccion = new Date(fecha);
-    //     return fechaTransaccion >= fechaInicio && fechaTransaccion <= fechaFin;
-    // }
 
     private convertirAFecha(fechaStr: string): Date {
         const [dia, mes, año] = fechaStr.split('/').map(part => parseInt(part));
