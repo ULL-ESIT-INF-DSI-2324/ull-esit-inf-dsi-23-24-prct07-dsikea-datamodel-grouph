@@ -56,6 +56,7 @@ export class Stock {
      */
     private constructor() {
         const adapter = new JSONFile<DbSchema>('db2.json');
+    
         this.db = new Low(adapter);
         this.initializeDb();
     }

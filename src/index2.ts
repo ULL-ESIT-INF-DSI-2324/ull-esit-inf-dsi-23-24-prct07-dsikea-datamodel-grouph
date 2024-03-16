@@ -1,5 +1,6 @@
-import inquirer from "inquirer";
+
 import { Stock } from "./BaseDeDatos/Stock.js"
+import inquirer from "inquirer";
 
 const stock = Stock.getInstance();
 
