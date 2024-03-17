@@ -330,3 +330,4 @@ Por último, también debemos resaltar la complejidad a la hora de realizar los 
 - [Lowdb](https://www.npmjs.com/package/lowdb)
 - [Tutorial básico sobre Inquirer](https://www.youtube.com/watch?v=8hbOlxGlWI8)
 - [Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+- [Sinon](https://sinonjs.org/releases/v17/)
