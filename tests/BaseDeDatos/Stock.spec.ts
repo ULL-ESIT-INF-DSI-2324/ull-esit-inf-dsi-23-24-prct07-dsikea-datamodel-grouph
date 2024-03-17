@@ -1201,3 +1201,39 @@ describe('convertirAFecha', () => {
         expect(resultDate.getTime()).to.equal(expectedDate.getTime());
     });
 });
+
+describe('mostrarStockDisponible', () => {
+    let stock: Stock;
+  
+    beforeEach(() => {
+        stock = Stock.getInstance('db_test.json');
+    });
+
+    afterEach(() => {
+        sinon.restore();
+    });
+
+    it('debe permitir mostrar el stock disponible', () => {
+        const consoleSpy = sinon.spy(console, 'log');
+        stock.mostrarStockDisponible();
+        expect(consoleSpy.calledOnceWith()).to.be.false;
+    });
+});
+
+describe('mueblesMasVendidos', () => {
+    let stock: Stock;
+  
+    beforeEach(() => {
+        stock = Stock.getInstance('db_test.json');
+    });
+
+    afterEach(() => {
+        sinon.restore();
+    });
+
+    it('debe permitir mostrar los muebles más vendidos', () => {
+        const consoleSpy = sinon.spy(console, 'log');
+        stock.mueblesMasVendidos();
+        expect(consoleSpy.calledOnceWith()).to.be.false;
+    });
+});

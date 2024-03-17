@@ -939,6 +939,60 @@
       "nombre": "Cliente Prueba",
       "contacto": 999999999,
       "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
     }
   ],
   "stock": {
@@ -1617,6 +1671,330 @@
     },
     {
       "id": 72,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 73,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 74,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 75,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 76,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 77,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 78,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 79,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 80,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 81,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 82,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 83,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 84,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 85,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 86,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 87,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 88,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 89,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 90,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 91,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 92,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 93,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 94,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 95,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 96,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 97,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 98,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 99,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 100,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 101,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 102,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 103,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 104,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 105,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 106,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 107,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 108,
       "type": "RETURN_TO_SUPPLIER",
       "furnitureID": 1,
       "quantity": 1,
