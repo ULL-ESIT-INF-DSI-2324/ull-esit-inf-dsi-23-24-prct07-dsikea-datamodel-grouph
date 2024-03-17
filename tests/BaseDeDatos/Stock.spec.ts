@@ -3,6 +3,7 @@ import "sinon"
 import inquirer from "inquirer";
 import { expect } from "chai";
 import { Stock } from "../../src/BaseDeDatos/Stock.js";
+import { mainMenu } from "../../src/index.js";
 import Sinon from "sinon";
 import sinon from "sinon";
 
@@ -315,7 +316,111 @@ describe('Test de Stock', () => {
         
         inquirerStub.restore();
     });
+});
 
+describe("Pruebas de interacción del menú principal", () => {
+    it("El menú principal muestra las opciones esperadas", async () => {
+        const inquirerStub = Sinon.stub(inquirer, 'prompt');
+        inquirerStub.resolves({ action: 'Volver' });
 
+        const stock1 = Stock.getInstance('db_test.json');
+        await mainMenu(stock1);
 
+        expect('0').to.equal('0');
+        Sinon.assert.calledWithMatch(inquirerStub, [
+            Sinon.match({ type: 'list', name: 'action', message: '¿Qué acción desea realizar?', choices: Sinon.match.array.deepEquals([
+                'Gestionar muebles',
+                'Gestionar proveedores',
+                'Gestionar clientes',
+                'Gestionar transacciones',
+                'Generar informes',
+                'Salir'
+            ]) })
+        ]);
+        inquirerStub.restore();
+    });
+
+    it("El menú principal muestra las opciones esperadas", async () => {
+        const inquirerStub = Sinon.stub(inquirer, 'prompt');
+        inquirerStub.resolves({ action: 'Gestionar clientes' });
+
+        const stock1 = Stock.getInstance('db_test.json');
+        await mainMenu(stock1);
+
+        expect('0').to.equal('0');
+        Sinon.assert.calledWithMatch(inquirerStub, [
+            Sinon.match({ type: 'list', name: 'action', message: '¿Qué acción desea realizar con los clientes?', choices: Sinon.match.array.deepEquals([
+                'Añadir cliente',
+                'Eliminar cliente',
+                'Modificar cliente',
+                'Listar clientes',
+                'Buscar clientes',
+                'Volver'
+            ]) })
+        ]);
+        inquirerStub.restore();
+    });
+
+    it("El menú principal muestra las opciones esperadas", async () => {
+        const inquirerStub = Sinon.stub(inquirer, 'prompt');
+        inquirerStub.resolves({ action: 'Gestionar proveedores' });
+
+        const stock1 = Stock.getInstance('db_test.json');
+        await mainMenu(stock1);
+
+        expect('0').to.equal('0');
+        Sinon.assert.calledWithMatch(inquirerStub, [
+            Sinon.match({ type: 'list', name: 'action', message: '¿Qué acción desea realizar con los proveedores?', choices: Sinon.match.array.deepEquals([
+                'Añadir proveedor',
+                'Eliminar proveedor',
+                'Modificar proveedor',
+                'Listar proveedores',
+                'Buscar proveedores',
+                'Volver'
+            ]) })
+        ]);
+        inquirerStub.restore();
+    });
+
+    it("El menú principal muestra las opciones esperadas", async () => {
+        const inquirerStub = Sinon.stub(inquirer, 'prompt');
+        inquirerStub.resolves({ action: 'Gestionar transacciones' });
+
+        const stock1 = Stock.getInstance('db_test.json');
+        await mainMenu(stock1);
+
+        expect('0').to.equal('0');
+        Sinon.assert.calledWithMatch(inquirerStub, [
+            Sinon.match({ type: 'list', name: 'action', message: '¿Qué acción desea realizar?', choices: Sinon.match.array.deepEquals([
+                'Gestionar muebles',
+                'Gestionar proveedores',
+                'Gestionar clientes',
+                'Gestionar transacciones',
+                'Generar informes',
+                'Salir'
+            ]) })
+        ]);
+        inquirerStub.restore();
+    });
+
+    it ("El menú principal muestra las opciones esperadas", async () => {
+        const inquirerStub = Sinon.stub(inquirer, 'prompt');
+        inquirerStub.resolves({ action: 'Generar informes' });
+
+        const stock1 = Stock.getInstance('db_test.json');
+        await mainMenu(stock1);
+
+        expect('0').to.equal('0');
+        Sinon.assert.calledWithMatch(inquirerStub, [
+            Sinon.match({ type: 'list', name: 'action', message: '¿Qué acción desea realizar?', choices: Sinon.match.array.deepEquals([
+                'Gestionar muebles',
+                'Gestionar proveedores',
+                'Gestionar clientes',
+                'Gestionar transacciones',
+                'Generar informes',
+                'Salir'
+            ]) })
+        ]);
+        inquirerStub.restore();
+    });
 });
