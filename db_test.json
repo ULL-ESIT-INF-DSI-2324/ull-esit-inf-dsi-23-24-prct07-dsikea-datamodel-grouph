@@ -993,6 +993,12 @@
       "nombre": "Cliente Prueba",
       "contacto": 999999999,
       "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
     }
   ],
   "stock": {
@@ -1995,6 +2001,42 @@
     },
     {
       "id": 108,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 109,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 110,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 111,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 112,
       "type": "RETURN_TO_SUPPLIER",
       "furnitureID": 1,
       "quantity": 1,
