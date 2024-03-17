@@ -32,6 +32,127 @@ Por último, también haremos uso de **Typedoc** para generar la documentación 
 
 El enunciado de proyecto en el que se explican todos los requisitos que debe cumplir, lo podemos encontrar [aquí](https://ull-esit-inf-dsi-2324.github.io/prct07-DSIkea-dataModel/).
 
+## Desarrollo
+
+### Muebles
+
+Para representar un mueble, decimidos crear la clase abstracta `Mueble`, la cual establece la estructura base que todos los tipos de muebles del sistema deben tener, incluyendo propiedades como el `id`, `nombre`, `descripción`, `material`, `dimensiones` y `precio`. El constructor de esta clase se encargará además de validar que las dimensiones asignadas al mueble sean correctas. La clase también proporciones diferentes `getters` y `setters` para poder leer y modificar el valor de los atributos. 
+
+Por último, tiene un método `toJSON`, que convierte las propiedades del mueble a un objeto JSON, este método nos ayudará a la hora de introducir correctamente los datos en la base de datos `db.json`.
+
+```
+export abstract class Mueble {
+    constructor(protected id_: number, protected nombre_: string, protected descripcion_: string, protected material_: string,
+                protected dimensiones_: IDimensiones, protected precio_: number) {
+        if (dimensiones_.ancho < 0 || dimensiones_.alto < 0 || dimensiones_.largo < 0) {
+            throw new Error("Las dimensiones del mueble no pueden ser negativas.");
+        }
+    }
+}
+```
+
+Aquí podemos ver cómo funciona el método `toJSON`:
+
+```
+    toJSON() {
+        return {
+            id: this.id_,
+            nombre: this.nombre_,
+            descripcion: this.descripcion_,
+            material: this.material_,
+            dimensiones: this.dimensiones_,
+            precio: this.precio_,
+        };
+    }
+```
+
+A continuación, tenemos las clases `Silla`, `Mesa` y `Armario`, las cuales extendienden de la clase `Mueble` y además de heredar todas sus propiedades y métodos, también incluyen características específicas para cada tipo.
+
+ - **Silla**: Representa una silla. Introduce las propiedades específicas `inclinabe` y `reposabrazos`, ambas de tipo *boolean*. Es decir, sus atributos son los siguientes:
+
+ ```
+    private id_: number;
+    private nombre_: string;
+    private descripcion_: string;
+    private material_: string;
+    private dimensiones_: IDimensiones;
+    private precio_: number;
+    private inclinable_: boolean;
+    private reposabrazos_: boolean;
+ ```
+
+ - **Mesa**: Representa una mesa. Introduce las propiedades específicas `forma` y `plegable` de tipos *string* y *boolean* respectivamente. Es decir, sus atributos son los siguieentes:
+
+ ```
+    private id_: number;
+    private nombre_: string;
+    private descripcion_: string;
+    private material_: string;
+    private dimensiones_: IDimensiones;
+    private precio_: number;
+    private forma_: string;
+    private plegable_: boolean;
+ ```
+
+ - **Armario**: Representa un armario. Introduce las propiedades específicas `numeroPuertas` y `tieneCajones` de tipos *number* y *boolean* respectivamente. Es decir, sus atributos son los siguientes:
+
+```
+    private id_: number;
+    private nombre_: string;
+    private descripcion_: string;
+    private material_: string;
+    private dimensiones_: IDimensiones;
+    private precio_: number;
+    private numeroPuertas_: number;
+    private tieneCajones_: boolean;
+```
+
+Por último, cabe mencionar la creación del tipo `IDimensiones`, el cual nos permitirá representar las dimensiones del mueble correctamente.
+
+```
+export type IDimensiones = {
+    ancho: number;
+    alto: number;
+    largo: number;
+}
+```
+
+### Entidades
+
+Para representar una entidad, decidimos crear la clase abstracta `Entidad`, la cual establece la estructura base que todos los tipos de entidad interactuadora, como lo son los clientes o proveedores del sistema, deben tener. Esta clase incluye propiedades como el `id`, `nombre`, `contacto` y `dirección`. El constructor de la clase simplemente se encargará de inicializar estos atributos. 
+
+La clase, además de proporcionar diferentes *getters* y *setters* para poder leer y modificar el valor de los atributos, también proporciona un método `validarTeléfono`, el cual comprueba mediante una expresión regular que un número de teléfono cumple con el formato esperado, es decir, que tiene 9 dígitos.
+
+Por último, al igual que en la clase mueble, también contamos con un método `toJSON`.
+
+A continuación, tenemos las clases `Cliente` y `Proveedor`, las cuales extienden de `Entidad` y heredan todas sus propiedades y métodos. Además, también extienden la funcionalidad de la clase base, ya que incluyen en sus constructores, la validación del número de teléfono.
+
+ - **Cliente**: Representa a un cliente del sistema. Su constructor se ve así:
+
+ ```
+    constructor(id: number, nombre: string, contacto: number, direccion: string) {
+        super(id, nombre, contacto, direccion);
+        if (!this.validarTelefono(contacto)) { 
+            throw new Error("El número de teléfono del cliente no es válido.");
+        }
+    }
+ ```
+
+ - **Proveedor**: Representa a un proveedor del sistema. Su constructor se ve así:
+
+ ```
+    constructor(id: number, nombre: string, contacto: number, direccion: string) {
+        super(id, nombre, contacto, direccion);
+        if (!this.validarTelefono(contacto)) { 
+            throw new Error("El número de teléfono del proveedor no es válido.");
+        }
+    }
+ ```
+
+### Stock
+
+
+
 ## Conclusiones
 
 El desarrollo de este proyecto nos ha servido para poner en práctica los conocimientos aprendidos hasta ahora en la asignatura, aunque bien es cierto que debido a dos factores como lo son nuestra escasa lógica de programación - diseño, y la escasez de tiempo, no pudimos llevar a cabo un código que fuese algo más eficiente, legible, y menos repetitivo.
@@ -44,7 +165,7 @@ Todo esto, nos hizo ver lo importante que es realizar una planificación anticip
 
 ## Bibliografía
 
-- []()
-- []()
-- []()
-- []()
+- [ChatGPT](https://chat.openai.com/)
+- [Inquirer.js](https://www.npmjs.com/package/inquirer)
+- [Lowdb](https://www.npmjs.com/package/lowdb)
+- [Tutorial básico sobre Inquirer](https://www.youtube.com/watch?v=8hbOlxGlWI8)
