@@ -6,7 +6,7 @@ import { Mesa } from "../Muebles/Mesa.js";
 import { Armario } from "../Muebles/Armario.js";
 import { Cliente } from "../Entidades/Clientes.js";
 import { Proveedor } from "../Entidades/Proveedores.js";
-import { gestionarMuebles, gestionarClientes, gestionarProveedores, mainMenu } from '../index.js';
+import { gestionarMuebles, gestionarClientes, gestionarProveedores, mainMenu } from '../menus.js';
 import { Mueble } from "../abstract_classes/Mueble.js";
 
 /**
@@ -1324,7 +1324,7 @@ export class Stock {
      * @param asc Dirección de la ordenación ('ascendente' o 'descendente').
      * @returns Una promesa que resuelve a una lista de muebles filtrados y ordenados.
      */
-    private async filtrarMuebles(tipo: 'sillas' | 'mesas' | 'armarios', criterio: string, clave: string, ordenacion: string, asc: string): Promise<Mueble[]> {
+    public async filtrarMuebles(tipo: 'sillas' | 'mesas' | 'armarios', criterio: string, clave: string, ordenacion: string, asc: string): Promise<Mueble[]> {
         await this.db.read();
         const muebles = this.db.data?.[tipo] ?? [];
         // Convertir clave a minúsculas para hacer la comparación insensible a mayúsculas y minúsculas

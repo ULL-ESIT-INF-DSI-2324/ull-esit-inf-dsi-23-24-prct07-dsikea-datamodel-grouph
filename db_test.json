@@ -1,34 +1,6 @@
 {
   "armarios": [
     {
-      "id": 1,
-      "nombre": "Armario con cajones",
-      "descripcion": "Un armario simple con cajones",
-      "material": "Madera",
-      "dimensiones": {
-        "ancho": 150,
-        "alto": 190,
-        "largo": 80
-      },
-      "precio": 105,
-      "numeroPuertas": 2,
-      "tieneCajones": true
-    },
-    {
-      "id": 2,
-      "nombre": "Armario minimalista",
-      "descripcion": "Armario simple y minimalista",
-      "material": "Madera de Abedul",
-      "dimensiones": {
-        "ancho": 200,
-        "alto": 190,
-        "largo": 90
-      },
-      "precio": 230,
-      "numeroPuertas": "2",
-      "tieneCajones": false
-    },
-    {
       "id": 3,
       "nombre": "Armario vintage",
       "descripcion": "Armario estilo vintage",
@@ -109,6 +81,40 @@
         "largo": 120
       },
       "precio": 400
+    },
+    {
+      "id": 1,
+      "nombre": "Mueble Modificado",
+      "descripcion": "Descripción modificada",
+      "material": "Material modificado",
+      "dimensiones": {
+        "ancho": 100,
+        "alto": 200,
+        "largo": 50
+      },
+      "precio": 500,
+      "numeroPuertas": 3,
+      "tieneCajones": true,
+      "forma": "Rectangular",
+      "plegable": false,
+      "inclinable": true,
+      "reposabrazos": false
+    },
+    {
+      "id": 2,
+      "nombre": "Silla Modificada",
+      "descripcion": "Descripción modificada para silla",
+      "material": "Material modificado para silla",
+      "dimensiones": {
+        "ancho": 45,
+        "alto": 95,
+        "largo": 45
+      },
+      "precio": 120,
+      "numeroPuertas": "2",
+      "tieneCajones": false,
+      "inclinable": true,
+      "reposabrazos": false
     }
   ],
   "sillas": [
@@ -221,6 +227,40 @@
         "largo": 60
       },
       "precio": 100,
+      "inclinable": true,
+      "reposabrazos": false
+    },
+    {
+      "id": 1,
+      "nombre": "Mueble Modificado",
+      "descripcion": "Descripción modificada",
+      "material": "Material modificado",
+      "dimensiones": {
+        "ancho": 100,
+        "alto": 200,
+        "largo": 50
+      },
+      "precio": 500,
+      "numeroPuertas": 3,
+      "tieneCajones": true,
+      "forma": "Rectangular",
+      "plegable": false,
+      "inclinable": true,
+      "reposabrazos": false
+    },
+    {
+      "id": 2,
+      "nombre": "Silla Modificada",
+      "descripcion": "Descripción modificada para silla",
+      "material": "Material modificado para silla",
+      "dimensiones": {
+        "ancho": 45,
+        "alto": 95,
+        "largo": 45
+      },
+      "precio": 120,
+      "numeroPuertas": "2",
+      "tieneCajones": false,
       "inclinable": true,
       "reposabrazos": false
     }
@@ -337,14 +377,32 @@
       "precio": 200,
       "forma": "Rectangular",
       "plegable": false
+    },
+    {
+      "id": 1,
+      "nombre": "Mueble Modificado",
+      "descripcion": "Descripción modificada",
+      "material": "Material modificado",
+      "dimensiones": {
+        "ancho": 100,
+        "alto": 200,
+        "largo": 50
+      },
+      "precio": 500,
+      "numeroPuertas": 3,
+      "tieneCajones": true,
+      "forma": "Rectangular",
+      "plegable": false,
+      "inclinable": true,
+      "reposabrazos": false
     }
   ],
   "proveedores": [
     {
       "id": 1,
-      "nombre": "Gabriela Torres",
-      "contacto": 123456789,
-      "direccion": "Calle Sol 123"
+      "nombre": "Proveedor Modificado",
+      "contacto": "999999999",
+      "direccion": "Nueva Dirección"
     },
     {
       "id": 2,
@@ -428,9 +486,9 @@
   "clientes": [
     {
       "id": 1,
-      "nombre": "Sofía García",
-      "contacto": 111111111,
-      "direccion": "Calle de la Luz 10"
+      "nombre": "Cliente Modificado",
+      "contacto": "999999999",
+      "direccion": "Nueva Dirección"
     },
     {
       "id": 2,
@@ -509,10 +567,318 @@
       "nombre": "Daniel López",
       "contacto": 505050505,
       "direccion": "Paseo Martítimo 44"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
+    },
+    {
+      "id": 124,
+      "nombre": "Cliente Prueba",
+      "contacto": 999999999,
+      "direccion": "Calle Falsa 123"
     }
   ],
   "stock": {
     "sillas": {
+      "1": 10,
+      "2": 10,
       "8": 16,
       "9": 12,
       "10": 7,
@@ -533,8 +899,8 @@
       "20": 16
     },
     "armarios": {
-      "1": 15,
-      "2": 15,
+      "1": 10,
+      "2": 10,
       "3": 14,
       "4": 18,
       "5": 9,
@@ -597,6 +963,204 @@
       "interactorID": 12,
       "date": "16/03/2024",
       "amount": -400
+    },
+    {
+      "id": 7,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 8,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 9,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 10,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 11,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 12,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 13,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 14,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 15,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 16,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 17,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 18,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 19,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 20,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 21,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 22,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 23,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 24,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 25,
+      "type": "SALE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 26,
+      "type": "PURCHASE",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": 1
+    },
+    {
+      "id": 27,
+      "type": "RETURNED_BY_CUSTOMER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
+    },
+    {
+      "id": 28,
+      "type": "RETURN_TO_SUPPLIER",
+      "furnitureID": 1,
+      "quantity": 1,
+      "interactorID": 1,
+      "date": "17/03/2024",
+      "amount": -1
     }
   ]
 }
