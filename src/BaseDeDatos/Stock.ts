@@ -912,7 +912,7 @@ export class Stock {
     /**
      * Inicia el proceso para añadir un nuevo cliente, solicitando al usuario información como ID, nombre, contacto, y dirección.
      * Verifica que el ID sea único y, de ser así, procede a añadir el cliente a la base de datos, mostrando un mensaje de confirmación.
-     * En caso de que el ID ya esté en uso, notifica al usuario y reinicia el proceso de añadir un cliente.
+     * En caso de que el ID ya esté en uso, notifica al usuario.
      */
     public async añadirCliente() {
         const respuestas = await inquirer.prompt([
