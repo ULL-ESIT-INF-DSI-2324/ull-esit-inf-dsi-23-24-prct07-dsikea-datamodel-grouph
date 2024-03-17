@@ -7,6 +7,7 @@
 - Desarrollo de Sistemas Informáticos
 - Grado en Ingeniería Informática
 - Universidad de La Laguna
+- **Ejecución del programa:** node dist/index2.js
 
 
 <p align="center">
