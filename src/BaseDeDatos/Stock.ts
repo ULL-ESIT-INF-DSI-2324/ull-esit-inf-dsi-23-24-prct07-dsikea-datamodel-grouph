@@ -1827,7 +1827,7 @@ export class Stock {
      * @param fechaStr La cadena de texto que representa la fecha.
      * @returns Un objeto Date que representa la fecha proporcionada.
      */
-    private convertirAFecha(fechaStr: string): Date {
+    public convertirAFecha(fechaStr: string): Date {
         const [dia, mes, año] = fechaStr.split('/').map(part => parseInt(part));
         return new Date(año, mes - 1, dia);
     }
@@ -1840,7 +1840,7 @@ export class Stock {
      * @param fechaFin La fecha de fin del rango.
      * @returns true si la fecha está dentro del rango, false en caso contrario.
      */
-    private fechaEnRango(fecha: string, fechaInicio: Date, fechaFin: Date): boolean {
+    public fechaEnRango(fecha: string, fechaInicio: Date, fechaFin: Date): boolean {
         const fechaTransaccion = this.convertirAFecha(fecha);
         return fechaTransaccion >= fechaInicio && fechaTransaccion <= fechaFin;
     }

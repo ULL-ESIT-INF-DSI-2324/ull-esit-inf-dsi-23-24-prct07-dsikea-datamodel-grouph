@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.68% </span>
+                <span class="strong">77.98% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1535/1976</span>
+                <span class='fraction'>1541/1976</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.87% </span>
+                <span class="strong">67.07% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>107/160</span>
+                <span class='fraction'>110/164</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.14% </span>
+                <span class="strong">45.94% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>49/111</span>
+                <span class='fraction'>51/111</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.68% </span>
+                <span class="strong">77.98% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1535/1976</span>
+                <span class='fraction'>1541/1976</span>
             </div>
         
             
@@ -2108,11 +2108,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">66x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">64x</span>
-<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">66x</span>
+<span class="cline-any cline-yes">66x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -2388,10 +2388,10 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span>
+<span class="cline-any cline-yes">151x</span>
+<span class="cline-any cline-yes">151x</span>
+<span class="cline-any cline-yes">151x</span>
+<span class="cline-any cline-yes">151x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -3869,9 +3869,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -3882,9 +3882,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -5844,10 +5844,10 @@ export class Stock {
      * @param fechaStr La cadena de texto que representa la fecha.
      * @returns Un objeto Date que representa la fecha proporcionada.
      */
-    private <span class="fstat-no" title="function not covered" >convertirAFecha(fechaStr: string): Date {</span>
-<span class="cstat-no" title="statement not covered" >        const [dia, mes, año] = fechaStr.split('/').map(part =&gt; parseInt(part));</span>
-<span class="cstat-no" title="statement not covered" >        return new Date(año, mes - 1, dia);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    public convertirAFecha(fechaStr: string): Date {
+        const [dia, mes, año] = fechaStr.split('/').map(part =&gt; parseInt(part));
+        return new Date(año, mes - 1, dia);
+    }
 &nbsp;
     /**
      * Verifica si una fecha dada está dentro de un rango especificado por una fecha de inicio y una de fin.
@@ -5857,10 +5857,10 @@ export class Stock {
      * @param fechaFin La fecha de fin del rango.
      * @returns true si la fecha está dentro del rango, false en caso contrario.
      */
-    private <span class="fstat-no" title="function not covered" >fechaEnRango(fecha: string, fechaInicio: Date, fechaFin: Date): boolean {</span>
-<span class="cstat-no" title="statement not covered" >        const fechaTransaccion = this.convertirAFecha(fecha);</span>
-<span class="cstat-no" title="statement not covered" >        return fechaTransaccion &gt;= fechaInicio &amp;&amp; fechaTransaccion &lt;= fechaFin;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    public fechaEnRango(fecha: string, fechaInicio: Date, fechaFin: Date): boolean {
+        const fechaTransaccion = this.convertirAFecha(fecha);
+        return fechaTransaccion &gt;= fechaInicio<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; fechaTransaccion &lt;= fechaFin;</span>
+    }
 &nbsp;
     /**
      * Calcula y muestra la facturación total por ventas realizadas dentro de un periodo especificado por el usuario.
@@ -5998,7 +5998,7 @@ export class Stock {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-17T17:33:24.340Z
+                at 2024-03-17T18:04:35.677Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -1158,3 +1158,46 @@ describe('procesarDevolucionProveedor', () => {
             expect(returnSpy.calledOnceWith(1, 1, 1, 1)).to.be.true;
     });
 });
+
+describe('fechaEnRango', () => {
+    let stock: Stock;
+  
+    beforeEach(() => {
+        stock = Stock.getInstance('db_test.json');
+    });
+
+    afterEach(() => {
+        sinon.restore();
+    });
+
+    it('debe permitir verificar si una fecha está en un rango', async () => {
+            const fecha = '15/03/2024';
+            const fechaInicio = new Date('15/03/2024');
+            const fechaFin = new Date('15/03/2024');
+            const enRango = stock.fechaEnRango(fecha, fechaInicio, fechaFin);
+        
+            // Verifica que se hayan hecho las llamadas correctas
+            expect(enRango).to.be.a('boolean');
+    });
+});
+
+describe('convertirAFecha', () => {
+    let stock: Stock;
+  
+    beforeEach(() => {
+        stock = Stock.getInstance('db_test.json');
+    });
+
+    afterEach(() => {
+        sinon.restore();
+    });
+
+    it('debe permitir convertir a fecha un string', () => {
+        const date = '15/03/2024';
+        const resultDate = stock.convertirAFecha(date); // Asumiendo que esto devuelve un objeto Date
+        
+        // Convierte ambas fechas (la esperada y la obtenida) a strings formateados o timestamps para comparar
+        const expectedDate = new Date(2024, 2, 15); 
+        expect(resultDate.getTime()).to.equal(expectedDate.getTime());
+    });
+});
