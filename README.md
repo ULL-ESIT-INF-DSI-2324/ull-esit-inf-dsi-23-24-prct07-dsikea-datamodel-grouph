@@ -231,79 +231,79 @@ Para esta clase hemos decidido implementar el patrón de diseño `Singleton`, pu
   ```
 - **Métodos:**
 
-  - `getInstance`: Es un método que permite obtener la instancia única de `Stock`. Si `instance` no ha sido inicializada, se crea una nueva instancia de `Stock` con el `dbPath` proporcionado (por defecto 'db2.json') y se asigna a instance. Este método garantiza que todas las llamadas retornarán la misma instancia de `Stock`.
+  - **getInstance**: Es un método que permite obtener la instancia única de `Stock`. Si `instance` no ha sido inicializada, se crea una nueva instancia de `Stock` con el `dbPath` proporcionado (por defecto 'db2.json') y se asigna a instance. Este método garantiza que todas las llamadas retornarán la misma instancia de `Stock`.
 
-  - `initializeDb`: Es un método asíncrono que lee el estado actual de la base de datos. Si es la primera vez o si está vacía (this.db.data es nulo o *undefined*), se establece una estructura de datos por defecto con listas vacías para sillas, mesas, armarios, proveedores, clientes, un objeto vacío para el stock, y una lista vacía para transacciones. Después, guarda estos cambios en el archivo JSON correspondiente para persistir el estado inicial.
+  - **initializeDb**: Es un método asíncrono que lee el estado actual de la base de datos. Si es la primera vez o si está vacía (this.db.data es nulo o *undefined*), se establece una estructura de datos por defecto con listas vacías para sillas, mesas, armarios, proveedores, clientes, un objeto vacío para el stock, y una lista vacía para transacciones. Después, guarda estos cambios en el archivo JSON correspondiente para persistir el estado inicial.
 
-  - `idEsUnico`: Verifica la unicidad del ID entre armarios, sillas y mesas para prevenir duplicados.
+  - **idEsUnico**: Verifica la unicidad del ID entre armarios, sillas y mesas para prevenir duplicados.
 
-  - `addArmario`, `addSilla`, `addMesa`: Añaden nuevos armarios, sillas y mesas a la base de datos, respectivamente, e inicializan su stock a 10 unidades. Esto se hace de esta manera ya que al ser una tienda, no nos saldría rentable comprar unidades sueltas, por lo que el mínimo es de 10.
+  - **addArmario**, **addSilla**, **addMesa**: Añaden nuevos armarios, sillas y mesas a la base de datos, respectivamente, e inicializan su stock a 10 unidades. Esto se hace de esta manera ya que al ser una tienda, no nos saldría rentable comprar unidades sueltas, por lo que el mínimo es de 10.
 
-  - `deleteSilla`, `deleteMesa`, `deleteArmario`: Eliminan una silla, mesa o armario específicos de la base de datos y actualizan el stock.
+  - **deleteSilla**, **deleteMesa**, **deleteArmario**: Eliminan una silla, mesa o armario específicos de la base de datos y actualizan el stock.
 
-  - `modifyMesa`, `modifyArmario`, `modifySilla`: Actualizan los detalles de una mesa, armario o silla existente, reemplazando el objeto antiguo con uno nuevo en la base de datos.
+  - **modifyMesa**, **modifyArmario**, **modifySilla**: Actualizan los detalles de una mesa, armario o silla existente, reemplazando el objeto antiguo con uno nuevo en la base de datos.
 
-  - `getSilla`, `getMesa`, `getArmario`: Obtienen la lista completa de sillas, mesas o armarios disponibles en la base de datos.
+  - **getSilla**, **getMesa**, **getArmario**: Obtienen la lista completa de sillas, mesas o armarios disponibles en la base de datos.
 
-  - `getClientes`, `getProveedores`: Obtienen la lista completa de clientes o proveedores registrados en la base de datos.
+  - **getClientes**, **getProveedores**: Obtienen la lista completa de clientes o proveedores registrados en la base de datos.
 
-  - `addCliente`, `addProveedor`: Añaden un nuevo cliente o proveedor a la base de datos y actualizan los registros.
+  - **addCliente**, **addProveedor**: Añaden un nuevo cliente o proveedor a la base de datos y actualizan los registros.
 
-  - `deleteCliente`, `deleteProveedor`: Eliminan un cliente o proveedor específico de la base de datos basándose en su ID.
+  - **deleteCliente**, **deleteProveedor**: Eliminan un cliente o proveedor específico de la base de datos basándose en su ID.
 
-  - `listarMuebles`: Muestra en consola todos los muebles disponibles en la base de datos, incluyendo armarios, sillas y mesas, formateando la salida en tablas para fácil lectura. Si no hay registros, indica que no hay disponibles.
+  - **listarMuebles**: Muestra en consola todos los muebles disponibles en la base de datos, incluyendo armarios, sillas y mesas, formateando la salida en tablas para fácil lectura. Si no hay registros, indica que no hay disponibles.
 
-  - `listarClientes` y `listarProveedores`: Similar a listarMuebles, estos métodos muestran en forma de tabla, todos los clientes o proveedores registrados, respectivamente. Si no hay registros, notifica que no hay disponibles.
+  - **listarClientes** y **listarProveedores**: Similar a listarMuebles, estos métodos muestran en forma de tabla, todos los clientes o proveedores registrados, respectivamente. Si no hay registros, notifica que no hay disponibles.
 
-  - `añadirSilla`, `añadirMesa` y `añadirArmario`:  Interactúan con el usuario para recopilar los datos necesarios para añadir una nueva silla, mesa o armario, respectivamente. Validan que el ID sea único, crean una nueva instancia con los datos recopilados y la añaden a la base de datos haciendo uso de `addSilla`, `addMesa` o `addArmario`, respectivamente.
+  - **añadirSilla**, **añadirMesa** y **añadirArmario**:  Interactúan con el usuario para recopilar los datos necesarios para añadir una nueva silla, mesa o armario, respectivamente. Validan que el ID sea único, crean una nueva instancia con los datos recopilados y la añaden a la base de datos haciendo uso de `addSilla`, `addMesa` o `addArmario`, respectivamente.
 
-  - `añadirMueble`:  Ofrece al usuario elegir qué tipo de mueble desea añadir y llama al método correspondiente.
+  - **añadirMueble**:  Ofrece al usuario elegir qué tipo de mueble desea añadir y llama al método correspondiente.
 
-  - `eliminarMueble`: Solicita al usuario el ID del mueble a eliminar, verifica su existencia y lo elimina de la base de datos, actualizando el stock. Este método hace uso de `deleteSilla`, `deleteMesa` o `deleteArmario` según el *id* del mueble a eliminar.
+  - **eliminarMueble**: Solicita al usuario el ID del mueble a eliminar, verifica su existencia y lo elimina de la base de datos, actualizando el stock. Este método hace uso de `deleteSilla`, `deleteMesa` o `deleteArmario` según el *id* del mueble a eliminar.
 
-  - `opcionesSiguientes`: Presenta al usuario opciones después de realizar una acción, como añadir un mueble o volver al menú principal.
+  - **opcionesSiguientes**: Presenta al usuario opciones después de realizar una acción, como añadir un mueble o volver al menú principal.
 
-  - `modificarMueblePorId`: Este método permite al usuario modificar los detalles de un mueble específico, identificado por su ID, en la base de datos. Primero, solicita al usuario el ID del mueble a modificar. Luego, verifica si el mueble existe buscando entre sillas, mesas y armarios. Si el mueble se encuentra, se le pide al usuario que introduzca los nuevos datos para ese mueble, incluyendo campos comunes como nombre, descripción, material, dimensiones y precio, y campos específicos según el tipo de mueble (por ejemplo, si es inclinable para sillas). Finalmente, se actualizan los detalles del mueble en la base de datos con la nueva información proporcionada por el usuario.
+  - **modificarMueblePorId**: Este método permite al usuario modificar los detalles de un mueble específico, identificado por su ID, en la base de datos. Primero, solicita al usuario el ID del mueble a modificar. Luego, verifica si el mueble existe buscando entre sillas, mesas y armarios. Si el mueble se encuentra, se le pide al usuario que introduzca los nuevos datos para ese mueble, incluyendo campos comunes como nombre, descripción, material, dimensiones y precio, y campos específicos según el tipo de mueble (por ejemplo, si es inclinable para sillas). Finalmente, se actualizan los detalles del mueble en la base de datos con la nueva información proporcionada por el usuario.
 
-  - `añadirCliente` y `añadirProveedor`: Similar a los métodos de añadir muebles, permiten recoger datos para añadir un nuevo cliente o proveedor, validando que el ID se único.
+  - **añadirCliente** y **añadirProveedor**: Similar a los métodos de añadir muebles, permiten recoger datos para añadir un nuevo cliente o proveedor, validando que el ID se único.
 
-  - `eliminarCliente` y `eliminarProveedor`: Solicitan al usuario el ID del cliente o proveedor a eliminar y proceden con la eliminación, mostrando un mensaje de confirmación.
+  - **eliminarCliente** y **eliminarProveedor**: Solicitan al usuario el ID del cliente o proveedor a eliminar y proceden con la eliminación, mostrando un mensaje de confirmación.
 
-  - `modificarClientePorID` y `modificarProveedorPorID`: Estos métodos permiten al usuario modificar los detalles de un cliente o proveedor específico en la base de datos. nicialmente, lee la base de datos y solicita el ID del cliente o proveedor a modificar. Si encuentra al cliente o proveedor, presenta un conjunto de preguntas para recoger nuevos datos, incluyendo posiblemente un nuevo ID, nombre, contacto, y dirección. Cada entrada es validada para asegurar que es correcta. Tras recoger y validar estas entradas, actualiza los detalles del cliente o proveedor en la base de datos con esta nueva información y confirma la modificación al usuario.
+  - **modificarClientePorID** y **modificarProveedorPorID**: Estos métodos permiten al usuario modificar los detalles de un cliente o proveedor específico en la base de datos. nicialmente, lee la base de datos y solicita el ID del cliente o proveedor a modificar. Si encuentra al cliente o proveedor, presenta un conjunto de preguntas para recoger nuevos datos, incluyendo posiblemente un nuevo ID, nombre, contacto, y dirección. Cada entrada es validada para asegurar que es correcta. Tras recoger y validar estas entradas, actualiza los detalles del cliente o proveedor en la base de datos con esta nueva información y confirma la modificación al usuario.
 
-  - `buscarMueble`: Permite al usuario buscar muebles en la base de datos según varios criterios y ordenaciones. Inicialmente, el usuario selecciona el tipo de mueble a buscar (Silla, Mesa, Armario), el criterio de búsqueda (nombre, material, descripción), cómo ordenar los resultados (precio o descripción), y la forma de ordenación (ascendente o descendente). A continuación, se solicita al usuario el valor por el que quiere filtrar los resultados. Los resultados se filtran y ordenan según las selecciones del usuario y se muestran en formato de tabla.
+  - **buscarMueble**: Permite al usuario buscar muebles en la base de datos según varios criterios y ordenaciones. Inicialmente, el usuario selecciona el tipo de mueble a buscar (Silla, Mesa, Armario), el criterio de búsqueda (nombre, material, descripción), cómo ordenar los resultados (precio o descripción), y la forma de ordenación (ascendente o descendente). A continuación, se solicita al usuario el valor por el que quiere filtrar los resultados. Los resultados se filtran y ordenan según las selecciones del usuario y se muestran en formato de tabla.
 
-  - `filtrarMuebles`: Este método filtra y ordena una lista de muebles según los criterios especificados por el usuario. Se aplica un filtro basado en un criterio y un valor clave ingresados por el usuario. La comparación es insensible a mayúsculas y minúsculas. Luego, se ordenan los muebles filtrados según el criterio de ordenación y la forma especificadas (ascendente o descendente). Este método es utilizado por el método `buscarMueble()` para obtener los muebles filtrados y ordenados.
+  - **filtrarMuebles**: Este método filtra y ordena una lista de muebles según los criterios especificados por el usuario. Se aplica un filtro basado en un criterio y un valor clave ingresados por el usuario. La comparación es insensible a mayúsculas y minúsculas. Luego, se ordenan los muebles filtrados según el criterio de ordenación y la forma especificadas (ascendente o descendente). Este método es utilizado por el método `buscarMueble()` para obtener los muebles filtrados y ordenados.
 
-  - `searchGenerico`: Actúa como base para los métodos de búsqueda específicos (`searchClientes` y `searchProveedores`). Presenta al usuario una interfaz para seleccionar un criterio de búsqueda y proporcionar un valor correspondiente. Después, filtra la base de datos según el tipo de entidad (clientes o proveedores) y los criterios seleccionados, mostrando los resultados en forma de tabla. 
+  - **searchGenerico**: Actúa como base para los métodos de búsqueda específicos (`searchClientes` y `searchProveedores`). Presenta al usuario una interfaz para seleccionar un criterio de búsqueda y proporcionar un valor correspondiente. Después, filtra la base de datos según el tipo de entidad (clientes o proveedores) y los criterios seleccionados, mostrando los resultados en forma de tabla. 
 
-  - `searchClientes` y `searchProveedores`: Realizan búsquedas de clientes o proveedores en la base de datos según criterios especificados.
+  - **searchClientes** y **searchProveedores**: Realizan búsquedas de clientes o proveedores en la base de datos según criterios especificados.
 
-  - `realizarVenta`: Inicia el proceso de realizar una venta solicitando al usuario que introduzca los detalles de la venta, como el ID del mueble vendido, la cantidad, el ID del cliente y el importe de la venta. Luego valida los inputs, y una vez recopilados los datos, verifica si el mueble existe y si hay suficiente stock para completar la venta invocando al método `procesarVenta`. Si es posible, procede a procesar la venta actualizando el stock y registrando la transacción.
+  - **realizarVenta**: Inicia el proceso de realizar una venta solicitando al usuario que introduzca los detalles de la venta, como el ID del mueble vendido, la cantidad, el ID del cliente y el importe de la venta. Luego valida los inputs, y una vez recopilados los datos, verifica si el mueble existe y si hay suficiente stock para completar la venta invocando al método `procesarVenta`. Si es posible, procede a procesar la venta actualizando el stock y registrando la transacción.
 
-  - `procesarVenta`: Procesa una venta actualizando el stock del mueble vendido y registrando la transacción. Verifica si hay suficiente stock para la cantidad vendida. Si no hay suficiente, informa al usuario y no procede con la venta. Si hay suficiente stock, actualiza el stock en la base de datos, registra la transacción con los detalles proporcionados y guarda los cambios en la base de datos.
+  - **procesarVenta**: Procesa una venta actualizando el stock del mueble vendido y registrando la transacción. Verifica si hay suficiente stock para la cantidad vendida. Si no hay suficiente, informa al usuario y no procede con la venta. Si hay suficiente stock, actualiza el stock en la base de datos, registra la transacción con los detalles proporcionados y guarda los cambios en la base de datos.
 
-  - `realizarCompra`: Inicia el proceso de realizar una compra solicitando al usuario que introduzca los detalles de la compra, como el ID del mueble comprado, la cantidad, el ID del proveedor y el importe de la compra. Luego valida los inputs, y una vez recopilados los datos, verifica si el mueble existe y luego procede a procesar la compra invocando al método `procesarCompra`. Si es posible, procede a procesar la compra actualizando el stock y registrando la transacción.
+  - **realizarCompra**: Inicia el proceso de realizar una compra solicitando al usuario que introduzca los detalles de la compra, como el ID del mueble comprado, la cantidad, el ID del proveedor y el importe de la compra. Luego valida los inputs, y una vez recopilados los datos, verifica si el mueble existe y luego procede a procesar la compra invocando al método `procesarCompra`. Si es posible, procede a procesar la compra actualizando el stock y registrando la transacción.
 
-  - `procesarCompra`: Actualiza el stock del mueble comprado y registra la transacción en la base de datos. Aumenta el stock según la cantidad comprada y devuelve true si la compra fue exitosa.
+  - **procesarCompra**: Actualiza el stock del mueble comprado y registra la transacción en la base de datos. Aumenta el stock según la cantidad comprada y devuelve true si la compra fue exitosa.
 
-  - `realizarDevolucionCliente`: Inicia el proceso de realizar una devolución por parte del cliente solicitando al usuario que introduzca los detalles de la devolución, como el ID del mueble devuelto, la cantidad, el ID del cliente y el importe de la devolución. Luego valida los inputs, y una vez recopilados los datos, verifica si el mueble existe y luego procede a procesar la devolución haciendo uso de `procesarDevolucionCliente`.
+  - **realizarDevolucionCliente**: Inicia el proceso de realizar una devolución por parte del cliente solicitando al usuario que introduzca los detalles de la devolución, como el ID del mueble devuelto, la cantidad, el ID del cliente y el importe de la devolución. Luego valida los inputs, y una vez recopilados los datos, verifica si el mueble existe y luego procede a procesar la devolución haciendo uso de `procesarDevolucionCliente`.
 
-  - `procesarDevolucionCliente`: Procesa la devolución de un cliente actualizando el stock del mueble devuelto e incorporando la transacción de devolución en la base de datos. Devuelve true si la devolución se procesó correctamente.
+  - **procesarDevolucionCliente**: Procesa la devolución de un cliente actualizando el stock del mueble devuelto e incorporando la transacción de devolución en la base de datos. Devuelve true si la devolución se procesó correctamente.
 
-  - `realizarDevolucionProveedor`: Inicia el proceso de realizar una devolución a un proveedor solicitando al usuario que introduzca los detalles de la devolución como el ID del mueble, la cantidad devuelta, el ID del proveedor y el importe de la devolución. Luego valida los inputs, y procede a procesar la devolución haciendo uso de `procesarDevolucionProveedor`.
+  - **realizarDevolucionProveedor**: Inicia el proceso de realizar una devolución a un proveedor solicitando al usuario que introduzca los detalles de la devolución como el ID del mueble, la cantidad devuelta, el ID del proveedor y el importe de la devolución. Luego valida los inputs, y procede a procesar la devolución haciendo uso de `procesarDevolucionProveedor`.
 
-  - `procesarDevolucionProveedor`: Disminuye el stock del mueble devuelto y registra la transacción de devolución al proveedor en la base de datos. Retorna true si la devolución se procesó con éxito.
+  - **procesarDevolucionProveedor**: Disminuye el stock del mueble devuelto y registra la transacción de devolución al proveedor en la base de datos. Retorna true si la devolución se procesó con éxito.
 
-  - `identificarTipoMueble`: Determina el tipo de mueble (sillas, mesas, armarios) basado en el ID proporcionado, verificando en qué colección de la base de datos se encuentra el mueble.
+  - **identificarTipoMueble**: Determina el tipo de mueble (sillas, mesas, armarios) basado en el ID proporcionado, verificando en qué colección de la base de datos se encuentra el mueble.
 
-  - `mostrarStockDisponible`: Muestra el stock actual disponible para una categoría de muebles seleccionada por el usuario o para todas las categorías, según la elección.
+  - **mostrarStockDisponible**: Muestra el stock actual disponible para una categoría de muebles seleccionada por el usuario o para todas las categorías, según la elección.
 
-  - `mueblesMasVendidos`: Identifica y muestra los muebles más vendidos basándose en las transacciones de venta registradas. Es decir, agrupa las transacciones por el ID del mueble y suma las cantidades vendidas para cada uno. Luego, ordena los muebles por la cantidad vendida y muestra un resumen de los más vendidos.
+  - **mueblesMasVendidos**: Identifica y muestra los muebles más vendidos basándose en las transacciones de venta registradas. Es decir, agrupa las transacciones por el ID del mueble y suma las cantidades vendidas para cada uno. Luego, ordena los muebles por la cantidad vendida y muestra un resumen de los más vendidos.
 
-  - `convertirAFecha`: Convierte una cadena de texto que representa una fecha en el formato 'dd/mm/yyyy' a un objeto Date.
+  - **convertirAFecha**: Convierte una cadena de texto que representa una fecha en el formato 'dd/mm/yyyy' a un objeto Date.
 
-  - `fechaEnRango`: Verifica si una fecha dada está dentro de un rango especificado por una fecha de inicio y una de fin. Utiliza la función 'convertirAFecha' para convertir la cadena de texto de la fecha a un objeto Date.
+  - **fechaEnRango**: Verifica si una fecha dada está dentro de un rango especificado por una fecha de inicio y una de fin. Utiliza la función 'convertirAFecha' para convertir la cadena de texto de la fecha a un objeto Date.
 
   - **facturacionEnPeriodo**: Calcula y muestra la facturación total por ventas realizadas dentro de un periodo especificado por el usuario. Utiliza 'inquirer' para solicitar al usuario las fechas de inicio y fin del periodo y filtra las transacciones de tipo 'SALE' que caen dentro de este rango. Finalmente, suma los "montos" de estas transacciones y muestra el total.
 
@@ -320,6 +320,8 @@ Esto nos hizo pensar más aun en lo importante que son los `principios SOLID`, c
 
 Sin embargo, debido a la falta de tiempo y a lo complejo que sería refactorizar todo el código, decidimos no arriesgarnos y mantener la estructura actual, la cual funciona sin problemas, siendo concientes de que esta decisión limita claramente la flexibilidad y "claridad" del diseño a largo plazo.
 Todo esto, nos hizo ver lo importante que es realizar una planificación anticipada sobre la estructura del código en los primeros momentos del desarrollo, pues **más vale prevenir, que curar**.
+
+Por último, también debemos resaltar la complejidad a la hora de realizar los `tests`, pues al tener un diseño poco "claro" y tener que interactuar con la consola en la mayoría de métodos a testear, no sabíamos muy bien como hacerlo. Sin embargo, descubrimos la herramienta `sinon` e hicimos uso de ella para simular la entrada de datos del `inquirer`. Aún así, no conseguimos llevar a cabo el cubrimiento de código que nos hubiese gustado.
 
 ## Bibliografía
 
