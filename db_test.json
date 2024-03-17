@@ -97,6 +97,18 @@
       "precio": 400,
       "numeroPuertas": 3,
       "tieneCajones": true
+    },
+    {
+      "id": 200,
+      "nombre": "Armario Ejemplo",
+      "descripcion": "Este es un armario de ejemplo",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 80,
+        "alto": 200,
+        "largo": 120
+      },
+      "precio": 400
     }
   ],
   "sillas": [
@@ -197,6 +209,20 @@
       "precio": 55,
       "inclinable": false,
       "reposabrazos": true
+    },
+    {
+      "id": 144,
+      "nombre": "Silla Ejemplo",
+      "descripcion": "Esta es una silla de ejemplo",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 50,
+        "alto": 80,
+        "largo": 60
+      },
+      "precio": 100,
+      "inclinable": true,
+      "reposabrazos": false
     }
   ],
   "mesas": [
@@ -297,6 +323,20 @@
       "precio": 60,
       "forma": "cuadrado",
       "plegable": true
+    },
+    {
+      "id": 180,
+      "nombre": "Mesa Ejemplo",
+      "descripcion": "Esta es una mesa de ejemplo",
+      "material": "Madera",
+      "dimensiones": {
+        "ancho": 80,
+        "alto": 70,
+        "largo": 120
+      },
+      "precio": 200,
+      "forma": "Rectangular",
+      "plegable": false
     }
   ],
   "proveedores": [
@@ -499,7 +539,8 @@
       "4": 18,
       "5": 9,
       "6": 12,
-      "7": 15
+      "7": 15,
+      "200": 10
     }
   },
   "transactions": [

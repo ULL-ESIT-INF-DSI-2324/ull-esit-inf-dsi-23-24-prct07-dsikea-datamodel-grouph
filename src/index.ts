@@ -1,6 +1,6 @@
 import { Stock } from "./BaseDeDatos/Stock.js"
 import inquirer from "inquirer";
-//const stock = Stock.getInstance();
+
 async function mainMenu(stock:Stock) {
     const answers = await inquirer.prompt([
         {
@@ -59,6 +59,7 @@ async function gestionarMuebles(stock:Stock) {
             break;
         case 'Modificar mueble':
             await stock.modificarMueblePorId();
+            await gestionarMuebles(stock);
             break;
         case 'Buscar muebles':
             await stock.buscarMueble();
@@ -86,9 +87,11 @@ async function gestionarProveedores(stock:Stock) {
             break;
         case 'Eliminar proveedor':
             await stock.eliminarProveedor();
+            await gestionarProveedores(stock);
             break;
         case 'Modificar proveedor':
             await stock.modificarProveedorPorID();
+            await gestionarProveedores(stock);
             break;
         case 'Listar proveedores':
             await stock.listarProveedores();
@@ -116,17 +119,19 @@ async function gestionarClientes(stock:Stock) {
     switch (answers.action) {
         case 'Añadir cliente':
             await stock.añadirCliente();
-            gestionarClientes(stock);
+            await gestionarClientes(stock);
             break;
         case 'Eliminar cliente':
             await stock.eliminarCliente();
+            await gestionarClientes(stock);
             break;
         case 'Modificar cliente':
             await stock.modificarClientePorId();
+            await gestionarClientes(stock);
             break;
         case 'Listar clientes':
             await stock.listarClientes();
-            gestionarClientes(stock)
+            await gestionarClientes(stock)
             break;
         case 'Buscar clientes':
             await stock.searchClientes();

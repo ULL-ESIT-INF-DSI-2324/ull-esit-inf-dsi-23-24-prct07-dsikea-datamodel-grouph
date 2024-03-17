@@ -96,7 +96,7 @@ export class Stock {
      * Añade un armario a la base de datos y actualiza el stock.
      * @param mueble El armario a añadir.
      */
-    private async addArmario(mueble: Armario) {
+    public async addArmario(mueble: Armario) {
         this.db.data?.armarios.push(mueble);
         this.db.data!.stock.armarios[mueble.id] = 10;
         await this.db.write();
@@ -106,7 +106,7 @@ export class Stock {
      * Añade una silla a la base de datos y actualiza el stock.
      * @param mueble La silla a añadir.
      */
-    private async addSilla(mueble: Silla) {
+    public async addSilla(mueble: Silla) {
         this.db.data?.sillas.push(mueble);
         this.db.data!.stock.sillas[mueble.id] = 10;
         await this.db.write();
@@ -116,7 +116,7 @@ export class Stock {
      * Añade una mesa a la base de datos y actualiza el stock.
      * @param mueble La mesa a añadir.
      */
-    private async addMesa(mueble: Mesa) {
+    public async addMesa(mueble: Mesa) {
         this.db.data?.mesas.push(mueble);
         this.db.data!.stock.sillas[mueble.id] = 10;
         await this.db.write();
@@ -126,7 +126,7 @@ export class Stock {
      * Elimina una silla de la base de datos y actualiza el stock.
      * @param id El ID de la silla a eliminar.
      */
-    private async deleteSilla(id: number) {
+    public async deleteSilla(id: number) {
         if (this.db.data) {
             this.db.data.sillas = this.db.data.sillas.filter(mueble => mueble.id !== id);
             delete this.db.data!.stock.sillas[id];
@@ -138,7 +138,7 @@ export class Stock {
      * Elimina una mesa de la base de datos y actualiza el stock.
      * @param id El ID de la mesa a eliminar.
      */
-    private async deleteMesa(id: number) {
+    public async deleteMesa(id: number) {
         if (this.db.data) {
             this.db.data.mesas = this.db.data.mesas.filter(mueble => mueble.id !== id);
             delete this.db.data!.stock.mesas[id];
@@ -150,7 +150,7 @@ export class Stock {
      * Elimina un armario de la base de datos y actualiza el stock.
      * @param id El ID del armario a eliminar.
      */
-    private async deleteArmario(id: number) {
+    public async deleteArmario(id: number) {
         if (this.db.data) {
             this.db.data.armarios = this.db.data.armarios.filter(mueble => mueble.id !== id);
             delete this.db.data!.stock.armarios[id];
@@ -164,7 +164,7 @@ export class Stock {
      * @param mueble La nueva mesa con la que se actualizará el registro.
      * @param id El ID de la mesa a modificar.
      */
-    private async modifyMesa(mueble: Mesa, id:number) {
+    public async modifyMesa(mueble: Mesa, id:number) {
         this.deleteMesa(id);
         this.addMesa(mueble);
     }
@@ -175,7 +175,7 @@ export class Stock {
      * @param mueble El nuevo armario con el que se actualizará el registro.
      * @param id El ID del armario a modificar.
      */
-    private async modifyArmario(mueble: Armario, id:number) {
+    public async modifyArmario(mueble: Armario, id:number) {
         this.deleteArmario(id);
         this.addArmario(mueble);
     }
@@ -186,7 +186,7 @@ export class Stock {
      * @param mueble La nueva silla con la que se actualizará el registro.
      * @param id El ID de la silla a modificar.
      */
-    private async modifySilla(mueble: Silla, id:number) {
+    public async modifySilla(mueble: Silla, id:number) {
         this.deleteSilla(id);
         this.addSilla(mueble);
     }
@@ -195,7 +195,7 @@ export class Stock {
      * Obtiene la lista de todas las sillas registradas en la base de datos.
      * @returns Un arreglo de sillas.
      */
-    private async getSilla() {
+    public async getSilla() {
         await this.db.read();
         return this.db.data?.sillas || [];
     }
@@ -204,7 +204,7 @@ export class Stock {
      * Obtiene la lista de todas las mesas registradas en la base de datos.
      * @returns Un arreglo de mesas.
      */
-    private async getMesa() {
+    public async getMesa() {
         await this.db.read();
         return this.db.data?.mesas || [];
     }
@@ -213,7 +213,7 @@ export class Stock {
      * Obtiene la lista de todos los armarios registrados en la base de datos.
      * @returns Un arreglo de armarios.
      */
-    private async getArmario() {
+    public async getArmario() {
         await this.db.read();
         return this.db.data?.armarios || [];
     }
@@ -222,7 +222,7 @@ export class Stock {
      * Obtiene la lista de todos los clientes registrados en la base de datos.
      * @returns Un arreglo de clientes.
      */
-    private async getClientes() {
+    public async getClientes() {
         await this.db.read();
         return this.db.data?.clientes || [];
     }
@@ -231,7 +231,7 @@ export class Stock {
      * Obtiene la lista de todos los proveedores registrados en la base de datos.
      * @returns Un arreglo de proveedores.
      */
-    private async getProveedores() {
+    public async getProveedores() {
         await this.db.read();
         return this.db.data?.proveedores || [];
     }
@@ -240,7 +240,7 @@ export class Stock {
      * Añade un nuevo cliente a la base de datos y actualiza el registro.
      * @param cliente El cliente a añadir.
      */
-    private async addCliente(cliente: Cliente) {
+    public async addCliente(cliente: Cliente) {
         this.db.data?.clientes.push(cliente);
         await this.db.write();
     }
@@ -249,7 +249,7 @@ export class Stock {
      * Añade un nuevo proveedor a la base de datos y actualiza el registro.
      * @param proveedor El proveedor a añadir.
      */
-    private async addProveedor(proveedor: Proveedor) {
+    public async addProveedor(proveedor: Proveedor) {
         this.db.data?.proveedores.push(proveedor);
         await this.db.write();
     }
@@ -258,7 +258,7 @@ export class Stock {
      * Elimina un cliente de la base de datos basado en su ID.
      * @param id El ID del cliente a eliminar.
      */
-    private async deleteCliente(id: number) {
+    public async deleteCliente(id: number) {
         if (this.db.data) {
             this.db.data.clientes = this.db.data.clientes.filter(cliente => cliente.id !== id);
             await this.db.write();
@@ -269,7 +269,7 @@ export class Stock {
      * Elimina un proveedor de la base de datos basado en su ID.
      * @param id El ID del proveedor a eliminar.
      */
-    private async deleteProveedor(id: number) {
+    public async deleteProveedor(id: number) {
         if (this.db.data) {
             this.db.data.proveedores = this.db.data.proveedores.filter(proveedor => proveedor.id !== id);
             await this.db.write();
@@ -330,8 +330,6 @@ export class Stock {
         console.table(mueblesParaMostrar1);
         console.log('Lista de Mesas:')
         console.table(mueblesParaMostrar2)
-        
-
     }
 
     /**
@@ -357,8 +355,6 @@ export class Stock {
         
         console.log('Lista de Clientes:');
         console.table(clientesParaMostrar);
-        
-
     }
 
     /**
@@ -384,8 +380,6 @@ export class Stock {
         
         console.log('Lista de Proveedores:');
         console.table(proveedoresParaMostrar);
-        
-        // Vuelve al menú anterior después de mostrar los proveedores
     }
 
     /**
@@ -674,7 +668,6 @@ export class Stock {
 
         await this.addArmario(armario);
         console.log('Armario añadido correctamente.');
-        this.opcionesSiguientes();
     }
 
     /**
@@ -787,7 +780,6 @@ export class Stock {
         const armarioIndex = this.db.data?.armarios.findIndex(m => m.id === id);
         const mesaIndex = this.db.data?.mesas.findIndex(m => m.id === id);
         const sillaIndex = this.db.data?.sillas.findIndex(m => m.id === id);
-        //const index:number = 0;
         let mueble_temp:Armario | Silla | Mesa | undefined;
         if ((mesaIndex === -1 || mesaIndex === undefined )) {
             if((sillaIndex === -1 || sillaIndex === undefined )){
@@ -913,9 +905,8 @@ export class Stock {
             Object.assign(mueble, respuestasComunes, respuestasEspecificas);
              this.modifySilla(mueble,id)        
         }
-       // await db.write();
+       
         console.log(`Mueble con ID ${id} modificado correctamente.`);
-        gestionarMuebles(this);
     }
 
     /**
@@ -990,7 +981,6 @@ export class Stock {
     
         await this.deleteCliente(respuesta.id);
         console.log(`Cliente con ID = ${respuesta.id} eliminado correctamente.`);
-        gestionarClientes(this);
     }
 
     /**
@@ -1049,7 +1039,6 @@ export class Stock {
     
         await this.db.write();
         console.log(`Cliente con ID ${id} modificado correctamente.`);
-        gestionarClientes(this);
     }
 
 
@@ -1190,7 +1179,6 @@ export class Stock {
     
         await this.deleteProveedor(respuesta.id);
         console.log(`Proveedor con ID = ${respuesta.id} eliminado correctamente.`);
-        gestionarProveedores(this);
     }
 
     /**
@@ -1255,7 +1243,6 @@ export class Stock {
     
         await this.db.write();
         console.log(`Proveedor con ID ${id} modificado correctamente.`);
-        gestionarProveedores(this);
     }
 
     /**
