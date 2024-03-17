@@ -11,9 +11,6 @@
 
 
 <p align="center">
-    <a href='https://coveralls.io/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct07-dsikea-datamodel-grouph?branch=main'><img src='https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct07-dsikea-datamodel-grouph/badge.svg?branch=main' alt='Coverage Status' />
-    </a>
-    </a>
     <a href = "https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct07-dsikea-datamodel-grouph/actions/workflows/node.js.yml">
         <img alt="Github" src="https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct07-dsikea-datamodel-grouph/actions/workflows/node.js.yml/badge.svg">
     </a>
