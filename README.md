@@ -295,11 +295,21 @@ Para esta clase hemos decidido implementar el patrón de diseño `Singleton`, pu
 
   - `procesarDevolucionProveedor`: Disminuye el stock del mueble devuelto y registra la transacción de devolución al proveedor en la base de datos. Retorna true si la devolución se procesó con éxito.
 
-  - `identificarTipoMueble`:
+  - `identificarTipoMueble`: Determina el tipo de mueble (sillas, mesas, armarios) basado en el ID proporcionado, verificando en qué colección de la base de datos se encuentra el mueble.
 
-  - `mostrarStockDisponible`: 
+  - `mostrarStockDisponible`: Muestra el stock actual disponible para una categoría de muebles seleccionada por el usuario o para todas las categorías, según la elección.
 
+  - `mueblesMasVendidos`: Identifica y muestra los muebles más vendidos basándose en las transacciones de venta registradas. Es decir, agrupa las transacciones por el ID del mueble y suma las cantidades vendidas para cada uno. Luego, ordena los muebles por la cantidad vendida y muestra un resumen de los más vendidos.
 
+  - `convertirAFecha`: Convierte una cadena de texto que representa una fecha en el formato 'dd/mm/yyyy' a un objeto Date.
+
+  - `fechaEnRango`: Verifica si una fecha dada está dentro de un rango especificado por una fecha de inicio y una de fin. Utiliza la función 'convertirAFecha' para convertir la cadena de texto de la fecha a un objeto Date.
+
+  - **facturacionEnPeriodo**: Calcula y muestra la facturación total por ventas realizadas dentro de un periodo especificado por el usuario. Utiliza 'inquirer' para solicitar al usuario las fechas de inicio y fin del periodo y filtra las transacciones de tipo 'SALE' que caen dentro de este rango. Finalmente, suma los "montos" de estas transacciones y muestra el total.
+
+  - **gestosEnPeriodo**: Calcula y muestra el total de gastos en compras realizadas dentro de un periodo especificado por el usuario. Utiliza 'inquirer' para solicitar al usuario las fechas de inicio y fin del periodo y filtra las transacciones de tipo 'PURCHASE' que caen dentro de este rango. Finalmente, suma los "montos" de estas transacciones y muestra el total.
+
+  - **historicoTransacciones**: Muestra un histórico de transacciones realizadas, ya sea ventas a clientes o compras a proveedores, basado en la elección del usuario. Solicita al usuario que especifique si desea ver ventas o compras y el ID correspondiente al cliente o proveedor. Filtra las transacciones basadas en esta selección y muestra un resumen de las mismas.
 
 ## Conclusiones
 
